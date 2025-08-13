@@ -1,90 +1,19 @@
 import Image from "next/image";
-import Header from "../../components/header";
-import CommunityIcon from "../../components/icons/community";
-import HomeIcon from "../../components/icons/home";
 import MessageIcon from "../../components/icons/message";
-import SettingsIcon from "../../components/icons/settings";
-import LikeIcon from "../../components/icons/heart";
 import HeartIcon from "../../components/icons/heart";
 import ClipeIcon from "../../components/icons/clipe";
 import AirPlaneIcon from "../../components/icons/airplane";
-import UsersIcon from "../../components/icons/users";
-import TrophyIcon from "../../components/icons/trophy";
 import EllipsisVerticalIcon from "../../components/icons/ellipsis";
 import InfoIcon from "../../components/icons/info";
 import MoneyIcon from "../../components/icons/money";
+import Sidebar from "../../components/sidebar";
 
 export default function Home() {
   return (
     <>
-      <Header/>
       <div className="flex bg-gray-100 min-h-screen p-6 gap-6 text-gray-600">
-        <div className="w-1/6 bg-white rounded-2xl p-4">
-          <div className="text-center mb-4">
-            <Image
-              src="/imgs/kratos.jpg"
-              alt="Foto de perfil"
-              className="w-full rounded-full mb-4"
-              width={250}
-              height={250}
-              priority
-            />
-          <label className="text-lg font-semibold">Kleitones da Silva</label>
-          </div>
-          <nav className="flex flex-col gap-4 items-center">
-            <ul className="list-none">
-              <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                <div className="bg-gray-100 rounded-full p-2">
-                  <HomeIcon />
-                </div>
-                  <label className="text-sm font-semibold">Home</label>
-
-              </li>
-              <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                <div className="bg-gray-100 rounded-full p-2">
-                  <UsersIcon />
-                </div>
-                <label className="text-sm font-semibold">Amigos</label>
-
-              </li>
-              <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                <div className="bg-gray-100 rounded-full p-2">
-                  <CommunityIcon />
-                </div>
-                <label className="text-sm font-semibold">Comunidades</label>
-
-              </li>
-              <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                <div className="bg-gray-100 rounded-full p-2">
-                  <TrophyIcon />
-                </div>
-                <label className="text-sm font-semibold">Eventos</label>
-
-              </li>
-              
-              <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                <div className="bg-gray-100 rounded-full p-2">
-                  <MessageIcon />
-                </div>
-                
-                <label className="text-sm font-semibold">Mensagens</label> 
-                <span className="bg-[#f53003] rounded-full text-white text-xs w-5 h-5 flex items-center justify-center">3</span>
-                
-              </li>
-              <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                <div className="bg-gray-100 rounded-full p-2">
-                  <SettingsIcon />
-                </div>
-                
-                <label className="text-sm font-semibold">Configurações</label>
-                
-              </li>
-              
-            </ul>
-
-          </nav>
-        </div>
-
+        
+        <Sidebar />
         <div className="w-4/6 ">
           <div className="flex flex-row gap-6">
             <div className="w-3/4 h-full rounded-2xl mb-4">
