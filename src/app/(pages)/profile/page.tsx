@@ -1,76 +1,33 @@
 import Image from "next/image";
 import ProfileInfo from "../../../../components/profile/profile-info";
 import Sidebar from "../../../../components/sidebar";
+import ListCommunities from "../../../../components/communities/list-communities";
+import ListFriends from "../../../../components/friends/list-friends";
 
 export default function Profile(){
     return(
         <div className="flex bg-gray-100 min-h-screen p-6 gap-6 text-gray-600">    
             <Sidebar />
-            <ProfileInfo />
-            <div className="w-3/4 flex flex-col">
-                <div className="w-full ">
-                    <div className="bg-white text-center rounded-2xl p-4 mb-4">
-                        <h1 className="text-md font-semibold mb-4">Amigos</h1>
-                        <div className="w-full flex flex-row gap-4">
 
-                            <div className="w-[120px] flex flex-col">
-                                <Image
-                                    src="/imgs/drift.jpg"
-                                    alt="Foto de perfil"
-                                    className="rounded-md w-[120px] mr-4 hover:opacity-90"
-                                    width={120}
-                                    height={120}
-                                    priority
-                                />
-                                <label className="text-sm font-semibold">Nome fulano</label>
+            <div className="w-3/6 flex flex-col">
+                <div className="w-full flex flex-row gap-4 mb-4">
+                    <div className="w-1/3 bg-white h-[100px] rounded-lg p-4">
+                        <h2 className="text-xs font-semibold">Amigos</h2>
+                    </div>
+                    <div className="w-1/3 bg-white h-[100px] rounded-lg p-4">
+                        <h2 className="text-xs font-semibold">Comunidades</h2>
+                    </div>
+                    <div className="w-1/3 bg-white h-[100px] rounded-lg p-4">
+                        <h2 className="text-xs font-semibold">Eventos</h2>
 
-                            </div>
-                            <div className="w-[120px] flex flex-col">
-                                <Image
-                                    src="/imgs/drift.jpg"
-                                    alt="Foto de perfil"
-                                    className="rounded-md w-[120px] mr-4 hover:opacity-90"
-                                    width={120}
-                                    height={120}
-                                    priority
-                                />
-                                <label className="text-sm font-semibold">Nome fulano</label>
-
-                            </div>
-                        </div>
                     </div>
                 </div>
+                <ProfileInfo />
                 <div className="w-full ">
-                    <div className="bg-white text-center rounded-2xl p-4 mb-4">
-                        <h1 className="text-md font-semibold mb-4">Comunidades</h1>
-                        <div className="w-full flex flex-row gap-4">
-
-                            <div className="w-[120px] flex flex-col">
-                                <Image
-                                    src="/imgs/drift.jpg"
-                                    alt="Foto de perfil"
-                                    className="rounded-md w-[120px] mr-4 hover:opacity-90"
-                                    width={120}
-                                    height={120}
-                                    priority
-                                />
-                                <label className="text-sm font-semibold">Nome comunidade</label>
-
-                            </div>
-                            <div className="w-[120px] flex flex-col">
-                                <Image
-                                    src="/imgs/drift.jpg"
-                                    alt="Foto de perfil"
-                                    className="rounded-md w-[120px] mr-4 hover:opacity-90"
-                                    width={120}
-                                    height={120}
-                                    priority
-                                />
-                                <label className="text-sm font-semibold">Nome comunidade</label>
-
-                            </div>
-                        </div>
-                    </div>
+                    <ListCommunities />
+                </div>
+                <div className="w-full ">
+                    <ListFriends />
                 </div>
             </div>
             

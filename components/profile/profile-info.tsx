@@ -2,7 +2,7 @@ import WhatsappIcon from "../icons/whatsapp";
 
 export default function ProfileInfo() {
     return (
-        <div className="w-1/4">
+        <div className="w-full">
             <div className="bg-white text-center rounded-2xl p-4 mb-4">
                 <h1 className="text-md font-semibold mb-4">Perfil</h1>
                 <div className="flex flex-row text-left mb-2">
@@ -31,7 +31,7 @@ export default function ProfileInfo() {
                 </div>
                 <div className="flex flex-row text-left mb-2">
                     <label className="w-1/2 text-sm font-semibold">Telefone</label>
-                    <label className="w-1/2 text-sm font-normal">
+                    <label className="w-1/2 text-sm font-normal flex flex-row gap-2">
                         61 99999-9999
                         <WhatsappIcon />
                     </label>
