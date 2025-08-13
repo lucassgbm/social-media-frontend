@@ -294,7 +294,7 @@ export default function Home() {
 
         </div>
 
-        <div className="w-1/8 bg-white rounded-2xl p-4">
+        <div className="w-1/6 bg-white rounded-2xl p-4">
           <h2 className="text-lg text-center font-semibold mb-2">Amigos</h2>
             <Image
               src="/imgs/kratos.jpg"

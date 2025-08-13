@@ -18,8 +18,8 @@ export default function ProfileInfo() {
                     <label className="w-1/2 text-sm font-normal">Analista de sistemas</label>
                 </div>
                 <div className="flex flex-row text-left mb-2">
-                    <label className="w-1/2 text-sm font-semibold">Profissão</label>
-                    <label className="w-1/2 text-sm font-normal">Analista de sistemas</label>
+                    <label className="w-1/2 text-sm font-semibold">Autodescrição</label>
+                    <label className="w-1/2 text-sm font-normal">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto doloremque ea quam non, dolor sint nesciunt doloribus aspernatur explicabo maxime, quos modi repudiandae perferendis fuga? Soluta hic quasi voluptate autem?</label>
                 </div>
                 <div className="flex flex-row text-left mb-2">
                     <label className="w-1/2 text-sm font-semibold">UF</label>
@@ -37,8 +37,11 @@ export default function ProfileInfo() {
                     </label>
 
                 </div>
-                <div className="flex flex-row text-left mb-2">
-                    <button className="w-2/2 bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-semibold p-2 mt-4">Editar</button>
+                <div className="flex flex-row text-left mb-2 justify-end">
+                    <a href="profile/edit">
+
+                        <button className="w-[100px] bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-semibold p-2 mt-4 cursor-pointer">Editar</button>
+                    </a>
                 </div>
 
             </div>
