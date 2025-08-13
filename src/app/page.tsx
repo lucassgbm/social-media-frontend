@@ -11,6 +11,8 @@ import AirPlaneIcon from "../../components/icons/airplane";
 import UsersIcon from "../../components/icons/users";
 import TrophyIcon from "../../components/icons/trophy";
 import EllipsisVerticalIcon from "../../components/icons/ellipsis";
+import InfoIcon from "../../components/icons/info";
+import MoneyIcon from "../../components/icons/money";
 
 export default function Home() {
   return (
@@ -65,7 +67,8 @@ export default function Home() {
                   <MessageIcon />
                 </div>
                 
-                <label className="text-sm font-semibold">Mensagens</label>
+                <label className="text-sm font-semibold">Mensagens</label> 
+                <span className="bg-[#f53003] rounded-full text-white text-xs w-5 h-5 flex items-center justify-center">3</span>
                 
               </li>
               <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
@@ -212,8 +215,13 @@ export default function Home() {
                     <p className="text-xs">02/08/2025 | 10:00 às 18:00</p>
                   </div>
                   <div className="flex flex-row justify-center gap-2 mt-4">
-                    <button className="bg-blue-500 text-sm hover:bg-blue-600 text-white py-1 px-1 rounded cursor-pointer">Detalhes</button>
-                    <button className="bg-bg-white text-sm border-1 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white py-1 px-1 rounded cursor-pointer">Ingresso</button>
+                    
+                    <button className="bg-blue-500 text-sm hover:bg-blue-600 text-white py-1 px-1 rounded-full cursor-pointer">
+                      <InfoIcon />
+                    </button>
+                    <button className="bg-bg-white text-sm border-1 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white py-1 px-1 rounded-full cursor-pointer">
+                      <MoneyIcon />
+                    </button>
                   </div>
 
                 </div>
@@ -223,7 +231,7 @@ export default function Home() {
                 <div className="flex flex-col justify-center mt-4">
                   <div className="flex flex-row items-center bg-gray-100 rounded-sm p-2">
                     <Image
-                      src="/imgs/drift2.png"
+                      src="/imgs/bmw.jpg"
                       alt="Foto de perfil"
                       className="rounded-md w-[45px] mr-2 hover:opacity-90"
                       width={45}
@@ -241,7 +249,7 @@ export default function Home() {
                 <div className="flex flex-col justify-center mt-4">
                   <div className="flex flex-row items-center bg-gray-100 rounded-sm p-2">
                     <Image
-                      src="/imgs/drift2.png"
+                      src="/imgs/bmw.jpg"
                       alt="Foto de perfil"
                       className="rounded-md w-[45px] mr-2 hover:opacity-90"
                       width={45}
@@ -259,7 +267,7 @@ export default function Home() {
                 <div className="flex flex-col justify-center mt-4">
                   <div className="flex flex-row items-center bg-gray-100 rounded-sm p-2">
                     <Image
-                      src="/imgs/drift2.png"
+                      src="/imgs/bmw.jpg"
                       alt="Foto de perfil"
                       className="rounded-md w-[45px] mr-2 hover:opacity-90"
                       width={45}
@@ -277,8 +285,9 @@ export default function Home() {
               </div>
               <div className="bg-white h-auto text-center rounded-2xl p-4 mb-4">
                 <label className="text-sm font-semibold">Comunidades</label>
-                <div className="flex flex-col justify-center mt-4 outline-1 outline-gray-200 rounded-sm cursor-pointer">
-                  <div className="flex flex-row items-center bg-gray-50 rounded-sm p-2">
+                
+                <div className="flex flex-col justify-center mt-4 bg-gray-100 rounded-xl cursor-pointer hover:shadow-md">
+                  <div className="flex flex-row items-center rounded-sm p-2">
                     <Image
                       src="/imgs/kratos.jpg"
                       alt="Foto de perfil"
@@ -309,11 +318,12 @@ export default function Home() {
                       height={20}
                       priority
                     />
-                    <label className="text-xs font-semibold ml-auto">200 membros</label>
+                    <label className="text-xs font-semibold text-gray-500 ml-auto">243 join</label>
                   </div>
                 </div>
-                <div className="flex flex-col justify-center mt-4 outline-1 outline-gray-200 rounded-sm cursor-pointer">
-                  <div className="flex flex-row items-center bg-gray-50 rounded-sm p-2">
+
+                <div className="flex flex-col justify-center mt-4 bg-gray-100 rounded-xl cursor-pointer hover:shadow-md">
+                  <div className="flex flex-row items-center rounded-sm p-2">
                     <Image
                       src="/imgs/kratos.jpg"
                       alt="Foto de perfil"
@@ -344,7 +354,7 @@ export default function Home() {
                       height={20}
                       priority
                     />
-                    <label className="text-xs font-semibold ml-auto">200 membros</label>
+                    <label className="text-xs font-semibold text-gray-500 ml-auto">243 join</label>
                   </div>
                 </div>
               </div>
