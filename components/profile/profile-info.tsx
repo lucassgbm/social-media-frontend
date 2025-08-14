@@ -1,3 +1,4 @@
+import Link from "next/link";
 import WhatsappIcon from "../icons/whatsapp";
 
 export default function ProfileInfo() {
@@ -38,10 +39,10 @@ export default function ProfileInfo() {
 
                 </div>
                 <div className="flex flex-row text-left mb-2 justify-end">
-                    <a href="profile/edit">
-
+                    <Link href="profile/edit">
+                    
                         <button className="w-[100px] bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-semibold p-2 mt-4 cursor-pointer">Editar</button>
-                    </a>
+                    </Link>
                 </div>
 
             </div>

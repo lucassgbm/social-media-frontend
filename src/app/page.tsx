@@ -7,10 +7,12 @@ import EllipsisVerticalIcon from "../../components/icons/ellipsis";
 import InfoIcon from "../../components/icons/info";
 import MoneyIcon from "../../components/icons/money";
 import Sidebar from "../../components/sidebar";
+import Header from "../../components/header";
 
 export default function Home() {
   return (
     <>
+      <Header />
       <div className="flex bg-gray-100 min-h-screen p-6 gap-6 text-gray-600">
         
         <Sidebar />

@@ -5,6 +5,8 @@ import CommunityIcon from "./icons/community";
 import TrophyIcon from "./icons/trophy";
 import MessageIcon from "./icons/message";
 import SettingsIcon from "./icons/settings";
+import Link from "next/link";
+import ProfileIcon from "./icons/profile";
 
 export default function Sidebar() {
     return (
@@ -22,20 +24,33 @@ export default function Sidebar() {
             </div>
             <nav className="flex flex-col gap-4 items-center">
                 <ul className="list-none">
-                    <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                    <div className="bg-gray-100 rounded-full p-2">
-                        <HomeIcon />
-                    </div>
-                        <label className="text-sm font-semibold">Home</label>
+                    <Link href="/">
+                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
+                            <div className="bg-gray-100 rounded-full p-2">
+                                <HomeIcon />
+                            </div>
+                            <label className="text-sm font-semibold">Home</label>
 
-                    </li>
-                    <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                    <div className="bg-gray-100 rounded-full p-2">
-                        <UsersIcon />
-                    </div>
-                    <label className="text-sm font-semibold">Amigos</label>
+                        </li>
+                    </Link>
+                    <Link href="/profile">
+                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
+                            <div className="bg-gray-100 rounded-full p-2">
+                                <ProfileIcon />
+                            </div>
+                            <label className="text-sm font-semibold">Perfil</label>
 
-                    </li>
+                        </li>
+                    </Link>
+                    <Link href="/friends">
+                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
+                            <div className="bg-gray-100 rounded-full p-2">
+                                <UsersIcon />
+                            </div>
+                            <label className="text-sm font-semibold">Amigos</label>
+
+                        </li>
+                    </Link>
                     <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
                     <div className="bg-gray-100 rounded-full p-2">
                         <CommunityIcon />
