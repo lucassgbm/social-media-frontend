@@ -3,10 +3,10 @@ import Image from "next/image";
 export default function Home(){
     return(
         <div className="flex sm:flex-row flex-col">
-            <div className="sm:w-1/2 hidden sm:block flex w-full h-screen items-center justify-center p-4">
+            <div className="sm:w-1/2 hidden sm:block flex w-full bg-gray-50 h-screen items-center justify-center p-4">
                 <div className="relative w-[100%] h-[100%] rounded-lg overflow-hidden shadow-lg">
                     <Image
-                        src="/imgs/img_login2.jpg"
+                        src="/imgs/img_login.jpg"
                         alt="Foto - tela de login"
                         fill 
                         className="object-cover"
