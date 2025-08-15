@@ -10,7 +10,7 @@ import ProfileIcon from "./icons/profile";
 
 export default function Sidebar() {
     return (
-        <div className="w-1/6 bg-white rounded-2xl p-4">
+        <div className="hidden sm:block sm:w-1/6 bg-white rounded-2xl p-4">
             <div className="text-center mb-4">
                 <Image
                     src="/imgs/kratos.jpg"
