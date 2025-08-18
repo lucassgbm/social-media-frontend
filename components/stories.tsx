@@ -6,7 +6,7 @@ export default function Stories(){
             <Image
               src="/imgs/kratos.jpg"
               alt="Foto de perfil"
-              className="w-xl rounded-full mb-4 cursor-pointer hover:opacity-90"
+              className="w-auto sm:w-xl rounded-full cursor-pointer hover:opacity-90"
               width={100}
               height={100}
               priority
@@ -14,7 +14,7 @@ export default function Stories(){
             <Image
               src="/imgs/kratos.jpg"
               alt="Foto de perfil"
-              className="w-xl rounded-full mb-4 cursor-pointer"
+              className="w-auto sm:w-xl rounded-full cursor-pointer"
               width={100}
               height={100}
               priority
@@ -22,7 +22,7 @@ export default function Stories(){
             <Image
               src="/imgs/kratos.jpg"
               alt="Foto de perfil"
-              className="w-xl rounded-full mb-4 cursor-pointer"
+              className="w-auto sm:w-xl rounded-full cursor-pointer"
               width={100}
               height={100}
               priority
@@ -30,7 +30,7 @@ export default function Stories(){
             <Image
               src="/imgs/kratos.jpg"
               alt="Foto de perfil"
-              className="w-xl rounded-full mb-4 cursor-pointer"
+              className="w-auto sm:w-xl rounded-full cursor-pointer"
               width={100}
               height={100}
               priority
@@ -38,7 +38,7 @@ export default function Stories(){
             <Image
               src="/imgs/kratos.jpg"
               alt="Foto de perfil"
-              className="w-xl rounded-full mb-4 cursor-pointer"
+              className="w-auto sm:w-xl rounded-full cursor-pointer"
               width={100}
               height={100}
               priority
