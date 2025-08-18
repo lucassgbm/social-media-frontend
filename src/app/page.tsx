@@ -221,10 +221,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
             </div>
-            
-
           </div>
 
           <div className="flex flex-row sm:flex-col w-full h-[auto] sm:h-auto gap-4 overflow-x-auto scrollbar-hide sm:w-1/6 bg-white rounded-2xl p-4 sm:mb-0">

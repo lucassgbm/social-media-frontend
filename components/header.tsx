@@ -1,36 +1,64 @@
+'use client';
+
+import { useState } from "react";
 import SearchIcon from "./icons/search";
+import CloseIcon from "./icons/close";
+import MenuIcon from "./icons/menu";
+import ThemeToggle from "./theme-toggle";
 
 export default function Header() {
 
+const [mobileOpen, setMobileOpen] = useState(false);
     return (
-        <header className="bg-white">
-            <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
-                <div className="flex w-1/7">
-                    <a href="#" className="-m-1.5 p-1.5">
-                        <span className="sr-only">Your Company</span>
-                        <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="" className="h-8 w-auto" />
-                    </a>
+        <header className="flex w-full bg-white dark:bg-gray-900">
+            <nav className="w-full shadow-md px-4 py-2 flex items-center justify-between">
+
+                <div className="w-1/4 text-xl font-bold text-blue-600">Logo</div>
+
+                <div className="w-2/4 hidden md:flex bg-gray-100 dark:bg-gray-700 p-2 rounded-lg px-5 pl-5">
+                    <SearchIcon className="dark:text-white"/>
+                    <input className="ml-2 w-full focus:outline-none w-full text-gray-600 dark:text-white rounded-sm ml-2 pr-4" type="text" placeholder="Search"></input>
                 </div>
-                <div className="flex lg:hidden">
-                    <button type="button" className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-                        <span className="sr-only">Open main menu</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" data-slot="icon" aria-hidden="true" className="size-6">
-                        <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </button>
+
+                <div className="hidden md:flex w-1/4 justify-end items-center gap-4">
+                    <ThemeToggle /> 
+                    <span className="text-sm font-semibold text-gray-600 dark:text-white">Olá, Lucas</span>
+                    <img
+                    src="https://i.pravatar.cc/40"
+                    alt="perfil"
+                    className="w-10 h-10 rounded-full cursor-pointer"
+                    />
                 </div>
-                <div className="flex w-4/7">
-                    <div className="flex w-full bg-gray-100 p-2 rounded-full px-5 pl-5">
-                        <SearchIcon/>
-                        <input className="ml-2 w-full focus:outline-none w-full rounded-full ml-2 pl-4 pr-4 hover:text-border-0" type="text" placeholder="Search"></input>
+
+                <button
+                    className="md:hidden p-2"
+                    onClick={() => setMobileOpen(!mobileOpen)}
+                >
+                    {mobileOpen ? <CloseIcon className="dark:text-white cursor-pointer" /> : <MenuIcon className="dark:text-white cursor-pointer" />}
+                </button>
+
+                {mobileOpen && (
+                    <div className="absolute top-14 left-0 w-full dark:bg-gray-800 bg-white shadow-md flex flex-col p-4 gap-4 md:hidden">
+                        <div className="flex w-full bg-gray-100 dark:bg-gray-700 p-2 rounded-lg px-5 pl-5">
+                            <SearchIcon className="dark:text-white"/>
+                            <input className="ml-2 w-full focus:outline-none w-full text-gray-600 dark:text-white rounded-sm ml-2 pr-4" type="text" placeholder="Search"></input>
+                        </div>
+                        <div className="flex w-full">
+                            <div className="flex w-3/4 items-center gap-3">
+                                <img
+                                src="https://i.pravatar.cc/40"
+                                alt="perfil"
+                                className="w-10 h-10 rounded-full"
+                                />
+                                <span className="text-sm font-semibold text-gray-600 dark:text-white">Olá, Lucas</span>
+                            </div>
+                            <div className="flex w-1/4 justify-end">
+                                <ThemeToggle /> 
+                            </div>
+                        </div>
                     </div>
-                    
-                </div>
-                <div className="flex w-1/7">
-                    <a href="#" className="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
-                </div>
+                )}
             </nav>
-            
         </header>
 
     );
