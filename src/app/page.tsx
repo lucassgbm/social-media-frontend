@@ -227,7 +227,7 @@ export default function Home() {
 
           </div>
 
-          <div className="flex flex-row sm:flex-col w-full h-[95px] sm:h-auto gap-4 overflow-x-auto scrollbar-hide sm:w-1/6 bg-white rounded-2xl p-4 sm:mb-0">
+          <div className="flex flex-row sm:flex-col w-full h-[auto] sm:h-auto gap-4 overflow-x-auto scrollbar-hide sm:w-1/6 bg-white rounded-2xl p-4 sm:mb-0">
               <Stories />
           </div>
         </div>
