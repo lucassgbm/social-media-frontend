@@ -1,4 +1,10 @@
-export default function Container(props: any)
+import { ReactNode } from "react";
+interface ContainerProps {
+  className?: string;
+  children?: ReactNode;
+}
+
+export default function Container({ className, children }: ContainerProps)
 {
     return (
         <div 
@@ -9,9 +15,9 @@ export default function Container(props: any)
             text-gra
             rounded-2xl 
             p-4 
-            ${props.className || ""}`}
+            ${className || ""}`}
             >
-            {props.children}
+            {children}
         </div>
     )
 }
