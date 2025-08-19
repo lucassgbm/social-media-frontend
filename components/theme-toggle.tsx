@@ -16,7 +16,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="px-3 py-2 rounded-full bg-neutral-200 dark:bg-neutral-700 hover:opacity-80 transition cursor-pointer"
+      className="px-2 py-2 rounded-full bg-neutral-200 dark:bg-neutral-700 hover:opacity-80 transition cursor-pointer"
     >
       {theme === "dark" ? <SunIcon className="dark:text-white" /> : <MoonIcon />}
     </button>

@@ -28,7 +28,7 @@ export default function Home() {
                   <Image
                     src="/imgs/kratos.jpg"
                     alt="Foto de perfil"
-                    className="rounded-full"
+                    className="rounded-full w-[50px]"
                     width={50}
                     height={50}
                     priority
@@ -43,7 +43,7 @@ export default function Home() {
                   <div className="bg-neutral-200 rounded-full p-4">
                     <ClipeIcon />
                   </div>
-                  <div className="bg-blue-600 hover:bg-blue-500 cursor-pointer rounded-full p-4">
+                  <div className="bg-blue-600 dark:bg-neutral-700 hover:opacity-80 cursor-pointer rounded-full p-4">
                     <AirPlaneIcon 
                       className={
                         "text-white size-6"
@@ -82,10 +82,10 @@ export default function Home() {
                     </div>
                     <div className="flex flex-row justify-center gap-2 mt-4">
                       
-                      <button className="bg-blue-500 text-sm hover:bg-blue-600 text-white py-1 px-1 rounded-full cursor-pointer">
+                      <button className="bg-bg-white text-sm border-1 border-blue-500 dark:bg-neutral-700 hover:opacity-80 dark:border-neutral-700 text-blue-500 dark:text-white hover:text-white py-1 px-1 rounded-full cursor-pointer">
                         <InfoIcon />
                       </button>
-                      <button className="bg-bg-white text-sm border-1 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white py-1 px-1 rounded-full cursor-pointer">
+                      <button className="bg-bg-white text-sm border-1 border-blue-500 dark:bg-neutral-700 hover:opacity-80 dark:border-neutral-700 text-blue-500 dark:text-white hover:text-white py-1 px-1 rounded-full cursor-pointer">
                         <MoneyIcon />
                       </button>
                     </div>
