@@ -5,7 +5,7 @@ export default function Home(){
     return(
         <div className="flex sm:flex-row flex-col">
 
-            <div className="sm:w-full text-white flex flex-col w-full bg-gray-950 h-screen items-center justify-center p-4">
+            <div className="sm:w-full text-white flex flex-col w-full bg-neutral-950 h-screen items-center justify-center p-4">
                 
                 <HeaderLogin />
                 

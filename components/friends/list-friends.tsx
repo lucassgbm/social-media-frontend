@@ -4,7 +4,7 @@ import EllipsisVerticalIcon from "../icons/ellipsis";
 
 export default function ListFriends() {
     return (
-        <div className="bg-white text-center rounded-2xl p-4 mb-4">
+        <div className="bg-white dark:bg-neutral-800 text-center rounded-2xl p-4 mb-4">
             <h1 className="text-md font-semibold mb-4">Amigos</h1>
             <div className="w-full flex flex-col gap-4">
 
@@ -21,10 +21,10 @@ export default function ListFriends() {
                     </div>
                     <label className="w-[40%] flex text-sm font-semibold justify-start">Nome fulano</label>
                     <div className="w-[30%] flex justify-end">
-                        <div className="bg-gray-100 rounded-full p-2 hover:bg-gray-200">
+                        <div className="bg-neutral-100 rounded-full p-2 hover:bg-neutral-200">
                             <MessageIcon />
                         </div>
-                        <div className="bg-gray-100 rounded-full p-2 ml-2 hover:bg-gray-200">
+                        <div className="bg-neutral-100 rounded-full p-2 ml-2 hover:bg-neutral-200">
                             <EllipsisVerticalIcon 
                                 className={"size-6"}
                             />
@@ -45,10 +45,10 @@ export default function ListFriends() {
                     </div>
                     <label className="w-[40%] flex text-sm font-semibold justify-start">Nome fulano</label>
                     <div className="w-[30%] flex justify-end">
-                        <div className="bg-gray-100 rounded-full p-2 hover:bg-gray-200">
+                        <div className="bg-neutral-100 rounded-full p-2 hover:bg-neutral-200">
                             <MessageIcon />
                         </div>
-                        <div className="bg-gray-100 rounded-full p-2 ml-2 hover:bg-gray-200">
+                        <div className="bg-neutral-100 rounded-full p-2 ml-2 hover:bg-neutral-200">
                             <EllipsisVerticalIcon 
                                 className={"size-6"}
                             />

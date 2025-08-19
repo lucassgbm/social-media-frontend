@@ -7,10 +7,11 @@ import MessageIcon from "./icons/message";
 import SettingsIcon from "./icons/settings";
 import Link from "next/link";
 import ProfileIcon from "./icons/profile";
+import Container from "./container";
 
 export default function Sidebar() {
     return (
-        <div className="hidden sm:block sm:w-1/6 bg-white rounded-2xl p-4">
+        <Container className="hidden sm:flex flex-col sm:w-1/6">
             <div className="text-center mb-4">
                 <Image
                     src="/imgs/kratos.jpg"
@@ -20,13 +21,13 @@ export default function Sidebar() {
                     height={250}
                     priority
                 />
-                <label className="text-lg font-semibold">Kleitones da Silva</label>
+                <label className="text-lg font-semibold">Lucas Belfort</label>
             </div>
             <nav className="flex flex-col gap-4 items-center">
                 <ul className="list-none">
                     <Link href="/">
-                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                            <div className="bg-gray-100 rounded-full p-2">
+                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 cursor-pointer">
+                            <div className="bg-neutral-100 rounded-full p-2">
                                 <HomeIcon />
                             </div>
                             <label className="text-sm font-semibold">Home</label>
@@ -34,8 +35,8 @@ export default function Sidebar() {
                         </li>
                     </Link>
                     <Link href="/profile">
-                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                            <div className="bg-gray-100 rounded-full p-2">
+                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 cursor-pointer">
+                            <div className="bg-neutral-100 rounded-full p-2">
                                 <ProfileIcon />
                             </div>
                             <label className="text-sm font-semibold">Perfil</label>
@@ -43,31 +44,31 @@ export default function Sidebar() {
                         </li>
                     </Link>
                     <Link href="/friends">
-                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                            <div className="bg-gray-100 rounded-full p-2">
+                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 cursor-pointer">
+                            <div className="bg-neutral-100 rounded-full p-2">
                                 <UsersIcon />
                             </div>
                             <label className="text-sm font-semibold">Amigos</label>
 
                         </li>
                     </Link>
-                    <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                    <div className="bg-gray-100 rounded-full p-2">
+                    <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 cursor-pointer">
+                    <div className="bg-neutral-100 rounded-full p-2">
                         <CommunityIcon />
                     </div>
                     <label className="text-sm font-semibold">Comunidades</label>
 
                     </li>
-                    <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                    <div className="bg-gray-100 rounded-full p-2">
+                    <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 cursor-pointer">
+                    <div className="bg-neutral-100 rounded-full p-2">
                         <TrophyIcon />
                     </div>
                     <label className="text-sm font-semibold">Eventos</label>
 
                     </li>
                     
-                    <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                    <div className="bg-gray-100 rounded-full p-2">
+                    <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 cursor-pointer">
+                    <div className="bg-neutral-100 rounded-full p-2">
                         <MessageIcon />
                     </div>
                     
@@ -75,8 +76,8 @@ export default function Sidebar() {
                     <span className="bg-[#f53003] rounded-full text-white text-xs w-5 h-5 flex items-center justify-center">3</span>
                     
                     </li>
-                    <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-gray-200 cursor-pointer">
-                    <div className="bg-gray-100 rounded-full p-2">
+                    <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 cursor-pointer">
+                    <div className="bg-neutral-100 rounded-full p-2">
                         <SettingsIcon />
                     </div>
                     
@@ -87,6 +88,6 @@ export default function Sidebar() {
                 </ul>
 
             </nav>
-        </div>
+        </Container>
     );
 }

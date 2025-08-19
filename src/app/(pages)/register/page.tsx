@@ -5,7 +5,7 @@ export default function Home(){
     return(
         <div className="flex sm:flex-row flex-col">
 
-            <div className="sm:w-full text-white flex flex-col w-full bg-gray-950 items-center justify-center p-4">
+            <div className="sm:w-full text-white flex flex-col w-full bg-neutral-950 items-center justify-center p-4">
                 
                 <HeaderLogin />
 
@@ -35,11 +35,11 @@ export default function Home(){
                         <div className="flex flex-col mb-4">
                             <label className="font-semibold text-xs mb-2">Interesses</label>
                             <div className="flex flex-row gap-2 flex-wrap mb-4">
-                                <span className="bg-gray-700 w-[auto] text-xs font-normal py-1 px-2 rounded-full">Automobilismo</span>
-                                <span className="bg-gray-700 w-[auto] text-xs font-normal py-1 px-2 rounded-full">Motociclismo</span>
-                                <span className="bg-gray-700 w-[auto] text-xs font-normal py-1 px-2 rounded-full">Gastronomia</span>
-                                <span className="bg-gray-700 w-[auto] text-xs font-normal py-1 px-2 rounded-full">Jogos eletrônicos</span>
-                                <span className="bg-gray-700 w-[auto] text-xs font-normal py-1 px-2 rounded-full">Saúde</span>
+                                <span className="bg-neutral-700 w-[auto] text-xs font-normal py-1 px-2 rounded-full">Automobilismo</span>
+                                <span className="bg-neutral-700 w-[auto] text-xs font-normal py-1 px-2 rounded-full">Motociclismo</span>
+                                <span className="bg-neutral-700 w-[auto] text-xs font-normal py-1 px-2 rounded-full">Gastronomia</span>
+                                <span className="bg-neutral-700 w-[auto] text-xs font-normal py-1 px-2 rounded-full">Jogos eletrônicos</span>
+                                <span className="bg-neutral-700 w-[auto] text-xs font-normal py-1 px-2 rounded-full">Saúde</span>
                                 
                             </div>
                             <input className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" type="text" placeholder="Digite algum interesse"></input>

@@ -1,11 +1,12 @@
 import Image from "next/image";
 import HeartIcon from "./icons/heart";
 import MessageIcon from "./icons/message";
+import Container from "./container";
 
 export default function Feed(){
     return (
 
-        <div className="bg-white rounded-2xl p-4 mb-4">
+        <Container className="mb-4">
             <div className="flex flex-row gap-4 items-center mb-4">
 
                 <Image
@@ -17,7 +18,7 @@ export default function Feed(){
                 priority
                 />
                 <div className="flex flex-col">
-                <label className="text-sm font-semibold">Kleitones da Silva</label>
+                <label className="text-sm font-semibold">Lucas Belfort</label>
                 <label className="text-sm font-normal text-gray-400">01/08/2025</label>
                 </div>
             </div>
@@ -43,6 +44,6 @@ export default function Feed(){
 
                 </div>
             </div>
-        </div>
+        </Container>
     )
 }

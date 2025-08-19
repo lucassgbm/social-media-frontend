@@ -10,12 +10,12 @@ export default function Header() {
 
 const [mobileOpen, setMobileOpen] = useState(false);
     return (
-        <header className="flex w-full bg-white dark:bg-gray-900">
+        <header className="flex w-full bg-white dark:bg-neutral-900 ">
             <nav className="w-full shadow-md px-4 py-2 flex items-center justify-between">
 
-                <div className="w-1/4 text-xl font-bold text-blue-600">Logo</div>
+                <div className="w-1/4 text-xl font-bold text-white">Logo</div>
 
-                <div className="w-2/4 hidden md:flex bg-gray-100 dark:bg-gray-700 p-2 rounded-lg px-5 pl-5">
+                <div className="w-2/4 hidden md:flex bg-neutral-100 dark:bg-neutral-800 p-2 rounded-lg px-5 pl-5">
                     <SearchIcon className="dark:text-white"/>
                     <input className="ml-2 w-full focus:outline-none w-full text-gray-600 dark:text-white rounded-sm ml-2 pr-4" type="text" placeholder="Search"></input>
                 </div>
@@ -38,8 +38,8 @@ const [mobileOpen, setMobileOpen] = useState(false);
                 </button>
 
                 {mobileOpen && (
-                    <div className="absolute top-14 left-0 w-full dark:bg-gray-800 bg-white shadow-md flex flex-col p-4 gap-4 md:hidden">
-                        <div className="flex w-full bg-gray-100 dark:bg-gray-700 p-2 rounded-lg px-5 pl-5">
+                    <div className="absolute top-14 left-0 w-full dark:bg-neutral-800 bg-white shadow-md flex flex-col p-4 gap-4 md:hidden">
+                        <div className="flex w-full bg-neutral-100 dark:bg-neutral-700 p-2 rounded-lg px-5 pl-5">
                             <SearchIcon className="dark:text-white"/>
                             <input className="ml-2 w-full focus:outline-none w-full text-gray-600 dark:text-white rounded-sm ml-2 pr-4" type="text" placeholder="Search"></input>
                         </div>

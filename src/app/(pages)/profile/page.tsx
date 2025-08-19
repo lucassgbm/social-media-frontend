@@ -8,47 +8,49 @@ import '@splidejs/react-splide/css';
 import Image from "next/image";
 import Link from "next/link";
 import Header from "../../../../components/header";
+import Container from "../../../../components/container";
 
 export default function Home(){
     return(
         <>
             <Header />
         
-            <div className="flex bg-gray-100 min-h-screen p-6 gap-6 text-gray-600">    
+            <div className="flex flex-col sm:flex-row dark:bg-neutral-950 bg-neutral-100 min-h-screen p-6 gap-6 text-gray-600">
                 <Sidebar />
 
-                <div className="w-3/6 flex flex-col">
+                <div className="w-full sm:w-3/6 flex flex-col">
                     <div className="w-full flex flex-row gap-4 mb-4">
                     
-                        <Link href="friends" 
-                            className="w-1/3 bg-white h-full hover:shadow-lg cursor-pointer rounded-2xl p-4"
-                        >
-                            <h2 className="text-xs font-semibold">Amigos</h2>
-                            <div className="flex flex-col h-[50px] justify-end">
-                                <span className="text-xs font-normal text-gray-500">200 amigos</span>
-                            </div>
+                        <Link href="friends" className="w-1/3 h-full hover:shadow-lg cursor-pointer">
+                            <Container className="hover:shadow-lg cursor-pointer">
+                                <h2 className="text-xs font-semibold">Amigos</h2>
+                                <div className="flex flex-col h-[50px] justify-end">
+                                    <span className="text-xs font-normal">200 amigos</span>
+                                </div>
+                            </Container>
                         </Link>
-                        <Link href="events" 
-                            className="w-1/3 bg-white h-full hover:shadow-lg cursor-pointer rounded-2xl p-4"
-                        >
-                            <h2 className="text-xs font-semibold">Eventos</h2>
-                            <div className="flex flex-col h-[50px] justify-end">
-                                <span className="text-xs font-normal text-gray-500">2 eventos</span>
-                            </div>
+                        <Link href="events" className="w-1/3 h-full hover:shadow-lg cursor-pointer">
+                            <Container className="hover:shadow-lg cursor-pointer">
+
+                                <h2 className="text-xs font-semibold">Eventos</h2>
+                                <div className="flex flex-col h-[50px] justify-end">
+                                    <span className="text-xs font-normal">2 eventos</span>
+                                </div>
+                            </Container>
                         </Link>
-                        <Link href="communities" 
-                            className="w-1/3 bg-white h-full hover:shadow-lg cursor-pointer rounded-2xl p-4"
-                        >
-                            <h2 className="text-xs font-semibold">Comunidades</h2>
-                            <div className="flex flex-col h-[50px] justify-end">
-                                <span className="text-xs font-normal text-gray-500">10 comunidades</span>
-                            </div>
+                        <Link href="communities" className="w-1/3 h-full hover:shadow-lg cursor-pointer">
+                            <Container className="hover:shadow-lg cursor-pointer">
+                                <h2 className="text-xs font-semibold">Comunidades</h2>
+                                <div className="flex flex-col h-[50px] justify-end">
+                                    <span className="text-xs font-normal">10 comunidades</span>
+                                </div>
+                            </Container>
                         </Link>
                         
                     </div>
                     <ProfileInfo />
                     <div className="w-full ">
-                        <div className="bg-white text-center rounded-2xl p-4 mb-4">
+                        <Container className="text-center mb-4">
                             <h1 className="text-md font-semibold mb-4">Minhas fotos</h1>
                             <Splide 
                                 options={{
@@ -83,14 +85,14 @@ export default function Home(){
                             <div className="w-full flex flex-row mt-4 justify-end">
                                 <a className="text-sm font-normal text-blue-400 cursor-pointer">Ver todos</a>
                             </div>
-                        </div>
+                        </Container>
                     </div>
                 </div>
-                <div className="w-2/6 flex flex-col">
-                    <div className="w-full flex flex-col mb-4 bg-white h-[auto] rounded-2xl p-4">
+                <div className="w-full sm:w-2/6 flex flex-col">
+                    <Container className="w-full flex flex-col mb-4 h-[auto]">
                         <h2 className="text-xs font-semibold">Mensagens</h2>
                         <div className="flex flex-col">
-                            <div className="w-full justify-center mt-2 hover:bg-gray-50 cursor-pointer">
+                            <div className="w-full justify-center mt-2 hover:bg-neutral-50 cursor-pointer">
                                 <div className="flex flex-row items-center rounded-sm p-2">
                                 <Image
                                     src="/imgs/bmw.jpg"
@@ -107,7 +109,7 @@ export default function Home(){
                                 </div>
                                 </div>
                             </div>
-                            <div className="w-full justify-center mt-2 hover:bg-gray-50 cursor-pointer">
+                            <div className="w-full justify-center mt-2 hover:bg-neutral-50 cursor-pointer">
                                 <div className="flex flex-row items-center rounded-sm p-2">
                                 <Image
                                     src="/imgs/bmw.jpg"
@@ -126,7 +128,7 @@ export default function Home(){
                             </div>
                         </div>
                         
-                    </div>
+                    </Container>
                 </div>
                 
             </div>

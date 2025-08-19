@@ -1,14 +1,15 @@
 import Link from "next/link";
 import WhatsappIcon from "../icons/whatsapp";
+import Container from "../container";
 
 export default function ProfileInfo() {
     return (
         <div className="w-full">
-            <div className="bg-white text-center rounded-2xl p-4 mb-4">
+            <Container className="text-center mb-4">
                 <h1 className="text-md font-semibold mb-4">Perfil</h1>
                 <div className="flex flex-row text-left mb-2">
                     <label className="w-1/2 text-sm font-semibold">Nome</label>
-                    <label className="w-1/2 text-sm font-normal">Kleitones da Silva</label>
+                    <label className="w-1/2 text-sm font-normal">Lucas Belfort</label>
                 </div>
                 <div className="flex flex-row text-left mb-2">
                     <label className="w-1/2 text-sm font-semibold">Idade</label>
@@ -34,18 +35,18 @@ export default function ProfileInfo() {
                     <label className="w-1/2 text-sm font-semibold">Telefone</label>
                     <label className="w-1/2 text-sm font-normal flex flex-row gap-2">
                         61 99999-9999
-                        <WhatsappIcon />
+                        <WhatsappIcon className="dark:text-green-400"/>
                     </label>
 
                 </div>
                 <div className="flex flex-row text-left mb-2 justify-end">
                     <Link href="profile/edit">
                     
-                        <button className="w-[100px] bg-gray-100 hover:bg-gray-200 rounded-full text-sm font-semibold p-2 mt-4 cursor-pointer">Editar</button>
+                        <button className="w-[100px] bg-neutral-100 hover:bg-neutral-200 rounded-full text-sm font-semibold p-2 mt-4 cursor-pointer">Editar</button>
                     </Link>
                 </div>
 
-            </div>
+            </Container>
         </div>
     )
 }

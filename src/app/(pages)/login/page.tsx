@@ -5,7 +5,7 @@ export default function Home(){
     return(
         <div className="flex sm:flex-row flex-col">
 
-            <div className="sm:w-1/3 text-white flex flex-col w-full bg-gray-950 h-screen items-center justify-center p-4">
+            <div className="sm:w-1/3 text-white flex flex-col w-full bg-neutral-950 h-screen items-center justify-center p-4">
                 
                 <HeaderLogin />
 
@@ -35,7 +35,7 @@ export default function Home(){
                     <a href="forgot-password" className="text-xs text-blue-500">Esqueceu sua senha?</a>
                 </div>
             </div>  
-            <div className="sm:w-2/3 hidden sm:block flex w-full bg-gray-50 h-screen items-center justify-center">
+            <div className="sm:w-2/3 hidden sm:block flex w-full bg-neutral-50 h-screen items-center justify-center">
                 <div className="relative w-[100%] h-[100%] overflow-hidden shadow-lg">
                     <Image
                         src="/imgs/img_login.jpg"

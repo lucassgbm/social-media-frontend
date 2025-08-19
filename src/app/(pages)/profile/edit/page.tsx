@@ -7,7 +7,7 @@ export default function Edit(){
     return(
         <>
             <Header />
-            <div className="flex bg-gray-100 min-h-screen p-6 gap-6 text-gray-600">    
+            <div className="flex bg-neutral-100 min-h-screen p-6 gap-6 text-gray-600">    
                 <Sidebar />
 
                 <div className="w-3/6 flex flex-col">
