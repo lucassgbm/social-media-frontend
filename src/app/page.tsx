@@ -38,12 +38,11 @@ return (
                     priority
                   />
                   <div className="flex flex-row bg-neutral-100 dark:bg-neutral-800 dark:text-white w-full rounded-full pl-4 pr-4">
-                    <input 
-                      type="text" 
-                      placeholder="Diga algo para a galera..."
-                      className="w-full hover:text-border-0 ml-2 focus:outline-none cursor-pointer"
+                    <div
+                      className="w-full hover:text-border-0 ml-2 focus:outline-none p-4 rounded-full bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-400 cursor-pointer"
                       onClick={() => setOpen(true)}
-                    />
+                    >Diga algo para a galera...
+                    </div>
                   </div>
                   
                 </Container>
