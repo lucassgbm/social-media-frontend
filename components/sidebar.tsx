@@ -8,6 +8,7 @@ import SettingsIcon from "./icons/settings";
 import Link from "next/link";
 import ProfileIcon from "./icons/profile";
 import Container from "./container";
+import Button from "./button";
 
 export default function Sidebar() {
     return (
@@ -21,69 +22,81 @@ export default function Sidebar() {
                     height={250}
                     priority
                 />
-                <label className="text-lg font-semibold">Lucas Belfort</label>
             </div>
             <nav className="flex flex-col gap-4 items-center">
                 <ul className="list-none">
                     <Link href="/">
-                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 cursor-pointer">
-                            <div className="bg-neutral-100 rounded-full p-2">
-                                <HomeIcon />
-                            </div>
-                            <label className="text-sm font-semibold">Home</label>
+                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
+                            
+                            <Button>
+                                <HomeIcon className="size-6 dark:text-white text-neutral-800"/>
+                            </Button>
+                            <label className="hidden md:block text-sm font-semibold">Home</label>
 
                         </li>
                     </Link>
                     <Link href="/profile">
-                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 cursor-pointer">
-                            <div className="bg-neutral-100 rounded-full p-2">
-                                <ProfileIcon />
-                            </div>
-                            <label className="text-sm font-semibold">Perfil</label>
+                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
+                            
+                            <Button>
+                                <ProfileIcon className="size-6 dark:text-white text-neutral-800"/>
+                            </Button>
+                            <label className="hidden md:block text-sm font-semibold">Perfil</label>
 
                         </li>
                     </Link>
                     <Link href="/friends">
-                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 cursor-pointer">
-                            <div className="bg-neutral-100 rounded-full p-2">
-                                <UsersIcon />
-                            </div>
-                            <label className="text-sm font-semibold">Amigos</label>
+                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
+                            <Button>
+                                <UsersIcon className="size-6 dark:text-white text-neutral-800"/>
+                            </Button>
+                            <label className="hidden md:block text-sm font-semibold">Amigos</label>
 
                         </li>
                     </Link>
-                    <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 cursor-pointer">
-                    <div className="bg-neutral-100 rounded-full p-2">
-                        <CommunityIcon />
-                    </div>
-                    <label className="text-sm font-semibold">Comunidades</label>
+                    <Link href="/communities">
+                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
+                            <Button>
+                                <CommunityIcon className="size-6 dark:text-white text-neutral-800"/>
+                            </Button>
 
-                    </li>
-                    <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 cursor-pointer">
-                    <div className="bg-neutral-100 rounded-full p-2">
-                        <TrophyIcon />
-                    </div>
-                    <label className="text-sm font-semibold">Eventos</label>
+                            <label className="hidden md:block text-sm font-semibold">Comunidades</label>
 
-                    </li>
-                    
-                    <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 cursor-pointer">
-                    <div className="bg-neutral-100 rounded-full p-2">
-                        <MessageIcon />
-                    </div>
-                    
-                    <label className="text-sm font-semibold">Mensagens</label> 
-                    <span className="bg-[#f53003] rounded-full text-white text-xs w-5 h-5 flex items-center justify-center">3</span>
-                    
-                    </li>
-                    <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 cursor-pointer">
-                    <div className="bg-neutral-100 rounded-full p-2">
-                        <SettingsIcon />
-                    </div>
-                    
-                    <label className="text-sm font-semibold">Configurações</label>
-                    
-                    </li>
+                        </li>
+                    </Link>
+                    <Link href="/events">
+                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
+                            <Button>
+                                <TrophyIcon className="size-6 dark:text-white text-neutral-800"/>
+                            </Button>
+                        
+                        <label className="hidden md:block text-sm font-semibold">Eventos</label>
+
+                        </li>
+                    </Link>
+                    <Link href="/messages">
+                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
+                        
+                        <Button>
+                            <MessageIcon className="size-6 dark:text-white text-neutral-800"/>
+                        </Button>
+                        
+                        <label className="hidden md:block text-sm font-semibold">Mensagens</label> 
+                        <span className="hidden md:block bg-[#f53003] rounded-full text-white text-xs w-5 h-5 flex items-center justify-center">3</span>
+                        
+                        </li>
+                    </Link>
+                    <Link href="/settings">
+                        <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
+
+                        <Button>
+                            <SettingsIcon className="size-6 dark:text-white text-neutral-800"/>
+                        </Button>
+                        
+                        <label className="hidden md:block text-sm font-semibold">Configurações</label>
+                        
+                        </li>
+                    </Link>
                     
                 </ul>
 

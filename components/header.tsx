@@ -6,6 +6,7 @@ import CloseIcon from "./icons/close";
 import MenuIcon from "./icons/menu";
 import ThemeToggle from "./theme-toggle";
 import MessageIcon from "./icons/message";
+import InboxIcon from "./icons/inbox";
 
 export default function Header() {
 
@@ -27,7 +28,7 @@ const [mobileOpen, setMobileOpen] = useState(false);
                           className="px-2 py-2 rounded-full bg-neutral-200 dark:bg-neutral-700 hover:opacity-80 transition cursor-pointer"
                         >
                         
-                        <MessageIcon className="dark:text-white" />
+                        <InboxIcon className="size-6 dark:text-white" />
                     </button>
                     <ThemeToggle /> 
                     <span className="text-sm font-semibold text-gray-600 dark:text-white">Olá, Lucas</span>

@@ -12,6 +12,9 @@ import Stories from "../../components/stories";
 import Container from "../../components/container";
 import Modal from "../../components/modal";
 import { useState } from "react";
+import PhotoIcon from "../../components/icons/photo";
+import Button from "../../components/button";
+import AirPlaneIcon from "../../components/icons/airplane";
 
 export default function Home() {
 
@@ -59,7 +62,7 @@ return (
                 <Container className="mb-4 text-center">
                   <label className="text-sm font-semibold mb-4 ">Próximo Evento</label>
                   <div className="flex flex-col h-full mt-2">
-                    <div className="flex flex-row items-center mb-4">
+                    <div className="flex flex-col sm:flex-row items-center mb-4">
                       <Image
                         src="/imgs/drift.jpg"
                         alt="Foto de perfil"
@@ -76,12 +79,14 @@ return (
                     </div>
                     <div className="flex flex-row justify-center gap-2 mt-4">
                       
-                      <button className="bg-bg-white text-sm border-1 border-blue-500 dark:bg-neutral-700 hover:opacity-80 dark:border-neutral-700 text-blue-500 dark:text-white hover:text-white py-1 px-1 rounded-full cursor-pointer">
+                      <Button>
                         <InfoIcon />
-                      </button>
-                      <button className="bg-bg-white text-sm border-1 border-blue-500 dark:bg-neutral-700 hover:opacity-80 dark:border-neutral-700 text-blue-500 dark:text-white hover:text-white py-1 px-1 rounded-full cursor-pointer">
+                      </Button>
+
+                      <Button>
                         <MoneyIcon />
-                      </button>
+                      </Button>
+                      
                     </div>
 
                   </div>
@@ -90,7 +95,7 @@ return (
                 <Container className="mb-4">
                   <label className="text-sm font-semibold">Sugestões de Eventos</label>
                   <div className="flex flex-col justify-center mt-4">
-                    <div className="flex flex-row items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm p-2">
+                    <div className="flex flex-row items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm p-2 gap-2">
                       <Image
                         src="/imgs/bmw.jpg"
                         alt="Foto de perfil"
@@ -100,15 +105,16 @@ return (
                         priority
                       />
                       <h2 className="text-xs font-semibold">Drift Racing</h2>
-                      <div className="ml-auto bg-neutral-200 dark:bg-neutral-850 hover:bg-neutral-300 rounded-full p-1 m-1 cursor-pointer">
+                      <Button>
                         <EllipsisVerticalIcon 
                           className={"size-4"}
                         />
-                      </div>
+                      </Button>
+
                     </div>
                   </div>
                   <div className="flex flex-col justify-center mt-4">
-                    <div className="flex flex-row items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm p-2">
+                    <div className="flex flex-row items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm p-2 gap-2">
                       <Image
                         src="/imgs/bmw.jpg"
                         alt="Foto de perfil"
@@ -118,15 +124,17 @@ return (
                         priority
                       />
                       <h2 className="text-xs font-semibold">Drift Racing</h2>
-                      <div className="ml-auto bg-neutral-200 dark:bg-neutral-850 hover:bg-neutral-300 rounded-full p-1 m-1 cursor-pointer">
+                      
+                      <Button>
                         <EllipsisVerticalIcon 
                           className={"size-4"}
                         />
-                      </div>
+                      </Button>
+
                     </div>
                   </div>
                   <div className="flex flex-col justify-center mt-4">
-                    <div className="flex flex-row items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm p-2">
+                    <div className="flex flex-row items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm p-2 gap-2">
                       <Image
                         src="/imgs/bmw.jpg"
                         alt="Foto de perfil"
@@ -136,11 +144,13 @@ return (
                         priority
                       />
                       <h2 className="text-xs font-semibold">Drift Racing</h2>
-                      <div className="ml-auto bg-neutral-200 dark:bg-neutral-850 hover:bg-neutral-300 rounded-full p-1 m-1 cursor-pointer">
+                      
+                      <Button>
                         <EllipsisVerticalIcon 
                           className={"size-4"}
                         />
-                      </div>
+                      </Button>
+
                     </div>
                   </div>
                 </Container>
@@ -229,12 +239,18 @@ return (
         </div>
 
         <Modal isOpen={open} onClose={() => setOpen(false)} title="Novo post">
-          <div className="flex flex-row bg-neutral-100 dark:bg-neutral-800 dark:text-white w-full rounded-full pl-4 pr-4">
+          <div className="flex flex-row bg-neutral-100 dark:bg-neutral-800 dark:text-white w-full rounded-full p-4 gap-2">
             <input 
               type="text" 
               placeholder="Diga algo para a galera..."
-              className="w-full hover:text-border-0 ml-2 focus:outline-none p-4 rounded-full bg-neutral-100 dark:bg-neutral-800 dark:text-white"
+              className="w-full hover:text-border-0 ml-2 focus:outline-none rounded-full bg-neutral-100 dark:bg-neutral-800 dark:text-white text-neutral-800"
             />
+            <Button>
+                <PhotoIcon className="size-6 dark:text-white text-neutral-800"/>
+            </Button>
+            <Button>
+                <AirPlaneIcon className="size-6 dark:text-white text-neutral-800"/>
+            </Button>
           </div>
         </Modal>
       </div>
