@@ -1,8 +1,7 @@
+'use client';
+
 import Image from "next/image";
-import MessageIcon from "../../components/icons/message";
-import HeartIcon from "../../components/icons/heart";
-import ClipeIcon from "../../components/icons/clipe";
-import AirPlaneIcon from "../../components/icons/airplane";
+
 import EllipsisVerticalIcon from "../../components/icons/ellipsis";
 import InfoIcon from "../../components/icons/info";
 import MoneyIcon from "../../components/icons/money";
@@ -11,9 +10,14 @@ import Header from "../../components/header";
 import Feed from "../../components/feed";
 import Stories from "../../components/stories";
 import Container from "../../components/container";
+import Modal from "../../components/modal";
+import { useState } from "react";
 
 export default function Home() {
-  return (
+
+const [open, setOpen] = useState(false);
+  
+return (
     <>
       <Header />
       <div className="flex flex-col sm:flex-row dark:bg-neutral-950 bg-neutral-100 min-h-screen p-6 gap-6 text-gray-600">
@@ -36,18 +40,9 @@ export default function Home() {
                   <div className="flex flex-row bg-neutral-100 dark:bg-neutral-800 dark:text-white w-full rounded-full pl-4 pr-4">
                     <input 
                       type="text" 
-                      placeholder="O que temos para hoje?"
-                      className="w-full hover:text-border-0 ml-2 focus:outline-none"
-                    />
-                  </div>
-                  <div className="bg-neutral-200 rounded-full p-4">
-                    <ClipeIcon />
-                  </div>
-                  <div className="bg-blue-600 dark:bg-neutral-700 hover:opacity-80 cursor-pointer rounded-full p-4">
-                    <AirPlaneIcon 
-                      className={
-                        "text-white size-6"
-                      }
+                      placeholder="Diga algo para a galera..."
+                      className="w-full hover:text-border-0 ml-2 focus:outline-none cursor-pointer"
+                      onClick={() => setOpen(true)}
                     />
                   </div>
                   
@@ -233,6 +228,16 @@ export default function Home() {
               <Stories />
           </Container>
         </div>
+
+        <Modal isOpen={open} onClose={() => setOpen(false)} title="Novo post">
+          <div className="flex flex-row bg-neutral-100 dark:bg-neutral-800 dark:text-white w-full rounded-full pl-4 pr-4">
+            <input 
+              type="text" 
+              placeholder="Diga algo para a galera..."
+              className="w-full hover:text-border-0 ml-2 focus:outline-none p-4 rounded-full bg-neutral-100 dark:bg-neutral-800 dark:text-white"
+            />
+          </div>
+        </Modal>
       </div>
     
     </>
