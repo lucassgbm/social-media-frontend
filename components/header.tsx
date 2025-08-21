@@ -15,7 +15,7 @@ const [mobileOpen, setMobileOpen] = useState(false);
         <header className="flex w-full bg-white dark:bg-neutral-900 ">
             <nav className="w-full shadow-md px-4 py-2 flex items-center justify-between">
 
-                <div className="w-1/4 text-xl font-bold text-white">Logo</div>
+                <div className="w-1/4 text-xl font-bold dark:text-white text-neutral-800">Logo</div>
 
                 <div className="w-2/4 hidden md:flex bg-neutral-100 dark:bg-neutral-800 p-2 rounded-lg px-5 pl-5">
                     <SearchIcon className="dark:text-white"/>

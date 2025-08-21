@@ -46,7 +46,7 @@ export default function Sidebar() {
                                 <Button>
                                     <HomeIcon className="size-6 dark:text-white text-neutral-800"/>
                                 </Button>
-                                <label className="hidden md:block text-sm font-semibold">Home</label>
+                                <label className="hidden md:flex text-sm font-semibold">Home</label>
 
                             </li>
                         </Link>
@@ -56,7 +56,7 @@ export default function Sidebar() {
                                 <Button>
                                     <ProfileIcon className="size-6 dark:text-white text-neutral-800"/>
                                 </Button>
-                                <label className="hidden md:block text-sm font-semibold">Perfil</label>
+                                <label className="hidden md:flex text-sm font-semibold">Perfil</label>
 
                             </li>
                         </Link>
@@ -65,7 +65,7 @@ export default function Sidebar() {
                                 <Button>
                                     <UsersIcon className="size-6 dark:text-white text-neutral-800"/>
                                 </Button>
-                                <label className="hidden md:block text-sm font-semibold">Amigos</label>
+                                <label className="hidden md:flex text-sm font-semibold">Amigos</label>
 
                             </li>
                         </Link>
@@ -75,7 +75,7 @@ export default function Sidebar() {
                                     <CommunityIcon className="size-6 dark:text-white text-neutral-800"/>
                                 </Button>
 
-                                <label className="hidden md:block text-sm font-semibold">Comunidades</label>
+                                <label className="hidden md:flex text-sm font-semibold">Comunidades</label>
 
                             </li>
                         </Link>
@@ -85,7 +85,7 @@ export default function Sidebar() {
                                     <TrophyIcon className="size-6 dark:text-white text-neutral-800"/>
                                 </Button>
                             
-                            <label className="hidden md:block text-sm font-semibold">Eventos</label>
+                            <label className="hidden md:flex text-sm font-semibold">Eventos</label>
 
                             </li>
                         </Link>
@@ -96,8 +96,8 @@ export default function Sidebar() {
                                 <MessageIcon className="size-6 dark:text-white text-neutral-800"/>
                             </Button>
                             
-                            <label className="hidden md:block text-sm font-semibold">Mensagens</label> 
-                            <span className="hidden md:block bg-[#f53003] rounded-full text-white text-xs w-5 h-5 flex items-center justify-center">3</span>
+                            <label className="hidden md:flex text-sm font-semibold">Mensagens</label> 
+                            <span className="hidden md:flex bg-[#f53003] rounded-full text-white text-xs w-5 h-5 flex items-center justify-center">3</span>
                             
                             </li>
                         </Link>
@@ -108,7 +108,7 @@ export default function Sidebar() {
                                 <SettingsIcon className="size-6 dark:text-white text-neutral-800"/>
                             </Button>
                             
-                            <label className="hidden md:block text-sm font-semibold">Configurações</label>
+                            <label className="hidden md:flex text-sm font-semibold">Configurações</label>
                             
                             </li>
                         </Link>

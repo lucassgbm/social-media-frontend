@@ -16,6 +16,7 @@ export default function Container({ className, children }: ContainerProps)
             text-gra
             rounded-2xl 
             p-4 
+            shadow-md
             ${className || ""}`}
             >
             {children}
