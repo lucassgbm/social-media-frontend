@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from "react";
 import Image from "next/image";
 import HomeIcon from "./icons/home";
 import UsersIcon from "./icons/users";
@@ -10,7 +13,6 @@ import ProfileIcon from "./icons/profile";
 import Container from "./container";
 import Button from "./button";
 import ArrowLeftIcon from "./icons/arrow-left";
-import { useState } from "react";
 import ArrowRightIcon from "./icons/arrow-right";
 
 export default function Sidebar() {
