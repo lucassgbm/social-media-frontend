@@ -10,7 +10,8 @@ export default function Container({ className, children }: ContainerProps)
         <div 
             className={`
             dark:bg-neutral-900 
-            dark:text-white 
+            dark:text-white
+            dark:shadow-neutral-md
             bg-white 
             text-gra
             rounded-2xl 
