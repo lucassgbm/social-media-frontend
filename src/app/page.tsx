@@ -15,6 +15,7 @@ import { useState } from "react";
 import PhotoIcon from "../../components/icons/photo";
 import Button from "../../components/button";
 import AirPlaneIcon from "../../components/icons/airplane";
+import BottomMenu from "../../components/bottom-menu";
 
 export default function Home() {
 
@@ -26,6 +27,7 @@ return (
       <div className="flex flex-col sm:flex-row dark:bg-neutral-950 bg-neutral-100 min-h-screen p-6 gap-6 text-gray-600">
         
         <Sidebar />
+        <BottomMenu />
         <div className="w-full sm:w-5/6 flex flex-col-reverse sm:flex-row gap-6">
           
           <div className="w-full sm:w-5/6">
