@@ -20,11 +20,11 @@ export default function Sidebar() {
     return (
         <>
             <Button
-                className="absolute fixed sm:hidden flex" 
+                className="-ml-6 sm:ml-0 absolute fixed sm:hidden flex" 
                 onClick={() => setShowMenu(!showMenu)}>
                 <ArrowRightIcon className="size-6 dark:text-white text-neutral-800"/>
             </Button>
-            <Container className={`${showMenu ? "hidden" : ""} absolute fixed sm:relative sm:flex flex-col sm:w-1/6`}>
+            <Container className={`${showMenu ? "" : "hidden"} -ml-6 sm:ml-0 absolute fixed sm:relative sm:flex flex-col sm:w-1/6`}>
                 <div className="flex justify-center mb-4">
                     <Image
                         src="/imgs/kratos.jpg"
