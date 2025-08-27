@@ -16,11 +16,16 @@ import PhotoIcon from "../../components/icons/photo";
 import Button from "../../components/button";
 import AirPlaneIcon from "../../components/icons/airplane";
 import BottomMenu from "../../components/bottom-menu";
+import Toaster from "../../components/toaster";
 
 export default function Home() {
 
 const [open, setOpen] = useState(false);
-  
+const [toaster, setToaster] = useState({
+  show: false,
+  message: "",
+});
+
 return (
     <>
       <Header />
@@ -255,6 +260,13 @@ return (
             </Button>
           </div>
         </Modal>
+        {toaster.show && (
+          <Toaster 
+            toaster={toaster}
+            setToaster={setToaster}
+          />
+        )}
+        
       </div>
     
     </>
