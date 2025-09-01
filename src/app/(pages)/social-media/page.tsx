@@ -2,21 +2,21 @@
 
 import Image from "next/image";
 
-import EllipsisVerticalIcon from "../../components/icons/ellipsis";
-import InfoIcon from "../../components/icons/info";
-import MoneyIcon from "../../components/icons/money";
-import Sidebar from "../../components/sidebar";
-import Header from "../../components/header";
-import Feed from "../../components/feed";
-import Stories from "../../components/stories";
-import Container from "../../components/container";
-import Modal from "../../components/modal";
+import EllipsisVerticalIcon from "../../../../components/icons/ellipsis";
+import InfoIcon from "../../../../components/icons/info";
+import MoneyIcon from "../../../../components/icons/money";
+import Sidebar from "../../../../components/sidebar";
+import Header from "../../../../components/header";
+import Feed from "../../../../components/feed";
+import Stories from "../../../../components/stories";
+import Container from "../../../../components/container";
+import Modal from "../../../../components/modal";
 import { useState } from "react";
-import PhotoIcon from "../../components/icons/photo";
-import Button from "../../components/button";
-import AirPlaneIcon from "../../components/icons/airplane";
-import BottomMenu from "../../components/bottom-menu";
-import Toaster from "../../components/toaster";
+import PhotoIcon from "../../../../components/icons/photo";
+import Button from "../../../../components/button";
+import AirPlaneIcon from "../../../../components/icons/airplane";
+import BottomMenu from "../../../../components/bottom-menu";
+import Toaster from "../../../../components/toaster";
 
 export default function Home() {
 

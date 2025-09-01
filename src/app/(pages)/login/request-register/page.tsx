@@ -1,5 +1,4 @@
-import Image from "next/image";
-import HeaderLogin from "../../../../components/login/header-login";
+import HeaderLogin from "../../../../../components/login/header-login";
 
 export default function Home(){
     return(
@@ -9,7 +8,7 @@ export default function Home(){
                 
                 <HeaderLogin />
                 
-                <h1 className="flex flex-end text-lg font-semibold mb-4">Recuperar senha</h1>
+                <h1 className="flex flex-end text-lg font-semibold mb-4">Cadastrar</h1>
 
                 <div className="w-[90%] sm:w-[50%] flex flex-row">
                     <div className="w-full p-4">

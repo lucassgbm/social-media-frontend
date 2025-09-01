@@ -1,8 +1,8 @@
 
-import Container from "../../../../components/container";
-import ListFriends from "../../../../components/friends/list-friends";
-import Header from "../../../../components/header";
-import Sidebar from "../../../../components/sidebar";
+import Container from "../../../../../components/container";
+import ListFriends from "../../../../../components/friends/list-friends";
+import Header from "../../../../../components/header";
+import Sidebar from "../../../../../components/sidebar";
 
 
 export default function Home(){

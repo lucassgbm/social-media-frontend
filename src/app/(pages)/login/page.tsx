@@ -29,10 +29,10 @@ async function handleSubmit(e: React.FormEvent)  {
     }
     try {
       const response = await auth(login.email, login.password);
-    //   console.log("Login bem-sucedido! Token:", token);
+      
       setToaster({...toaster, show: true, message:' Login realizado com sucesso! Redirecionando...'});
 
-      router.push('/');
+      router.push('/social-media/');
     } catch (err: any) {
         console.log(err);
       setToaster({...toaster, show: true, message: err.response.data.message});

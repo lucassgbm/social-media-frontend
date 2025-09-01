@@ -1,5 +1,4 @@
-import Image from "next/image";
-import HeaderLogin from "../../../../components/login/header-login";
+import HeaderLogin from "../../../../../components/login/header-login";
 
 export default function Home(){
     return(

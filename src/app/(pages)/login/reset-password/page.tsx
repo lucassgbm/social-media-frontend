@@ -1,5 +1,4 @@
-import Image from "next/image";
-import HeaderLogin from "../../../../components/login/header-login";
+import HeaderLogin from "../../../../../components/login/header-login";
 
 export default function Home(){
     return(
@@ -9,15 +8,21 @@ export default function Home(){
                 
                 <HeaderLogin />
                 
-                <h1 className="flex flex-end text-lg font-semibold mb-4">Cadastrar</h1>
+                <h1 className="flex flex-end text-lg font-semibold mb-4">Recuperar senha</h1>
 
                 <div className="w-[90%] sm:w-[50%] flex flex-row">
                     <div className="w-full p-4">
                         
                         <div className="flex flex-col mb-4">
-                            <label className="font-semibold text-xs mb-2">Email</label>
+                            <label className="font-semibold text-xs mb-2">Nova senha</label>
 
-                            <input className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" type="text" placeholder="Digite o seu e-mail"></input>
+                            <input className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" type="password" placeholder="Nova senha"></input>
+
+                        </div>
+                        <div className="flex flex-col mb-4">
+                            <label className="font-semibold text-xs mb-2">Repetir senha</label>
+
+                            <input className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" type="password" placeholder="Repetir senha"></input>
 
                         </div>
                         

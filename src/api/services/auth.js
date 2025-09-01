@@ -24,17 +24,23 @@ export async function auth(email, password) {
   }
 }
 
-// Função para pegar o token
-export function getToken() {
-  if (typeof window !== "undefined") {
-    return localStorage.getItem("token");
-  }
-  return null;
-}
 
 // Função para logout
-export function logout() {
-  if (typeof window !== "undefined") {
-    localStorage.removeItem("token");
+export async function logout() {
+  try {
+    const response = await api.post("/user/logout", {
+      email,
+      password,
+      },
+      {
+        withCredentials: true
+      }
+    );
+
+    return response.data;
+    
+  } catch (error) {
+    console.error("Erro no logout:", error.response?.data || error.message);
+    throw error;
   }
 }

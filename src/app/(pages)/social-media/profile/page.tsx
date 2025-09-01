@@ -1,14 +1,14 @@
 'use client';
 
-import ProfileInfo from "../../../../components/profile/profile-info";
-import Sidebar from "../../../../components/sidebar";
+import ProfileInfo from "../../../../../components/profile/profile-info";
+import Sidebar from "../../../../../components/sidebar";
 // @ts-expect-error missing types
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import '@splidejs/react-splide/css';
 import Image from "next/image";
 import Link from "next/link";
-import Header from "../../../../components/header";
-import Container from "../../../../components/container";
+import Header from "../../../../../components/header";
+import Container from "../../../../../components/container";
 
 export default function Home(){
     return(
