@@ -13,8 +13,7 @@ export default function Container({ className, children }: ContainerProps)
             dark:text-white
             dark:shadow-neutral-md
             bg-white 
-            text-gra
-            rounded-2xl 
+            text-gra 
             p-4 
             shadow-md
             ${className || ""}`}

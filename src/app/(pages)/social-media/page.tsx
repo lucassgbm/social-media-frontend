@@ -11,20 +11,52 @@ import Feed from "../../../../components/feed";
 import Stories from "../../../../components/stories";
 import Container from "../../../../components/container";
 import Modal from "../../../../components/modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PhotoIcon from "../../../../components/icons/photo";
 import Button from "../../../../components/button";
 import AirPlaneIcon from "../../../../components/icons/airplane";
 import BottomMenu from "../../../../components/bottom-menu";
 import Toaster from "../../../../components/toaster";
+import { post, get } from "../../../api/services/request";
 
 export default function Home() {
+
+  useEffect(() => {
+    getFeed();
+  }, []);
 
 const [open, setOpen] = useState(false);
 const [toaster, setToaster] = useState({
   show: false,
   message: "",
 });
+
+const [newPost, setNewPost] = useState({
+  description: "",
+  photo_path: null,
+});
+
+const [feed, setFeed] = useState([]);
+
+async function handlePost() {
+  try {
+    const response = await post("/social-media/post", newPost);
+    setToaster({ show: true, message: "Post criado com sucesso!" });
+  } catch (error: any) {
+    console.error("Erro ao criar post:", error.response?.data || error.message);
+  }
+}
+
+async function getFeed() {
+
+  try {
+    const response = await get("/social-media/feed");
+    setFeed(response.data);
+  } catch (error: any) {
+
+    console.error("Erro ao criar post:", error.response?.data || error.message);
+  }
+}
 
 return (
     <>
@@ -38,7 +70,7 @@ return (
           <div className="w-full sm:w-5/6">
             <div className="flex flex-row gap-6">
               <div className="w-full sm:w-3/4 h-full rounded-2xl mb-4">
-                <Container className="flex flex-row gap-2 mb-4">
+                <Container className="flex flex-row gap-2 mb-4 items-center">
                   <Image
                     src="/imgs/kratos.jpg"
                     alt="Foto de perfil"
@@ -57,9 +89,8 @@ return (
                   
                 </Container>
 
-                <Feed />
+                <Feed feed={feed} />
 
-                <Feed />
                 <Container className="flex flex-row">
                   <label>aqui vem o conteúdo</label>
                 </Container>
@@ -251,11 +282,12 @@ return (
               type="text" 
               placeholder="Diga algo para a galera..."
               className="w-full hover:text-border-0 ml-2 focus:outline-none rounded-full bg-neutral-100 dark:bg-neutral-800 dark:text-white text-neutral-800"
+              onChange={(e) => setNewPost({...newPost, description: e.target.value})}
             />
             <Button>
                 <PhotoIcon className="size-6 dark:text-white text-neutral-800"/>
             </Button>
-            <Button>
+            <Button onClick={() => handlePost()}>
                 <AirPlaneIcon className="size-6 dark:text-white text-neutral-800"/>
             </Button>
           </div>

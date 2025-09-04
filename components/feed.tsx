@@ -1,37 +1,42 @@
+'use client';
 import Image from "next/image";
 import HeartIcon from "./icons/heart";
 import MessageIcon from "./icons/message";
 import Container from "./container";
 
-export default function Feed(){
+export default function Feed(props: any) {
     return (
 
-        <Container className="mb-4">
-            <div className="flex flex-row gap-4 items-center mb-4">
-
-                <Image
-                src="/imgs/kratos.jpg"
-                alt="Foto de perfil"
-                className="rounded-full"
-                width={50}
-                height={50}
-                priority
-                />
-                <div className="flex flex-col">
-                <label className="text-sm font-semibold">Lucas Belfort</label>
-                <label className="text-sm font-normal text-gray-400">01/08/2025</label>
+        <>
+        {props.feed.map((post: any) => (
+            <Container key={post.id} className="mb-4">
+                <div className="flex flex-row gap-4 items-center mb-4">
+                    <Image
+                        src="/imgs/kratos.jpg"
+                        alt="Foto de perfil"
+                        className="rounded-full"
+                        width={50}
+                        height={50}
+                        priority
+                        />
+                    <div className="flex flex-col">
+                        <label className="text-sm font-semibold">{post.user_id}</label>
+                        <label className="text-sm font-normal text-gray-400">{post.created_at}</label>
+                    </div>
                 </div>
-            </div>
-            <Image
-                src="/imgs/s1000rr.webp"
-                alt="Foto de perfil"
-                className="w-full"
-                width={500}
-                height={500}
-                priority
-            />
-            <p className="text-sm mt-4">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                {post.photo_path && (
+                    <Image
+                        src={post.photo_path}
+                        alt=""
+                        className="w-full"
+                        width={500}
+                        height={500}
+                        priority
+                        />
+                )}
+
+                <p className="text-sm mt-4">
+                    {post.description}
             </p>
             <div className="w-full flex flex-row gap-4 items-center mt-4">
                 <div className="flex flex-row gap-1 items-center">
@@ -44,6 +49,8 @@ export default function Feed(){
 
                 </div>
             </div>
-        </Container>
+            </Container>
+        ))}
+        </>
     )
 }
