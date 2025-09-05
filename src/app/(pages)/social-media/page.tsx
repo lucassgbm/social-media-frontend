@@ -25,7 +25,7 @@ export default function Home() {
     getFeed();
   }, []);
 
-const [open, setOpen] = useState(false);
+const [openModalNewPost, setModalNewPost] = useState(false);
 const [toaster, setToaster] = useState({
   show: false,
   message: "",
@@ -42,8 +42,10 @@ async function handlePost() {
   try {
     const response = await post("/social-media/post", newPost);
     setToaster({ show: true, message: "Post criado com sucesso!" });
+    setModalNewPost(false);
+    getFeed();
   } catch (error: any) {
-    console.error("Erro ao criar post:", error.response?.data || error.message);
+    setToaster({ show: true, message: "Erro ao criar post:" });
   }
 }
 
@@ -51,6 +53,7 @@ async function getFeed() {
 
   try {
     const response = await get("/social-media/feed");
+    console.log(response.data);
     setFeed(response.data);
   } catch (error: any) {
 
@@ -82,7 +85,7 @@ return (
                   <div className="flex flex-row bg-neutral-100 dark:bg-neutral-800 dark:text-white w-full rounded-full pl-4 pr-4">
                     <div
                       className="w-full hover:text-border-0 ml-2 focus:outline-none p-4 rounded-full bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-400 cursor-pointer"
-                      onClick={() => setOpen(true)}
+                      onClick={() => setModalNewPost(true)}
                     >Diga algo para a galera...
                     </div>
                   </div>
@@ -90,10 +93,6 @@ return (
                 </Container>
 
                 <Feed feed={feed} />
-
-                <Container className="flex flex-row">
-                  <label>aqui vem o conteúdo</label>
-                </Container>
                 
               </div>
               <div className="hidden sm:block w-1/4">
@@ -276,7 +275,7 @@ return (
           </Container>
         </div>
 
-        <Modal isOpen={open} onClose={() => setOpen(false)} title="Novo post">
+        <Modal isOpen={openModalNewPost} onClose={() => setModalNewPost(false)} title="Novo post">
           <div className="flex flex-row bg-neutral-100 dark:bg-neutral-800 dark:text-white w-full rounded-full p-4 gap-2">
             <input 
               type="text" 
