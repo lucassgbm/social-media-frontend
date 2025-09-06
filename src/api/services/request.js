@@ -25,6 +25,24 @@ export const get = (url) => {
     
     );
 }
+export const postFormData = (url, formData) => {
+
+  return api.post(url, formData, { 
+    headers: { 
+      'Content-Type': 'multipart/form-data' 
+    } 
+  })
+    .then((res) =>  
+
+      res.data
+    )
+    .catch(error => 
+
+      console.log(error)
+    
+    );
+}
+
 export const post = (url, data) => {
 
   return api.post(url, data)

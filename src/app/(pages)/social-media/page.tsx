@@ -11,13 +11,18 @@ import Feed from "../../../../components/feed";
 import Stories from "../../../../components/stories";
 import Container from "../../../../components/container";
 import Modal from "../../../../components/modal";
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PhotoIcon from "../../../../components/icons/photo";
 import Button from "../../../../components/button";
 import AirPlaneIcon from "../../../../components/icons/airplane";
 import BottomMenu from "../../../../components/bottom-menu";
 import Toaster from "../../../../components/toaster";
-import { post, get } from "../../../api/services/request";
+import { post, get, postFormData } from "../../../api/services/request";
+
+interface NewPost {
+  description: string;
+  photo_path: File | "";
+}
 
 export default function Home() {
 
@@ -31,21 +36,51 @@ const [toaster, setToaster] = useState({
   message: "",
 });
 
-const [newPost, setNewPost] = useState({
+const [newPost, setNewPost] = useState<NewPost>({
   description: "",
-  photo_path: null,
+  photo_path: "",
 });
 
 const [feed, setFeed] = useState([]);
 
-async function handlePost() {
+const inputRef = useRef<HTMLInputElement>(null);
+
+const handleButtonClick = () => {
+  inputRef.current?.click();
+};
+
+const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files?.[0] || null;
+  if (file) {
+    setNewPost({ ...newPost, photo_path: file });
+  }
+};
+
+async function handlePost(e: React.FormEvent<HTMLFormElement>) {
+
+  e.preventDefault();
+  
+  if(newPost.description === "" ){
+    setToaster({ show: true, message: "Preencha a descrição." });
+    return;
+  }
+  
+  const formData = new FormData();
+  formData.append("photo_path", newPost.photo_path);
+  formData.append("description", newPost.description);
+
   try {
-    const response = await post("/social-media/post", newPost);
+    
+    const response = await postFormData("/social-media/post", newPost);
     setToaster({ show: true, message: "Post criado com sucesso!" });
+    setNewPost({ description: "", photo_path: "" });
     setModalNewPost(false);
     getFeed();
+
   } catch (error: any) {
-    setToaster({ show: true, message: "Erro ao criar post:" });
+
+    setToaster({ show: true, message: "Erro ao criar post: " +error.response.data.message });
+
   }
 }
 
@@ -53,11 +88,10 @@ async function getFeed() {
 
   try {
     const response = await get("/social-media/feed");
-    console.log(response.data);
     setFeed(response.data);
   } catch (error: any) {
 
-    console.error("Erro ao criar post:", error.response?.data || error.message);
+    setToaster({ show: true, message: "Erro ao carregar feed" });
   }
 }
 
@@ -276,17 +310,29 @@ return (
         </div>
 
         <Modal isOpen={openModalNewPost} onClose={() => setModalNewPost(false)} title="Novo post">
+          {newPost.photo_path && <p>Arquivo selecionado: {newPost.photo_path.name}</p>}
           <div className="flex flex-row bg-neutral-100 dark:bg-neutral-800 dark:text-white w-full rounded-full p-4 gap-2">
             <input 
               type="text" 
               placeholder="Diga algo para a galera..."
               className="w-full hover:text-border-0 ml-2 focus:outline-none rounded-full bg-neutral-100 dark:bg-neutral-800 dark:text-white text-neutral-800"
-              onChange={(e) => setNewPost({...newPost, description: e.target.value})}
+              onChange={(e) => {
+                setNewPost({...newPost, description: e.target.value});
+                setToaster({...toaster, show: false});
+              }}
             />
-            <Button>
+            <Button onClick={handleButtonClick}>
                 <PhotoIcon className="size-6 dark:text-white text-neutral-800"/>
             </Button>
-            <Button onClick={() => handlePost()}>
+            <input
+              type="file"
+              accept="image/*"
+              ref={inputRef}
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+              // eslint-disable-next-line react/jsx-no-comment-textnodes
+              />
+            <Button onClick={(e) => handlePost(e)}>
                 <AirPlaneIcon className="size-6 dark:text-white text-neutral-800"/>
             </Button>
           </div>
