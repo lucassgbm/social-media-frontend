@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 
+import React, { useEffect, useRef, useState } from "react";
 import EllipsisVerticalIcon from "../../../../components/icons/ellipsis";
 import InfoIcon from "../../../../components/icons/info";
 import MoneyIcon from "../../../../components/icons/money";
@@ -11,7 +12,6 @@ import Feed from "../../../../components/feed";
 import Stories from "../../../../components/stories";
 import Container from "../../../../components/container";
 import Modal from "../../../../components/modal";
-import React, { useEffect, useRef, useState } from "react";
 import PhotoIcon from "../../../../components/icons/photo";
 import Button from "../../../../components/button";
 import AirPlaneIcon from "../../../../components/icons/airplane";
@@ -36,6 +36,8 @@ const [toaster, setToaster] = useState({
   message: "",
 });
 
+const [preview, setPreview] = useState<string | null>(null);
+
 const [newPost, setNewPost] = useState<NewPost>({
   description: "",
   photo_path: "",
@@ -50,10 +52,22 @@ const handleButtonClick = () => {
 };
 
 const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const file = e.target.files?.[0] || null;
+  const file = e.target.files?.[0];
+
   if (file) {
     setNewPost({ ...newPost, photo_path: file });
+
+    // libera a URL anterior da memória
+    if (preview) {
+      URL.revokeObjectURL(preview);
+    }
+
+    const url = URL.createObjectURL(file);
+    setPreview(url);
+
   }
+
+
 };
 
 async function handlePost(e: React.FormEvent<HTMLFormElement>) {
@@ -75,6 +89,7 @@ async function handlePost(e: React.FormEvent<HTMLFormElement>) {
     setToaster({ show: true, message: "Post criado com sucesso!" });
     setNewPost({ description: "", photo_path: "" });
     setModalNewPost(false);
+    setPreview(null);
     getFeed();
 
   } catch (error: any) {
@@ -309,8 +324,25 @@ return (
           </Container>
         </div>
 
-        <Modal isOpen={openModalNewPost} onClose={() => setModalNewPost(false)} title="Novo post">
-          {newPost.photo_path && <p>Arquivo selecionado: {newPost.photo_path.name}</p>}
+        <Modal 
+          isOpen={openModalNewPost} 
+          onClose={() => {
+            setModalNewPost(false);
+            setPreview(null);
+          }} 
+          title="Novo post">
+          {preview && (
+            <div className="w-full flex flex-col p-4 items-center">
+              <p className="font-semibold mb-4">Preview:</p>
+              <Image
+                src={preview}
+                className="w-[200px] h-[200px] object-cover"
+                alt="preview"
+                width={200}
+                height={200}
+              />
+            </div>
+          )}
           <div className="flex flex-row bg-neutral-100 dark:bg-neutral-800 dark:text-white w-full rounded-full p-4 gap-2">
             <input 
               type="text" 
