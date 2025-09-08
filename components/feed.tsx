@@ -36,22 +36,27 @@ export default function Feed({ feed }: FeedProps) {
 
   return (
     <>
-      {feed.map((post, index) => {
-        // Monta URL da imagem de forma segura
-        const imageUrl = post.photo_path
+      {feed.map((post) => {
+
+        const imageUser = post.photo_path
+          ? `${process.env.NEXT_PUBLIC_STORAGE_API?.replace(/\/$/, '')}/${post.user.photo?.replace(/^\//, '')}`
+          : null;
+
+        const imagePost = post.photo_path
           ? `${process.env.NEXT_PUBLIC_STORAGE_API?.replace(/\/$/, '')}/${post.photo_path.replace(/^\//, '')}`
           : null;
 
         return (
           <Container key={post.id} className="mb-4">
             <div className="flex flex-row gap-4 items-center mb-4">
-              {post.user.photo && (
+              {imageUser && (
                 <Image
-                  src={post.user.photo}
+                  src={imageUser}
                   alt="Foto de perfil"
                   className="rounded-full"
                   width={50}
                   height={50}
+                  unoptimized
                 />
               )}
               <div className="flex flex-col">
@@ -60,9 +65,9 @@ export default function Feed({ feed }: FeedProps) {
               </div>
             </div>
 
-            {imageUrl && (
+            {imagePost && (
               <Image
-                src={imageUrl}
+                src={imagePost}
                 alt="Imagem do Post"
                 className="w-full rounded"
                 width={500}

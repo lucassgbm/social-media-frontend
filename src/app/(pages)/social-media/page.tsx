@@ -85,7 +85,7 @@ async function handlePost(e: React.FormEvent<HTMLFormElement>) {
 
   try {
     
-    const response = await postFormData("/social-media/post", newPost);
+    const response = await postFormData("/social-media/post", formData);
     setToaster({ show: true, message: "Post criado com sucesso!" });
     setNewPost({ description: "", photo_path: "" });
     setModalNewPost(false);

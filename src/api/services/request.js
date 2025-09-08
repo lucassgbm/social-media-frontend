@@ -25,22 +25,24 @@ export const get = (url) => {
     
     );
 }
-export const postFormData = (url, formData) => {
+export const postFormData = async (url, formData) => {
 
-  return api.post(url, formData, { 
-    headers: { 
-      'Content-Type': 'multipart/form-data' 
-    } 
-  })
-    .then((res) =>  
+  try {
+    const response = await api.post(url, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    });
 
-      res.data
-    )
-    .catch(error => 
+    return response.data;
 
-      console.log(error)
+  } catch (error) {
+    if (error.response && error.response.status === 422) {
+      
+      return { errors: error.response.data.errors };
+    }
+    console.error(error);
+    throw error;
+  }
     
-    );
 }
 
 export const post = (url, data) => {

@@ -3,6 +3,8 @@ import { useCallback, useState } from "react";
 import HeaderLogin from "../../../../../components/login/header-login";
 import Cropper from "react-easy-crop";
 import Modal from "../../../../../components/modal";
+import { postFormData } from "@/api/services/request";
+import Toaster from "../../../../../components/toaster";
 
 export default function Home(){
 
@@ -12,14 +14,18 @@ export default function Home(){
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
     const [croppedImage, setCroppedImage] = useState<string | null>(null);
     const [openModalCropImage, setModalCropImage] = useState(false);
+    const [toaster, setToaster] = useState({
+      show: false,
+      message: "",
+    });
     const [data, setData] = useState({
+        email: '',
         name: '',
         password: '',
-        birthday: '',
-        email: '',
-        phone: '',
-        interest: [],
-        image_path: ''
+        birthdate: '',
+        interest: '',
+        autodescription: '',
+        photho: ''
 
     });
 
@@ -83,20 +89,37 @@ export default function Home(){
     });
 
   // Enviar para API
-  const handleUpload = async () => {
-    if (!croppedImage) return;
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+
+    e.preventDefault();
+
+    if (!croppedImage){
+        setToaster({ show: true, message: "Selecione uma imagem." });
+        return;
+    }
+        
 
     const blob = await (await fetch(croppedImage)).blob();
 
     const formData = new FormData();
-    formData.append("file", blob, "imagem.jpg");
+    formData.append("email", data.email);
+    formData.append("name", data.name);
+    formData.append("password", data.password);
+    formData.append("birthdate", data.birthdate);
+    formData.append("interest", data.interest);
+    formData.append("autodescription", data.autodescription);
+    formData.append("photo", blob, "imagem.jpg");
 
-    // await fetch("http://localhost:3000/api/upload", {
-    //   method: "POST",
-    //   body: formData,
-    // });
+    const response = await postFormData("/user/register", formData);
 
-    // alert("Imagem enviada!");
+    if (response?.errors) {
+        
+        setToaster({ show: true, message: "Erro ao fazer cadastro: " +JSON.stringify(response.errors) });
+    } else {
+        setToaster({ show: true, message: "Cadastrado com sucesso!" });
+
+    }
+
   };
 
     return(
@@ -114,19 +137,46 @@ export default function Home(){
                         <div className="flex flex-col mb-2">
                             <label className="font-semibold text-xs mb-2">Nome completo</label>
 
-                            <input className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" type="text" placeholder="Digite o seu nome"></input>
+                            <input 
+                                className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" 
+                                type="text" 
+                                placeholder="Digite o seu nome"
+                                onChange={(e) => setData({...data, name: e.target.value})}
+                            />
+
+                        </div>
+
+                        <div className="flex flex-col mb-2">
+                            <label className="font-semibold text-xs mb-2">E-mail</label>
+
+                            <input 
+                                className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" 
+                                type="text" 
+                                placeholder="Digite o seu e-mail"
+                                onChange={(e) => setData({...data, email: e.target.value})}
+                            />
 
                         </div>
                         <div className="flex flex-col mb-4">
                             <label className="font-semibold text-xs mb-2">Senha</label>
 
-                            <input className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" type="text" placeholder="Digite uma senha"></input>
+                            <input 
+                                className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" 
+                                type="password" 
+                                placeholder="Digite uma senha"
+                                onChange={(e) => setData({...data, password: e.target.value})}
+                                />
 
                         </div>
                         <div className="flex flex-col mb-4">
                             <label className="font-semibold text-xs mb-2">Data de aniversário</label>
 
-                            <input className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" type="date" placeholder="Digite a data de aniversário"></input>
+                            <input 
+                                className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" 
+                                type="date" 
+                                placeholder="Digite a data de aniversário"
+                                onChange={(e) => setData({...data, birthdate: e.target.value})}
+                            />
 
                         </div>
                         <div className="flex flex-col mb-4">
@@ -139,12 +189,22 @@ export default function Home(){
                                 <span className="bg-neutral-700 w-[auto] text-xs font-normal py-1 px-2 rounded-full">Saúde</span>
                                 
                             </div>
-                            <input className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" type="text" placeholder="Digite algum interesse"></input>
+                            <input 
+                                className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" 
+                                type="text" 
+                                placeholder="Digite algum interesse"
+                                onChange={(e) => setData({...data, interest: e.target.value})}
+                            />
 
                         </div>
                         <div className="flex flex-col mb-4">
                             <label className="font-semibold text-xs mb-2">Autodescrição</label>
-                            <textarea className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" rows={5}  placeholder="Como você se autodescreve?"></textarea>
+                            <textarea 
+                                className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" 
+                                name="" rows={5}  
+                                placeholder="Como você se autodescreve?"
+                                onChange={(e) => setData({...data, autodescription: e.target.value})}
+                            />
                         </div>
                         {croppedImage && (
                             <div className="flex flex-col mb-4 items-center">
@@ -155,18 +215,28 @@ export default function Home(){
                         <div className="flex flex-col mb-4">
                             <label className="font-semibold text-xs mb-2">Foto</label>
 
-                            <input className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" type="file" accept="image/*" onChange={onFileChange}></input>
+                            <input 
+                                className="w-full text-sm text-gray-700 p-3 bg-white focus:outline-blue-400 rounded-sm" 
+                                type="file" accept="image/*" 
+                                onChange={onFileChange}
+                            />
 
                         </div>
                         <div className="flex flex-row mb-4 items-center">
 
-                            <input className="focus:outline-blue-400 " type="checkbox" ></input>
+                            <input 
+                                className="focus:outline-blue-400 " 
+                                type="checkbox"
+                            />
                             <p className="font-normal text-sm ml-2">Aceito os <span className="text-blue-500"><a href="#">Termos e condições</a></span></p>
 
                         </div>
                         <div className="flex flex-row mb-4 mt-6 justify-center">
 
-                            <button className="w-[auto] bg-blue-500 hover:bg-blue-700 font-semibold py-2 px-2 pl-6 pr-6 rounded-sm cursor-pointer">Enviar</button>
+                            <button 
+                                className="w-[auto] bg-blue-500 hover:bg-blue-700 font-semibold py-2 px-2 pl-6 pr-6 rounded-sm cursor-pointer"
+                                onClick={(e) => handleSubmit(e)}
+                            >Enviar</button>
                         </div>
                     </div>
                     {/* Editor de corte */}
@@ -200,7 +270,12 @@ export default function Home(){
 
                 </div>
             </div>  
- 
+            {toaster.show && (
+                <Toaster 
+                toaster={toaster}
+                setToaster={setToaster}
+                />
+            )}
         </div>
     )
 }
