@@ -74,7 +74,7 @@ export default function Sidebar() {
                     <ul className="list-none">
 
                         <Link href="/social-media">
-                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer">
+                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer transition">
                                 
                                 <Button>
                                     <HomeIcon className="size-4 dark:text-white text-neutral-800"/>
@@ -84,7 +84,7 @@ export default function Sidebar() {
                             </li>
                         </Link>
                         <Link href="/social-media/profile">
-                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer">
+                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer transition">
                                 
                                 <Button>
                                     <ProfileIcon className="size-4 dark:text-white text-neutral-800"/>
@@ -94,7 +94,7 @@ export default function Sidebar() {
                             </li>
                         </Link>
                         <Link href="/social-media/friends">
-                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer">
+                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer transition">
                                 <Button>
                                     <UsersIcon className="size-4 dark:text-white text-neutral-800"/>
                                 </Button>
@@ -103,7 +103,7 @@ export default function Sidebar() {
                             </li>
                         </Link>
                         <Link href="/social-media/communities">
-                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer">
+                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer transition">
                                 <Button>
                                     <CommunityIcon className="size-4 dark:text-white text-neutral-800"/>
                                 </Button>
@@ -113,7 +113,7 @@ export default function Sidebar() {
                             </li>
                         </Link>
                         <Link href="/social-media/events">
-                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer">
+                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer transition">
                                 <Button>
                                     <TrophyIcon className="size-4 dark:text-white text-neutral-800"/>
                                 </Button>
@@ -123,7 +123,7 @@ export default function Sidebar() {
                             </li>
                         </Link>
                         <Link href="/social-media/messages">
-                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer">
+                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer transition">
                                 
                                 <Button>
                                     <MessageIcon className="size-4 dark:text-white text-neutral-800"/>
@@ -135,7 +135,7 @@ export default function Sidebar() {
                             </li>
                         </Link>
                         <Link href="/social-media/settings">
-                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer">
+                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer transition">
 
                                 <Button>
                                     <SettingsIcon className="size-4 dark:text-white text-neutral-800"/>
