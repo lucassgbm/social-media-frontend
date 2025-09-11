@@ -13,10 +13,11 @@ export default function Container({ className, children }: ContainerProps)
             dark:text-white
             dark:shadow-neutral-md
             bg-white 
-            text-gra 
+            text-gray 
             p-4 
             shadow-md
-            ${className || ""}`}
+            
+            ${className}`}
             >
             {children}
         </div>

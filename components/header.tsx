@@ -1,16 +1,28 @@
 'use client';
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SearchIcon from "./icons/search";
 import CloseIcon from "./icons/close";
 import MenuIcon from "./icons/menu";
 import ThemeToggle from "./theme-toggle";
 import MessageIcon from "./icons/message";
 import InboxIcon from "./icons/inbox";
+import { AppContext } from "@/app/(pages)/social-media/layout";
+import Image from "next/image";
+import Skeleton from "./skeleton";
+import Button from "./button";
+import RingImage from "./ring-image";
 
 export default function Header() {
 
-const [mobileOpen, setMobileOpen] = useState(false);
+    const context = useContext(AppContext);
+
+    const { myInfo } = context;
+
+    const [mobileOpen, setMobileOpen] = useState(false);
+
+    const imageUser = myInfo?.photo ? `${process.env.NEXT_PUBLIC_STORAGE_API?.replace(/\/$/, '')}/${myInfo.photo?.replace(/^\//, '')}` : "";
+
     return (
         <header className="flex w-full bg-white dark:bg-neutral-900 ">
             <nav className="w-full shadow-md px-4 py-2 flex items-center justify-between">
@@ -23,20 +35,39 @@ const [mobileOpen, setMobileOpen] = useState(false);
                 </div>
 
                 <div className="hidden md:flex w-1/4 justify-end items-center gap-4">
-                    <button
-                          onClick={() => ""}
-                          className="px-2 py-2 rounded-full bg-neutral-200 dark:bg-neutral-700 hover:opacity-80 transition cursor-pointer"
+                    <div className="flex flex-row gap-2">
+                        <Button
+                            onClick={() => {}}
                         >
+                            <InboxIcon className="size-6 dark:text-white" />
+                        </Button>
+                        <ThemeToggle /> 
+                    </div>
+
+                    {myInfo && (
+                        <div className="flex flex-row items-center gap-2">
+                            <span className="text-sm font-semibold text-gray-600 dark:text-white">{`Olá, ${myInfo?.name}`}</span>
+                            <RingImage>
+
+                            <Image
+                                src={imageUser}
+                                alt="Foto de perfil"
+                                className="rounded-full w-[45px]"
+                                width={50}
+                                height={50}
+                                priority
+                                />
+                            </RingImage>
+                        </div>
+                    )}
+
+                    {!myInfo && (
+                        <div className="flex flex-row items-center gap-2">
+                            <Skeleton rounded="sm" height={"h-[25px]"} width={"w-[120px]"} />
+                            <Skeleton height={"h-[55px]"} width={"w-[55px]"}  rounded="full" className="aspect-[1/1]" />
+                        </div>
                         
-                        <InboxIcon className="size-6 dark:text-white" />
-                    </button>
-                    <ThemeToggle /> 
-                    <span className="text-sm font-semibold text-gray-600 dark:text-white">Olá, Lucas</span>
-                    <img
-                    src="https://i.pravatar.cc/40"
-                    alt="perfil"
-                    className="w-10 h-10 rounded-full cursor-pointer"
-                    />
+                    )}
                 </div>
 
                 <button

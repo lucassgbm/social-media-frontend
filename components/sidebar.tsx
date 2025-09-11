@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 import HomeIcon from "./icons/home";
 import UsersIcon from "./icons/users";
@@ -14,65 +14,98 @@ import Container from "./container";
 import Button from "./button";
 import ArrowLeftIcon from "./icons/arrow-left";
 import ArrowRightIcon from "./icons/arrow-right";
+import Skeleton from "./skeleton";
+import { AppContext } from "@/app/(pages)/social-media/layout";
+import Card from "./card";
+import RingImage from "./ring-image";
+
 
 export default function Sidebar() {
-    const [showMenu, setShowMenu] = useState(false);
+
+    const context = useContext(AppContext);
+
+    const { myInfo } = context;
+
+    const imageUser = myInfo?.photo
+    ? `${process.env.NEXT_PUBLIC_STORAGE_API?.replace(/\/$/, '')}/${myInfo.photo?.replace(/^\//, '')}`
+    : null;
     return (
         <>
             
-            <Container className="hidden sm:flex flex-col sm:w-1/6" >
+            <Container className="sticky top-0 h-screen hidden sm:flex flex-col sm:w-1/6" >
                 <div className="flex justify-center mb-4">
-                    <Image
-                        src="/imgs/kratos.jpg"
-                        alt="Foto de perfil"
-                        className="w-[45px] sm:w-full rounded-full mb-4"
-                        width={250}
-                        height={250}
-                        priority
-                    />
+                    {imageUser && (
+                        
+                        <RingImage className="w-[45px] sm:w-[80%]" padding="p-[2px] sm:p-[4px]">
+                            <Image
+                                src={imageUser}
+                                alt="Foto de perfil"
+                                className="rounded-full"
+                                width={250}
+                                height={250}
+                                priority
+                                unoptimized
+                            />
+                        </RingImage>
+                       
+                    )}
+
+                    {!imageUser && (
+                        <div className="w-full flex flex-col items-center">
+
+                            <Skeleton height={"h-full"} width={"w-[80%]"}  rounded="full" className="aspect-[1/1] mb-4" />
+                        </div>
+                        
+                    )}
                 </div>
-                <nav className="flex flex-col gap-4 items-center">
+                <Card className="flex flex-col md:flex-row rounded-lg gap-2 grid grid-cols-2 mb-4">
+                    <div className="flex flex-col items-center">
+                        <label className="font-semibold text-sm">213</label>
+                        <label className="text-xs text-gray-400">friends</label>
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <label className="font-semibold text-sm">16</label>
+                        <label className="text-xs text-gray-400">Communities</label>
+                    </div>
+                    
+
+                </Card>
+                <nav className="w-full flex flex-col gap-2 overflow-y-auto">
                     <ul className="list-none">
-                        <li className="sm:hidden flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
-                            
-                            <Button onClick={() => setShowMenu(!showMenu)}>
-                                <ArrowLeftIcon className="size-6 dark:text-white text-neutral-800"/>
-                            </Button>
-                        </li>
 
                         <Link href="/social-media">
-                            <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
+                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer">
                                 
                                 <Button>
-                                    <HomeIcon className="size-6 dark:text-white text-neutral-800"/>
+                                    <HomeIcon className="size-4 dark:text-white text-neutral-800"/>
                                 </Button>
                                 <label className="hidden md:flex text-sm font-semibold">Home</label>
 
                             </li>
                         </Link>
                         <Link href="/social-media/profile">
-                            <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
+                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer">
                                 
                                 <Button>
-                                    <ProfileIcon className="size-6 dark:text-white text-neutral-800"/>
+                                    <ProfileIcon className="size-4 dark:text-white text-neutral-800"/>
                                 </Button>
                                 <label className="hidden md:flex text-sm font-semibold">Perfil</label>
 
                             </li>
                         </Link>
                         <Link href="/social-media/friends">
-                            <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
+                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer">
                                 <Button>
-                                    <UsersIcon className="size-6 dark:text-white text-neutral-800"/>
+                                    <UsersIcon className="size-4 dark:text-white text-neutral-800"/>
                                 </Button>
                                 <label className="hidden md:flex text-sm font-semibold">Amigos</label>
 
                             </li>
                         </Link>
                         <Link href="/social-media/communities">
-                            <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
+                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer">
                                 <Button>
-                                    <CommunityIcon className="size-6 dark:text-white text-neutral-800"/>
+                                    <CommunityIcon className="size-4 dark:text-white text-neutral-800"/>
                                 </Button>
 
                                 <label className="hidden md:flex text-sm font-semibold">Comunidades</label>
@@ -80,36 +113,36 @@ export default function Sidebar() {
                             </li>
                         </Link>
                         <Link href="/social-media/events">
-                            <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
+                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer">
                                 <Button>
-                                    <TrophyIcon className="size-6 dark:text-white text-neutral-800"/>
+                                    <TrophyIcon className="size-4 dark:text-white text-neutral-800"/>
                                 </Button>
                             
-                            <label className="hidden md:flex text-sm font-semibold">Eventos</label>
+                                <label className="hidden md:flex text-sm font-semibold">Eventos</label>
 
                             </li>
                         </Link>
                         <Link href="/social-media/messages">
-                            <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
-                            
-                            <Button>
-                                <MessageIcon className="size-6 dark:text-white text-neutral-800"/>
-                            </Button>
-                            
-                            <label className="hidden md:flex text-sm font-semibold">Mensagens</label> 
-                            <span className="hidden md:flex bg-[#f53003] rounded-full text-white text-xs w-5 h-5 flex items-center justify-center">3</span>
-                            
+                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer">
+                                
+                                <Button>
+                                    <MessageIcon className="size-4 dark:text-white text-neutral-800"/>
+                                </Button>
+                                
+                                <label className="hidden md:flex text-sm font-semibold">Mensagens</label> 
+                                <span className="hidden md:flex bg-[#f53003] rounded-full text-white text-xs w-5 h-5 flex items-center justify-center">3</span>
+                                
                             </li>
                         </Link>
                         <Link href="/social-media/settings">
-                            <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
+                            <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer">
 
-                            <Button>
-                                <SettingsIcon className="size-6 dark:text-white text-neutral-800"/>
-                            </Button>
-                            
-                            <label className="hidden md:flex text-sm font-semibold">Configurações</label>
-                            
+                                <Button>
+                                    <SettingsIcon className="size-4 dark:text-white text-neutral-800"/>
+                                </Button>
+                                
+                                <label className="hidden md:flex text-sm font-semibold">Configurações</label>
+                                
                             </li>
                         </Link>
                         

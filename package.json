@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "WATCHPACK_POLLING=true next dev",
+    "dev-docker": "WATCHPACK_POLLING=true next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-instastories/base": "^1.0.7",
+    "@react-instastories/external": "^1.0.7",
+    "@react-instastories/presets": "^1.0.7",
     "@splidejs/react-splide": "^0.7.12",
     "axios": "^1.11.0",
     "next": "15.4.3",

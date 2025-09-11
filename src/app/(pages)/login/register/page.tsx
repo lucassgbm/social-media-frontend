@@ -5,6 +5,7 @@ import Cropper from "react-easy-crop";
 import Modal from "../../../../../components/modal";
 import { postFormData } from "@/api/services/request";
 import Toaster from "../../../../../components/toaster";
+import { useRouter } from "next/navigation";
 
 export default function Home(){
 
@@ -78,6 +79,8 @@ export default function Home(){
     const base64 = canvas.toDataURL("image/jpeg");
     setCroppedImage(base64); // 🔹 mostra preview
   };
+  
+  const router = useRouter();
 
   // Converter URL → objeto imagem
   const createImage = (url: string): Promise<HTMLImageElement> =>
@@ -98,9 +101,9 @@ export default function Home(){
         return;
     }
         
-
+    
     const blob = await (await fetch(croppedImage)).blob();
-
+    
     const formData = new FormData();
     formData.append("email", data.email);
     formData.append("name", data.name);
@@ -109,14 +112,17 @@ export default function Home(){
     formData.append("interest", data.interest);
     formData.append("autodescription", data.autodescription);
     formData.append("photo", blob, "imagem.jpg");
-
+    
     const response = await postFormData("/user/register", formData);
-
+    
     if (response?.errors) {
         
         setToaster({ show: true, message: "Erro ao fazer cadastro: " +JSON.stringify(response.errors) });
     } else {
         setToaster({ show: true, message: "Cadastrado com sucesso!" });
+        setTimeout(() => {
+            router.push('/login');
+        }, 2000);
 
     }
 

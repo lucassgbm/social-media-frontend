@@ -38,7 +38,7 @@ export default function Feed({ feed }: FeedProps) {
     <>
       {feed.map((post) => {
 
-        const imageUser = post.photo_path
+        const imageUser = post.user.photo
           ? `${process.env.NEXT_PUBLIC_STORAGE_API?.replace(/\/$/, '')}/${post.user.photo?.replace(/^\//, '')}`
           : null;
 

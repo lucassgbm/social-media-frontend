@@ -2,22 +2,23 @@
 
 import Image from "next/image";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import EllipsisVerticalIcon from "../../../../components/icons/ellipsis";
 import InfoIcon from "../../../../components/icons/info";
 import MoneyIcon from "../../../../components/icons/money";
-import Sidebar from "../../../../components/sidebar";
-import Header from "../../../../components/header";
 import Feed from "../../../../components/feed";
-import Stories from "../../../../components/stories";
+import Stories from "../../../../components/vibes";
 import Container from "../../../../components/container";
 import Modal from "../../../../components/modal";
 import PhotoIcon from "../../../../components/icons/photo";
 import Button from "../../../../components/button";
 import AirPlaneIcon from "../../../../components/icons/airplane";
-import BottomMenu from "../../../../components/bottom-menu";
 import Toaster from "../../../../components/toaster";
 import { post, get, postFormData } from "../../../api/services/request";
+import Vibes from "../../../../components/vibes";
+import Skeleton from "../../../../components/skeleton";
+import { AppContext } from "./layout";
+import RingImage from "../../../../components/ring-image";
 
 interface NewPost {
   description: string;
@@ -26,25 +27,24 @@ interface NewPost {
 
 export default function Home() {
 
-  useEffect(() => {
-    getFeed();
-  }, []);
+useEffect(() => {
+  getFeed();
+}, []);
 
 const [openModalNewPost, setModalNewPost] = useState(false);
 const [toaster, setToaster] = useState({
   show: false,
   message: "",
 });
-
+const [loadingFeed, setLoadingFeed] = useState(false);
 const [preview, setPreview] = useState<string | null>(null);
-
 const [newPost, setNewPost] = useState<NewPost>({
   description: "",
   photo_path: "",
 });
-
 const [feed, setFeed] = useState([]);
-
+const context = useContext(AppContext);
+const { myInfo } = context;
 const inputRef = useRef<HTMLInputElement>(null);
 
 const handleButtonClick = () => {
@@ -66,8 +66,6 @@ const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPreview(url);
 
   }
-
-
 };
 
 async function handlePost(e: React.FormEvent<HTMLFormElement>) {
@@ -101,6 +99,7 @@ async function handlePost(e: React.FormEvent<HTMLFormElement>) {
 
 async function getFeed() {
 
+  setLoadingFeed(true);
   try {
     const response = await get("/social-media/feed");
     setFeed(response.data);
@@ -108,39 +107,78 @@ async function getFeed() {
 
     setToaster({ show: true, message: "Erro ao carregar feed" });
   }
+  setLoadingFeed(false);
 }
 
 return (
     <>
-      <Header />
-      <div className="flex flex-col sm:flex-row dark:bg-neutral-950 bg-neutral-100 min-h-screen p-6 gap-6 text-gray-600">
-        
-        <Sidebar />
-        <BottomMenu />
+
         <div className="w-full sm:w-5/6 flex flex-col-reverse sm:flex-row gap-6">
           
           <div className="w-full sm:w-5/6">
             <div className="flex flex-row gap-6">
               <div className="w-full sm:w-3/4 h-full rounded-2xl mb-4">
                 <Container className="flex flex-row gap-2 mb-4 items-center">
-                  <Image
-                    src="/imgs/kratos.jpg"
-                    alt="Foto de perfil"
-                    className="rounded-full w-[50px]"
-                    width={50}
-                    height={50}
-                    priority
-                  />
-                  <div className="flex flex-row bg-neutral-100 dark:bg-neutral-800 dark:text-white w-full rounded-full pl-4 pr-4">
-                    <div
-                      className="w-full hover:text-border-0 ml-2 focus:outline-none p-4 rounded-full bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-400 cursor-pointer"
-                      onClick={() => setModalNewPost(true)}
-                    >Diga algo para a galera...
+                  {myInfo?.photo && (
+                    
+                    <>
+                      <RingImage>
+
+                        <Image
+                          src={`${process.env.NEXT_PUBLIC_STORAGE_API?.replace(/\/$/, '')}/${myInfo.photo?.replace(/^\//, '')}`}
+                          alt="Foto de perfil"
+                          className="rounded-full w-[50px]"
+                          width={50}
+                          height={50}
+                          priority
+                          />
+                      </RingImage>
+
+                      <div className="flex flex-row bg-neutral-100 dark:bg-neutral-800 dark:text-white w-full rounded-full pl-4 pr-4">
+                        <div
+                          className="w-full hover:text-border-0 ml-2 focus:outline-none p-4 rounded-full bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-400 cursor-pointer"
+                          onClick={() => setModalNewPost(true)}
+                        >Diga algo para a galera...
+                        </div>
+                      </div>
+                  </>
+                  )}
+                  {!myInfo?.photo && (
+                    <div className="w-full flex flex-row ">
+                    
+                        <div className="w-full flex flex-row gap-2 items-center">
+                          <Skeleton height={"h-[50px]"} width={"w-[50px]"}  rounded="full" className="aspect-[1/1]" />
+                          <Skeleton rounded="full" height={"h-[55px]"} width={"w-full"} />
+                        </div>
                     </div>
-                  </div>
+                  )}
+
                   
                 </Container>
 
+                {loadingFeed && (
+                  <>
+                    <Container className="mb-4">
+                      <div className="w-full flex flex-row gap-4 items-center mb-4">
+                        <div className="w-[50px] flex flex-col">
+                          <Skeleton rounded="full" height={"h-[50px]"} width={"w-[50px]"} />
+
+                        </div>
+                        <div className="flex flex-col">
+                          <Skeleton rounded="sm" height={"h-[20px]"} width={"w-[100px]"} className="mb-2" />
+                          <Skeleton rounded="sm" height={"h-[20px]"} width={"w-[150px]"} />
+                        </div>
+                      </div>
+                      <div className="w-full flex flex-row gap-4 items-center mb-4">
+                        <Skeleton rounded="sm" height={"h-[40px]"} width={"w-full"} />
+                      </div>
+                      <div className="w-full flex flex-row gap-4 items-center mb-4">
+                        <Skeleton rounded="sm" height={"h-[30px]"} width={"w-[45px]"} />
+                        <Skeleton rounded="sm" height={"h-[30px]"} width={"w-[45px]"} />
+                      </div>
+                    </Container>
+                  </>
+                )}
                 <Feed feed={feed} />
                 
               </div>
@@ -320,7 +358,7 @@ return (
           </div>
 
           <Container className="flex flex-row sm:flex-col w-full h-[auto] sm:h-auto gap-4 overflow-x-auto scrollbar-hide sm:w-1/6 sm:mb-0">
-              <Stories />
+              <Vibes />
           </Container>
         </div>
 
@@ -375,8 +413,7 @@ return (
             setToaster={setToaster}
           />
         )}
-        
-      </div>
+
     
     </>
   );
