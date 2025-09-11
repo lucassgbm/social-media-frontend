@@ -25,10 +25,23 @@ interface NewPost {
   photo_path: File | "";
 }
 
+interface EventCommunity {
+  title: string;
+  description: string;
+  photo?: string | null;
+  date_start: string;
+  date_end: string;
+  time_start: string;
+  time_end: string;
+  local: string;
+  link?: string;
+}
+
 export default function Home() {
 
 useEffect(() => {
   getFeed();
+  getEvent();
 }, []);
 
 const [openModalNewPost, setModalNewPost] = useState(false);
@@ -43,6 +56,7 @@ const [newPost, setNewPost] = useState<NewPost>({
   photo_path: "",
 });
 const [feed, setFeed] = useState([]);
+const [event, setEvent] = useState<EventCommunity | null>(null);
 const context = useContext(AppContext);
 const { myInfo } = context;
 const inputRef = useRef<HTMLInputElement>(null);
@@ -108,6 +122,17 @@ async function getFeed() {
     setToaster({ show: true, message: "Erro ao carregar feed" });
   }
   setLoadingFeed(false);
+}
+
+async function getEvent() {
+
+  try {
+    const response = await get("/social-media/community-event/1");
+    setEvent(response.data);
+  } catch (error: any) {
+
+    setToaster({ show: true, message: "Erro ao carregar Evento" });
+  }
 }
 
 return (
@@ -184,40 +209,78 @@ return (
               </div>
               <div className="hidden sm:block w-1/4">
                 <Container className="mb-4 text-center">
-                  <label className="text-sm font-semibold mb-4 ">Próximo Evento</label>
-                  <div className="flex flex-col h-full mt-2">
-                    <div className="flex flex-col sm:flex-row items-center mb-4">
-                      <Image
-                        src="/imgs/drift.jpg"
-                        alt="Foto de perfil"
-                        className="rounded-md w-[70px] mr-4 hover:opacity-90"
-                        width={70}
-                        height={70}
-                        priority
-                      />
-                      <h2 className="text-md font-semibold">Drift Racing</h2>
-                    </div>
-                    <div className="text-left bg-neutral-100 dark:bg-neutral-800 rounded-2xl p-2">
-                      <p className="text-sm font-semibold">Arena BRB - Mané Garrincha </p>
-                      <p className="text-xs">02/08/2025 | 10:00 às 18:00</p>
-                    </div>
-                    <div className="flex flex-row justify-center gap-2 mt-4">
-                      
-                      <Button>
-                        <InfoIcon />
-                      </Button>
+                  {event && (
+                    <>
+                      <label className="text-sm font-semibold mb-4 ">Próximo Evento</label>
 
-                      <Button>
-                        <MoneyIcon />
-                      </Button>
-                      
-                    </div>
+                      <div className="flex flex-col h-full mt-2">
+                        <div className="flex flex-col sm:flex-row items-center mb-4">
+                          <Image
+                            src={event?.photo
+                            ? `${process.env.NEXT_PUBLIC_STORAGE_API?.replace(/\/$/, '')}/${event.photo?.replace(/^\//, '')}`
+                            : ''}
+                            alt="Foto de perfil"
+                            className="rounded-md w-[70px] mr-4 hover:opacity-90"
+                            width={70}
+                            height={70}
+                            priority
+                          />
+                          <h2 className="text-md font-semibold">{event?.title}</h2>
+                        </div>
+                        <div className="text-left bg-neutral-100 dark:bg-neutral-800 rounded-2xl p-2">
+                          <p className="text-sm font-semibold">{event?.local} </p>
+                          <p className="text-xs">{`${event?.date_start}`} | {`${event.time_start} às ${event.time_end}`}</p>
+                        </div>
+                        <div className="flex flex-row justify-center gap-2 mt-4">
+                          
+                          <Button>
+                            <InfoIcon />
+                          </Button>
 
-                  </div>
+                          {event?.link && (
+                            
+                            <Button>
+                              <MoneyIcon />
+                            </Button>
+                            
+                          )}
+                          
+                        </div>
+
+                      </div>
+                    </>
+                  )}
+
+                  {!event && (
+                    <>
+                      <div className="flex flex-row justify-center">
+
+                        <Skeleton rounded="md" height="h-[25px]" width="w-[100px]" />
+                      </div>
+                      <div className="flex flex-col h-full mt-2">
+                        <div className="flex flex-col sm:flex-row items-center mb-4 gap-4">
+                          
+                          <Skeleton rounded="md" height="h-[70px]" width="w-[70px]" />
+                          <Skeleton rounded="md" height="h-[25px]" width="w-[90px]" />
+                        
+                        </div>
+                        <Skeleton rounded="2xl" height="h-[60px]" width="w-[full]" />
+                        
+                        <div className="flex flex-row justify-center gap-2 mt-4">
+                          
+                          <Skeleton rounded="full" height="h-[40px]" width="w-[40px]" />
+
+                          <Skeleton rounded="full" height="h-[40px]" width="w-[40px]" />
+                          
+                        </div>
+
+                      </div>
+                    </>
+                  )}
                 </Container>
                 
                 <Container className="mb-4">
-                  <label className="text-sm font-semibold">Sugestões de Eventos</label>
+                  <label className="text-sm font-semibold">Sugestões de Events</label>
                   <div className="flex flex-col justify-center mt-4">
                     <div className="flex flex-row items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm p-2 gap-2">
                       <Image
