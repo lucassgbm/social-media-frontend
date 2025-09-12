@@ -32,7 +32,7 @@ export default function Sidebar() {
     return (
         <>
             
-            <Container className="sticky top-0 h-screen hidden sm:flex flex-col sm:w-1/6" >
+            <Container className="sticky top-0 h-screen hidden sm:flex flex-col sm:w-1/6" transparent={true}>
                 <div className="flex justify-center mb-4">
                     {imageUser && (
                         
