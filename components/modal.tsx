@@ -22,7 +22,7 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
       ></div>
 
       {/* Conteúdo do modal */}
-      <div className="w-full h-full sm:h-auto sm:w-11/12 sm:max-w-md bg-white dark:bg-neutral-900 rounded-2xl shadow-md p-6 text-white dark:text-neutral-600 z-10">
+      <div className="w-full h-full sm:h-auto sm:w-[80%] sm:max-w-lg bg-white dark:bg-neutral-900 rounded-2xl shadow-md p-6 text-white dark:text-neutral-600 z-10">
         {/* Cabeçalho */}
         <div className="flex justify-between items-center mb-4">
           <h2 className="dark:text-white text-neutral-800 text-lg font-semibold">{title}</h2>
