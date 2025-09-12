@@ -2,21 +2,18 @@ import { ReactNode } from "react";
 interface ContainerProps {
   className?: string;
   children?: ReactNode;
+  transparent?: boolean
 }
 
-export default function Container({ className, children }: ContainerProps)
+export default function Container({ className, children, transparent }: ContainerProps)
 {
     return (
         <div 
             className={`
-            dark:bg-neutral-900 
+            ${transparent ? 'bg-transparent' : 'dark:bg-neutral-900 dark:shadow-neutral-md bg-white shadow-md'}
             dark:text-white
-            dark:shadow-neutral-md
-            bg-white 
             text-gray 
             p-4 
-            shadow-md
-            
             ${className}`}
             >
             {children}
