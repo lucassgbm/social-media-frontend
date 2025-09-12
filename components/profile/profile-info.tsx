@@ -1,12 +1,11 @@
 import Link from "next/link";
 import WhatsappIcon from "../icons/whatsapp";
-import Container from "../container";
+import Card from "../card";
 
 export default function ProfileInfo() {
     return (
         <div className="w-full">
-            <Container className="text-center mb-4">
-                <h1 className="text-md font-semibold mb-4">Perfil</h1>
+            <Card className="rounded-2xl text-center mb-4">
                 <div className="flex flex-row text-left mb-2">
                     <label className="w-1/2 text-sm font-semibold">Nome</label>
                     <label className="w-1/2 text-sm font-normal">Lucas Belfort</label>
@@ -46,7 +45,7 @@ export default function ProfileInfo() {
                     </Link>
                 </div>
 
-            </Container>
+            </Card>
         </div>
     )
 }
