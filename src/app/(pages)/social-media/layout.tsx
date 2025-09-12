@@ -5,6 +5,7 @@ import { createContext, useEffect, useState } from "react";
 import Header from "../../../../components/header";
 import Sidebar from "../../../../components/sidebar";
 import BottomMenu from "../../../../components/bottom-menu";
+import Footer from "../../../../components/footer";
 
 type MyInfo = {
   name: string;
@@ -53,6 +54,7 @@ export default function RootLayout({
           <div className="flex flex-col sm:flex-row dark:bg-neutral-950 bg-neutral-100 min-h-screen p-6 gap-6 text-gray-600">
             <Sidebar />
             {children}
+            <Footer/>
             <BottomMenu />
           </div>
         </AppContext.Provider>
