@@ -44,7 +44,7 @@ useEffect(() => {
   getEvent();
 }, []);
 
-const [openModalNewPost, setModalNewPost] = useState(false);
+const [modalNewPost, setModalNewPost] = useState(false);
 const [toaster, setToaster] = useState({
   show: false,
   message: "",
@@ -268,9 +268,9 @@ return (
                         
                         <div className="flex flex-row justify-center gap-2 mt-4">
                           
-                          <Skeleton rounded="full" height="h-[40px]" width="w-[40px]" />
+                          <Skeleton rounded="full" height="h-[35px]" width="w-[35px]" />
 
-                          <Skeleton rounded="full" height="h-[40px]" width="w-[40px]" />
+                          <Skeleton rounded="full" height="h-[35px]" width="w-[35px]" />
                           
                         </div>
 
@@ -426,12 +426,13 @@ return (
         </div>
 
         <Modal 
-          isOpen={openModalNewPost} 
+          isOpen={modalNewPost} 
           onClose={() => {
             setModalNewPost(false);
             setPreview(null);
           }} 
-          title="Novo post">
+          title="Novo post"
+        >
           {preview && (
             <div className="w-full flex flex-col p-4 items-center">
               <p className="font-semibold mb-4">Preview:</p>
