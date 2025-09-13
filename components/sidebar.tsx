@@ -32,7 +32,7 @@ export default function Sidebar() {
     return (
         <>
             
-            <Container className="sticky top-0 h-screen hidden sm:flex flex-col sm:w-1/6" transparent={true}>
+            <Container className="sticky top-0 h-screen hidden sm:flex flex-col sm:w-1/6">
                 <div className="flex justify-center mb-4">
                     {imageUser && (
                         
@@ -141,7 +141,7 @@ export default function Sidebar() {
                                     <SettingsIcon className="size-4 dark:text-white text-neutral-800"/>
                                 </Button>
                                 
-                                <label className="hidden md:flex text-sm font-semibold">Configurações</label>
+                                <label className="hidden md:flex text-sm font-semibold">Preferências</label>
                                 
                             </li>
                         </Link>
