@@ -61,34 +61,7 @@ export default function Vibes(){
     // )
 
     
-    const stories = [
-    {
-      url: "https://placekitten.com/400/700",
-      header: {
-        heading: "Lucas",
-        subheading: "2h atrás",
-        profileImage: "https://placekitten.com/100/100",
-      },
-    },
-    {
-      url: "https://placebear.com/400/700",
-      header: {
-        heading: "Maria",
-        subheading: "5h atrás",
-        profileImage: "https://placebear.com/100/100",
-      },
-    },
-    {
-      content: ({ action, isPaused }) => (
-        <div className="flex h-full items-center justify-center bg-black text-white">
-          <h1 onClick={() => action("next")}>
-            Clique para pular 👉
-          </h1>
-        </div>
-      ),
-    },
-  ];
-
+ 
  
   return (
     
