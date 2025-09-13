@@ -11,6 +11,8 @@ import Card from "../../../../../components/card";
 import FilterIcon from "../../../../../components/icons/filter";
 import { useState } from "react";
 import Modal from "../../../../../components/modal";
+import FormButtom from "../../../../../components/form-buttom";
+import LoadingSpinner from "../../../../../components/loading-spinner";
 
 export default function Home(){
     
@@ -97,9 +99,12 @@ export default function Home(){
 
                     </div>
                     <div className="w-full flex flex-col items-center">
-                        <button type="submit" className="w-[100px] bg-blue-500 hover:bg-blue-700 font-semibold py-2 px-2 pl-6 pr-6 rounded-sm cursor-pointer">
-                            Criar
-                        </button>
+                        <div className="flex flex-row gap-2 items-center">
+
+                            <FormButtom label="Criar" type="submit" onClick={() => alert('Criar comunidade')}/>
+                            <LoadingSpinner />
+                        </div>
+
                     </div>
                 </div>
             </Modal>
