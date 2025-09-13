@@ -1,6 +1,8 @@
 import Link from "next/link";
 import WhatsappIcon from "../icons/whatsapp";
 import Card from "../card";
+import FormButtom from "../form-buttom";
+import LoadingSpinner from "../loading-spinner";
 
 export default function ProfileInfo() {
     return (
@@ -41,7 +43,8 @@ export default function ProfileInfo() {
                 <div className="flex flex-row text-left mb-2 justify-end">
                     <Link href="profile/edit">
                     
-                        <button className="w-[100px] bg-neutral-100 hover:bg-neutral-200 rounded-full text-sm font-semibold p-2 mt-4 cursor-pointer">Editar</button>
+                        <FormButtom label="Editar" type="button" onClick={() => { }} />
+
                     </Link>
                 </div>
 
