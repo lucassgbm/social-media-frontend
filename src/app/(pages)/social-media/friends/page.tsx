@@ -31,7 +31,7 @@ export default function Home(){
                                 </Button>
                             </div>
                         </div>
-                        <div className="grid grid-cols-4 gap-4 mb-4 flex-wrap">
+                        <div className="grid grid-cols-5 gap-4 mb-4 flex-wrap">
                             <ListFriends /> 
                             <ListFriends /> 
                             <ListFriends /> 
@@ -42,14 +42,8 @@ export default function Home(){
                     </Container>
 
                 </div>
-                <div className="w-1/6 flex flex-col">
-                    <Container>
-                        <h2 className="text-md mb-4">
-                            Favoritos
-                        </h2>
-                    </Container>
-                </div>
-                <div className="w-1/6 flex flex-col">
+
+                <div className="w-2/6 flex flex-col">
                     <Container>
                         <h2 className="text-md mb-4">
                             Pedido de amizade
