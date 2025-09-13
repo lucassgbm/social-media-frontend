@@ -12,12 +12,24 @@ import Image from "next/image";
 import Skeleton from "./skeleton";
 import Button from "./button";
 import RingImage from "./ring-image";
+import Submenu from "./submenu";
+import PhotoIcon from "./icons/photo";
+import UsersIcon from "./icons/users";
+import SettingsIcon from "./icons/settings";
+import ArrowRightIcon from "./icons/arrow-right";
 
 export default function Header() {
 
+    const [open, setOpen] = useState(false);
     const context = useContext(AppContext);
 
-    const { myInfo } = context;
+    const submenuItems = [
+        { label: 'Meu perfil', link: "/social-media/profile", icon: <UsersIcon /> },
+        { label: 'Preferências', link: "/social-media/settings", icon: <SettingsIcon /> },
+        { label: 'Sair', link: "", icon: <ArrowRightIcon /> },
+    ]
+
+    const { myInfo, openMessages, setOpenMessages } = context;
 
     const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -37,7 +49,7 @@ export default function Header() {
                 <div className="hidden md:flex w-1/4 justify-end items-center gap-4">
                     <div className="flex flex-row gap-2">
                         <Button
-                            onClick={() => {}}
+                            onClick={() => {setOpenMessages(!openMessages)}}
                         >
                             <InboxIcon className="size-6 dark:text-white" />
                         </Button>
@@ -47,17 +59,33 @@ export default function Header() {
                     {myInfo && (
                         <div className="flex flex-row items-center gap-2">
                             <span className="text-sm font-semibold text-gray-600 dark:text-white">{`Olá, ${myInfo?.name}`}</span>
-                            <RingImage>
-
-                            <Image
-                                src={imageUser}
-                                alt="Foto de perfil"
-                                className="rounded-full w-[45px]"
-                                width={50}
-                                height={50}
-                                priority
-                                />
-                            </RingImage>
+                            <ul>
+                                <li className="cursor-pointer" onClick={() =>setOpen(!open)}>
+                                    
+                                    <RingImage>
+                                        <Image
+                                            src={imageUser}
+                                            alt="Foto de perfil"
+                                            className="rounded-full w-[45px]"
+                                            width={50}
+                                            height={50}
+                                            priority
+                                            />
+                                    </RingImage>
+                                </li>
+                                {open && (
+                                    <div className="w-full sm:w-[300px] absolute right-0 mt-4 dark:bg-neutral-900 dark:text-white bg-white text-neutral-800 rounded-lg shadow-md p-4 z-50">
+                                        
+                                        <div className="flex flex-row gap-2 p-4 border-b dark:border-neutral-700 border-neutral-200 mb-2">
+                                            <label>teste</label>
+                                        </div>
+                                        <ul>
+                                            <Submenu items={submenuItems} />
+                                           
+                                        </ul>
+                                    </div>
+                                )}
+                            </ul>
                         </div>
                     )}
 
