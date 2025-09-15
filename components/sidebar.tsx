@@ -58,12 +58,12 @@ export default function Sidebar() {
                         
                     )}
                 </div>
-                <Card className="flex flex-col md:flex-row rounded-lg gap-2 grid grid-cols-2 mb-4">
-                    <div className="flex flex-col items-center">
+                <Card className="flex flex-col md:flex-row rounded-lg gap-2 mb-4">
+                    <div className="w-full md:w-1/2 flex flex-col items-center">
                         <label className="font-semibold text-sm">213</label>
                         <label className="text-xs text-gray-400">friends</label>
                     </div>
-                    <div className="flex flex-col items-center">
+                    <div className="w-full md:w-1/2 flex flex-col items-center">
                         <label className="font-semibold text-sm">16</label>
                         <label className="text-xs text-gray-400">Communities</label>
                     </div>
