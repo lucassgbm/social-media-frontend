@@ -11,7 +11,7 @@ export default function Submenu(props: { items: any[]; className?: string; }) {
                         <Button>
                             {item.icon}
                         </Button>
-                        <label className="hidden md:flex text-sm font-semibold">{item.label}</label>
+                        <label className="flex text-sm font-semibold">{item.label}</label>
 
                     </li>
                 </Link>

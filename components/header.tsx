@@ -98,31 +98,27 @@ export default function Header() {
                     )}
                 </div>
 
-                <button
+                <Button
                     className="md:hidden p-2"
                     onClick={() => setMobileOpen(!mobileOpen)}
                 >
-                    {mobileOpen ? <CloseIcon className="dark:text-white cursor-pointer" /> : <MenuIcon className="dark:text-white cursor-pointer" />}
-                </button>
+                    {mobileOpen ? <CloseIcon className="dark:text-white cursor-pointer size-6" /> : <MenuIcon className="dark:text-white cursor-pointer" />}
+                </Button>
 
                 {mobileOpen && (
-                    <div className="absolute top-14 left-0 w-full dark:bg-neutral-800 bg-white shadow-md flex flex-col p-4 gap-4 md:hidden">
+                    <div className="absolute top-14 left-0 w-full dark:bg-neutral-900 bg-white shadow-md flex flex-col p-4 gap-4 md:hidden z-50">
                         <div className="flex w-full bg-neutral-100 dark:bg-neutral-700 p-2 rounded-lg px-5 pl-5">
                             <SearchIcon className="dark:text-white"/>
                             <input className="ml-2 w-full focus:outline-none w-full text-gray-600 dark:text-white rounded-sm ml-2 pr-4" type="text" placeholder="Search"></input>
                         </div>
-                        <div className="flex w-full">
-                            <div className="flex w-3/4 items-center gap-3">
-                                <img
-                                src="https://i.pravatar.cc/40"
-                                alt="perfil"
-                                className="w-10 h-10 rounded-full"
-                                />
-                                <span className="text-sm font-semibold text-gray-600 dark:text-white">Olá, Lucas</span>
-                            </div>
-                            <div className="flex w-1/4 justify-end">
+                        <div className="flex flex-col w-full">
+                            
+                            <div className="flex w-full justify-end p-2 border-b border-neutral-700">
                                 <ThemeToggle /> 
                             </div>
+                            <ul className="text-gray-800 dark:text-white mt-2">
+                                <Submenu items={submenuItems} />
+                            </ul>
                         </div>
                     </div>
                 )}
