@@ -434,14 +434,14 @@ return (
           title="Novo post"
         >
           {preview && (
-            <div className="w-full flex flex-col p-4 items-center">
-              <p className="font-semibold mb-4">Preview:</p>
+            <div className="w-full flex flex-col p-2 items-center">
+              <p className="font-semibold mb-2">Preview:</p>
               <Image
                 src={preview}
-                className="w-[200px] h-[200px] object-cover"
+                className="w-full sm:w-[350px] h-[350px] object-cover"
                 alt="preview"
-                width={200}
-                height={200}
+                width={350}
+                height={350}
               />
             </div>
           )}
