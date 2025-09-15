@@ -50,25 +50,20 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`antialiased`}
-      >
-        <AppContext.Provider value={{myInfo, setMyInfo, openMessages, setOpenMessages}}>
-          <Header />
-          <div className="flex flex-col sm:flex-row dark:bg-neutral-950 bg-neutral-100 min-h-screen p-6 gap-6 text-gray-600">
-            <Sidebar />
-            {children}
-            {openMessages && (
-                    
-              <Messages />
-            )}
-            <Footer/>
-            <BottomMenu />
-          </div>
-        </AppContext.Provider>
 
-      </body>
-    </html>
+    <AppContext.Provider value={{myInfo, setMyInfo, openMessages, setOpenMessages}}>
+      <Header />
+      <div className="flex flex-col sm:flex-row dark:bg-neutral-950 bg-neutral-100 min-h-screen p-6 gap-6 text-gray-600">
+        <Sidebar />
+        {children}
+        {openMessages && (
+                
+          <Messages />
+        )}
+        <Footer/>
+        <BottomMenu />
+      </div>
+    </AppContext.Provider>
+
   );
 }
