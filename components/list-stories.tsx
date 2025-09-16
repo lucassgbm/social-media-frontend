@@ -1,9 +1,4 @@
 import Image from "next/image";
-// default stylesheet for base components
-import "@react-instastories/base/index.css";
-// default stylesheet for external components
-import "@react-instastories/external/index.css";
-
 
 import {
   Configurable,
@@ -15,14 +10,15 @@ import {
   Story,
   useConfig
 } from "@react-instastories/base";
- 
-import "@react-instastories/base/index.css";
 import { Controls, Events, Preloadable } from "@react-instastories/external";
-
+ 
+// default stylesheet for base components
+import "@react-instastories/base/index.css";
+// default stylesheet for external components
+import "@react-instastories/external/index.css";
 
 
 export default function ListStories(){
-
 
   
 const stories = [
@@ -96,14 +92,21 @@ const stories = [
         <Story 
         
           preload
-          duration={2000}
+          duration={4000}
           start={0}
           onOpen={() => console.debug("Story opened!")}
           onClose={() => console.debug("Story closed!")}
         >
-          <Preview>1</Preview>
+          <Preview>AAAA</Preview>
           <Pages>
-            <Page>Página 1</Page>
+            <Page>
+              <Image 
+                src="/imgs/bmw.jpg"
+                width={300}
+                height={300}
+                alt="Picture of the author"
+              />
+            </Page>
             <Page>Página 2</Page>
             <Page>Página 3</Page>
           </Pages>
