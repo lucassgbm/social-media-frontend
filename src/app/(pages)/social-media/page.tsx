@@ -7,7 +7,7 @@ import EllipsisVerticalIcon from "../../../../components/icons/ellipsis";
 import InfoIcon from "../../../../components/icons/info";
 import MoneyIcon from "../../../../components/icons/money";
 import Feed from "../../../../components/feed";
-import Stories from "../../../../components/vibes";
+import Stories from "../../../../components/list-stories";
 import Container from "../../../../components/container";
 import Modal from "../../../../components/modal";
 import PhotoIcon from "../../../../components/icons/photo";
@@ -15,7 +15,7 @@ import Button from "../../../../components/button";
 import AirPlaneIcon from "../../../../components/icons/airplane";
 import Toaster from "../../../../components/toaster";
 import { post, get, postFormData } from "../../../api/services/request";
-import Vibes from "../../../../components/vibes";
+import ListStories from "../../../../components/list-stories";
 import Skeleton from "../../../../components/skeleton";
 import { AppContext } from "./layout";
 import RingImage from "../../../../components/ring-image";
@@ -421,7 +421,7 @@ return (
           </div>
 
           <Container className="flex flex-row sm:flex-col w-full h-[auto] sm:h-auto gap-4 overflow-x-auto scrollbar-hide sm:w-1/6 sm:mb-0">
-              <Vibes />
+              <ListStories />
           </Container>
         </div>
 
