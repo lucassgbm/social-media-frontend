@@ -23,7 +23,7 @@ export default function Home(){
             <div className="w-5/6 flex flex-col">
                 <Card className="rounded-2xl h-40 mb-4" gradient={true}></Card>
                 <h1 className="text-2xl font-semibold mb-4">Comunidades</h1>
-                <Container>
+                <Container className="h-full">
                     <div className="flex flex-row">
                     </div>
                     <div className="flex flex-row gap-2 mb-4">
@@ -55,12 +55,16 @@ export default function Home(){
                                 </div>
                             </div>
                         </div>
-                        <ListCommunities /> 
-                        <ListCommunities /> 
-                        <ListCommunities /> 
-                        <ListCommunities />
-                        <ListCommunities />
-                        <ListCommunities /> 
+
+                        <div className="grid grid-cols-3 gap-4">
+
+                            <ListCommunities /> 
+                            <ListCommunities /> 
+                            <ListCommunities /> 
+                            <ListCommunities />
+                            <ListCommunities />
+                            <ListCommunities /> 
+                        </div>
                     </div>
                 </Container>
 
