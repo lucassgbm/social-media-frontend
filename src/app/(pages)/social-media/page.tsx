@@ -18,6 +18,7 @@ import ListStories from "../../../../components/list-stories";
 import Skeleton from "../../../../components/skeleton";
 import { AppContext } from "./layout";
 import RingImage from "../../../../components/ring-image";
+import ButtonNew from "../../../../components/button-new";
 
 interface NewPost {
   description: string;
@@ -462,11 +463,10 @@ export default function Home() {
             ref={inputRef}
             style={{ display: "none" }}
             onChange={handleFileChange}
-          // eslint-disable-next-line react/jsx-no-comment-textnodes
           />
-          <Button onClick={(e) => handlePost(e)}>
+          <ButtonNew onClick={(e) => handlePost(e)}>
             <AirPlaneIcon className="size-6 dark:text-white text-neutral-800" />
-          </Button>
+          </ButtonNew>
         </div>
       </Modal>
       {toaster.show && (
