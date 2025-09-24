@@ -8,9 +8,10 @@ type ModalProps = {
   onClose: () => void;
   title?: string;
   children: React.ReactNode;
+  width?: string
 };
 
-export default function Modal({ isOpen, onClose, title, children }: ModalProps) {
+export default function Modal({ isOpen, onClose, title, children, width }: ModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -22,7 +23,7 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
       ></div>
 
       {/* Conteúdo do modal */}
-      <div className="w-full h-full sm:h-auto sm:w-[80%] sm:max-w-lg bg-white dark:bg-neutral-900 rounded-2xl shadow-md p-6 text-white dark:text-neutral-600 z-10">
+      <div className={`w-full h-full sm:h-auto bg-white dark:bg-neutral-900 rounded-2xl shadow-md p-6 text-white dark:text-neutral-600 z-10 ${width ?? 'sm:w-[600px]'}`}>
         {/* Cabeçalho */}
         <div className="flex justify-between items-center mb-4">
           <h2 className="dark:text-white text-neutral-800 text-lg font-semibold">{title}</h2>
