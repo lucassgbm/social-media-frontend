@@ -106,7 +106,7 @@ export default function Header() {
 
                 {mobileOpen && (
                     <div className="absolute top-14 left-0 w-full dark:bg-neutral-900 bg-white shadow-md flex flex-col p-4 gap-4 md:hidden z-50">
-                        <div className="flex w-full bg-neutral-100 dark:bg-neutral-700 p-2 rounded-lg px-5 pl-5">
+                        <div className="flex w-full bg-neutral-100 dark:bg-neutral-700 p-2 rounded-2xl px-5 pl-5">
                             <SearchIcon className="dark:text-white" />
                             <input className="ml-2 w-full focus:outline-none w-full text-gray-600 dark:text-white rounded-sm ml-2 pr-4" type="text" placeholder="Search"></input>
                         </div>
