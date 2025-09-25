@@ -7,7 +7,7 @@ import RingImage from "../ring-image";
 export default function ListFriends() {
     return (
         <>
-            <div className="h-[auto] text-center rounded-2xl p-4">
+            <div className="bg-neutral-900 h-[auto] text-center rounded-2xl p-4">
                 <div className="w-full flex flex-col gap-2 justify-center items-center">
                     <RingImage className="cursor-pointer">
                         <Image
