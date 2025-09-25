@@ -1,83 +1,673 @@
-import { useState } from "react";
-import Stories from 'react-insta-stories';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable prefer-const */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @next/next/no-img-element */
+"use client";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
-export default function ListStories() {
-
-  const [stories, setStories] = useState([{
-    image: `/imgs/story.jpg`,
-    caption: "Delicious 😋",
-    captionColor: "white",
-    type: "imageCaptionPost",
-  }]);
-
-  const [categoryItems, setCategoryItems] = useState([
-    { name: "Your Story", iconName: "add_circle" },
-    { name: "Travel", iconName: "flight" }]);
-
-  const getStoriesObject = stories.map((item) => {
-    return {
-      content: () => (
-        <div className="story-container bg-black w-screen h-screen flex items-start justify-center">
-          <div
-            className="w-full h-full bg-black max-w-screen-md flex items-center justify-center flex-col bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${item.image})` }}
-          >
-            <div
-              className="mt-12 caption text-5xl font-bold"
-              style={{ color: item.captionColor }}
-            >
-              <span>{item.caption}</span>
-            </div>
-          </div>
-        </div>)
-    }
-  });
-
-  const redirectToStory = (categoryItem: Object) => {
-    console.log("Redirect to story: ", categoryItem);
-  }
-
-  const renderCategoryItem = () => {
-    return categoryItems.map((categoryItem) => {
-      return (
-        <div
-          className="flex justify-center items-center flex-col mt-4 cursor-pointer"
-          key={categoryItem.name + categoryItem.iconName}
-          onClick={() => redirectToStory(categoryItem)}
-        >
-          <div className="category-outer-circle flex justify-center items-center">
-            <div className="category-inner-circle flex justify-center items-center">
-              <i className="material-icons text-4xl">{categoryItem.iconName}</i>
-            </div>
-          </div>
-          <div className="font-bold">{categoryItem.name}</div>
-        </div>
-      );
-    });
-  }
+const PlayIcon = ({ className }: any) => {
   return (
-    <div>
-      <div className="header text-white flex justify-center items-center text-3xl font-bold">
-        <div>Stories Feed</div>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={"lucide lucide-play-icon lucide-play " + className}
+    >
+      <path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z" />
+    </svg>
+  );
+};
+
+const PauseIcon = ({ className }: any) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={"lucide lucide-pause-icon lucide-pause " + className}
+    >
+      <rect x="14" y="3" width="5" height="18" rx="1" />
+      <rect x="5" y="3" width="5" height="18" rx="1" />
+    </svg>
+  );
+};
+
+const HeartIcon = ({ className }: any) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={"lucide lucide-heart-icon lucide-heart " + className}
+    >
+      <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
+    </svg>
+  );
+};
+
+const Backdrop = ({ onClose }: any) => {
+  return (
+    <div
+      className="flex fixed inset-0 z-[1000]"
+      style={{
+        pointerEvents: "auto",
+        overflow: "hidden",
+        backgroundColor: "rgba(1, 1, 1, 0.8)",
+        opacity: 1,
+      }}
+      onClick={() => {
+        onClose();
+      }}
+    />
+  );
+};
+
+const ProgressBar = ({ slides, progress }: any) => {
+  return (
+    <div className="flex flex-row gap-1 px-4 py-2">
+      {slides.map((_: any, i: number) => (
         <div
-          className="fixed top-3 right-4 cursor-pointer"
-          onClick={() => console.log(true)}
+          key={i}
+          className="h-[2px] flex-1 bg-white/30 rounded-full overflow-hidden"
         >
-          <i className="material-icons text-4xl">info</i>
+          <div
+            className="h-full bg-white transition-[width] ease-linear"
+            style={
+              { width: `${progress[i] || 0}%` }
+            }
+          />
         </div>
-      </div>
-      <div className="flex justify-center items-center">
-        <div className="grid grid-cols-3 w-screen flex justify-center items-center max-w-screen-md">
-          {renderCategoryItem()}
-        </div>
+      ))
+    }
+    </div>
+  );
+};
+
+const UserRow = ({ data, postingTime }: any) => {
+  return (
+    <div id="user">
+      <div className="flex flex-row gap-3 items-center">
+        <img
+          src={data.avatarUrl}
+          alt={data.user}
+          className="w-7 h-7 rounded-full drop-shadow-xl"
+        />
+        <span className="text-white drop-shadow-2xl font-medium">
+          {data.user}
+        </span>
+        <span className="text-white opacity-75 drop-shadow-2xl">
+          {postingTime}
+        </span>
       </div>
     </div>
-    // <Stories
-    //   stories={getStoriesObject}
-    //   defaultInterval={1500}
-    //   width={432}
-    //   height={768}
-    // />
+  );
+};
+
+const Options = ({ isPlaying, setIsPlaying }: any) => {
+  return (
+    <div className="flex flex-row gap-4">
+      <button
+        className="cursor-pointer outline-0 hover:brightness-90 drop-shadow-2xl"
+        onClick={() => {
+          setIsPlaying(!isPlaying);
+        }}
+      >
+        {isPlaying && <PauseIcon className="fill-white stroke-white w-4 h-4" />}
+        {!isPlaying && <PlayIcon className="fill-white stroke-white w-4 h-4" />}
+      </button>
+    </div>
+  );
+};
+
+const Topbar = ({
+  slides,
+  progress,
+  showing,
+  item,
+  isPlaying,
+  setIsPlaying,
+}: any) => {
+  return (
+    <div className="flex flex-col gap-2 py-2 absolute z-20 w-full">
+      <ProgressBar slides={slides} progress={progress} />
+      <div className="flex flex-row items-center justify-between px-4">
+        <UserRow data={item} postingTime={slides[showing].postingTime} />
+        <Options isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+      </div>
+    </div>
+  );
+};
+
+const BottomBar = ({
+  item,
+  setItems,
+  showing,
+  slides,
+  likeStory,
+  commentStory,
+}: any) => {
+  const [text, setText] = useState("");
+
+  // Build a stable "storyId" for the backend (ownerId + index)
+  const ownerId = item?.id;
+  const storyId = ownerId != null ? `${ownerId}:${showing}` : null;
+
+  const handleSubmit = async () => {
+    if (!text.trim() || storyId == null) return;
+    try {
+      await commentStory(text.trim(), ownerId, storyId);
+      setText("");
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleLike = async () => {
+    if (storyId == null) return;
+    // Optimistic UI: toggle immediately
+    setItems((prev: any) =>
+      prev.map((it: any) => {
+        if (it.id !== item.id) return it;
+        return {
+          ...it,
+          slides: it.slides.map((sl: any, idx: number) =>
+            idx === showing ? { ...sl, liked: !sl.liked } : sl
+          ),
+        };
+      })
+    );
+    try {
+      await likeStory(ownerId, storyId);
+    } catch (e) {
+      console.error(e);
+      // Revert on error
+      setItems((prev: any) =>
+        prev.map((it: any) => {
+          if (it.id !== item.id) return it;
+          return {
+            ...it,
+            slides: it.slides.map((sl: any, idx: number) =>
+              idx === showing ? { ...sl, liked: !sl.liked } : sl
+            ),
+          };
+        })
+      );
+    }
+  };
+
+  const liked = slides?.[showing]?.liked;
+
+  return (
+    <div className="absolute bottom-4 gap-8 w-full px-5 z-20 flex flex-row items-center justify-between">
+      <input
+        className="border-2 border-[#cecece] rounded-full py-2 px-4 outline-0 placeholder:text-white drop-shadow-2xl w-full text-md"
+        placeholder={
+          item?.user ? `Responda a ${item.user}...` : "Escreva um comentário..."
+        }
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") handleSubmit();
+        }}
+      />
+
+      <button
+        className="cursor-pointer drop-shadow-2xl"
+        onClick={handleLike}
+        aria-label={liked ? "Remover like" : "Curtir"}
+      >
+        <HeartIcon
+          className={`w-8 h-8 drop-shadow-2xl ${
+            liked ? "stroke-[#FF3140] fill-[#FF3140]" : "stroke-white"
+          }`}
+        />
+      </button>
+    </div>
+  );
+};
+
+export function Stories({
+  data = {},
+  onClose,
+  setItems,
+  items,
+  likeStory,
+  commentStory,
+}: any) {
+  /**
+   * Features:
+   * - Shows user's stories.
+   * - Like on story shown and save on backend.
+   * - Comment on story shown and save on backend.
+   * - Press to play/pause image.
+   * - Opens user selected to see its stories.
+   *
+   *
+   * Usage example:
+   *  {story.show && ( <Stories data={story.data} setItems={setItems} items={items} onClose={() => { setStory({ show: false, data: {} }); }} commentStory={commentStory} likeStory={likeStory} /> )}
+   */
+
+  const [showing, setShowing] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [didFinish, setDidFinish] = useState(false);
+  const raf: any = useRef(null);
+  const startRef: any = useRef(0);
+  const elapsedRef: any = useRef(0);
+  const downRef: any = useRef(0);
+  const finishedRef: any = useRef(false);
+
+  // --- derived
+  const item = useMemo(
+    () => items.find((it: any) => it.id === data.id) ?? data,
+    [items, data.id]
+  );
+  const slides = item?.slides ?? [];
+  const dur = slides[showing]?.durationMs || 0;
+
+  // progress array (UI state)
+  const [progress, setProgress] = useState(() =>
+    new Array(slides.length).fill(0)
   );
 
+  // --- helpers
+  const TAP_MS = 180;
+
+  const finish = useCallback(() => {
+    if (finishedRef.current) return;
+    finishedRef.current = true;
+    setDidFinish(true);
+  }, []);
+
+  const advance = useCallback(
+    (delta: any) =>
+      setShowing((s) => {
+        const next = s + delta;
+        if (next < 0) return 0;
+        if (next < slides.length) return next;
+        finish();
+        return s;
+      }),
+    [slides.length, finish]
+  );
+
+  // --- pointer handlers
+  const handlePointerDown = (e: any) => {
+    e.preventDefault();
+    downRef.current = performance.now();
+    setIsPlaying(false);
+  };
+
+  const handlePointerUp = (e: any) => {
+    e.preventDefault();
+    const dt = performance.now() - downRef.current;
+    setIsPlaying(true);
+    if (dt < TAP_MS) advance(1);
+  };
+
+  const resumeIfNeeded = () => setIsPlaying(true);
+
+  // --- ticking
+  const tick = useCallback(
+    (t: any) => {
+      const elapsed = elapsedRef.current + (t - startRef.current);
+      const pct = Math.min((elapsed / dur) * 100, 100);
+
+      setProgress((p) =>
+        p.map((_, i) => (i === showing ? pct : i < showing ? 100 : 0))
+      );
+
+      if (pct >= 100) {
+        elapsedRef.current = 0;
+        if (showing < slides.length - 1) {
+          setShowing((s) => s + 1);
+        } else {
+          finish();
+        }
+        return;
+      }
+
+      raf.current = requestAnimationFrame(tick);
+    },
+    [dur, showing, slides.length, finish]
+  );
+
+  // --- effects
+  // Start/stop RAF
+  useEffect(() => {
+    if (!dur || didFinish || !isPlaying) return;
+    startRef.current = performance.now();
+    raf.current = requestAnimationFrame(tick);
+    return () => {
+      if (raf.current) cancelAnimationFrame(raf.current);
+      raf.current = null;
+    };
+  }, [dur, isPlaying, didFinish, tick]);
+
+  // Pause bookkeeping
+  useEffect(() => {
+    if (isPlaying || didFinish || !dur || !startRef.current) return;
+    elapsedRef.current += performance.now() - startRef.current;
+  }, [isPlaying, didFinish, dur]);
+
+  // When slide index changes, reset elapsed & progress for current
+  useEffect(() => {
+    setProgress((p) =>
+      p.map((_, i) => (i < showing ? 100 : i === showing ? 0 : 0))
+    );
+    elapsedRef.current = 0;
+  }, [showing, slides.length]);
+
+  // When item changes, reset finish flags & slide index
+  useEffect(() => {
+    finishedRef.current = false;
+    setDidFinish(false);
+    setShowing(0);
+    setProgress(new Array(slides.length).fill(0));
+    elapsedRef.current = 0;
+  }, [item.id, slides.length]);
+
+  // On finish: mark seen & close
+  useEffect(() => {
+    if (!didFinish) return;
+    if (raf.current) {
+      cancelAnimationFrame(raf.current);
+      raf.current = null;
+    }
+    setItems((prev: any) =>
+      prev.map((it: any) =>
+        it.id === item.id ? { ...it, hasSeenAll: true } : it
+      )
+    );
+    onClose?.();
+  }, [didFinish, setItems, item.id, onClose]);
+
+  return (
+    <div>
+      <Backdrop onClose={onClose} />
+      <div
+        className="
+          bg-gray-500 w-full lg:w-[450px] md:w-[450px]
+          h-full lg:h-[95%] md:h-[95%]
+          fixed z-[1000] top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2
+          rounded-md shadow-md overflow-hidden flex flex-col
+        "
+      >
+        {!!slides.length && (
+          <img
+            src={slides[showing].src}
+            alt={`${item.user}_story_${showing}`}
+            className="z-0 w-full h-full object-cover touch-none cursor-pointer"
+            style={{ touchAction: "none" }}
+            onPointerDown={handlePointerDown}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={resumeIfNeeded}
+            onPointerLeave={resumeIfNeeded}
+          />
+        )}
+
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 md:h-44 bg-gradient-to-b from-black/70 via-black/30 to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 md:h-44 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10" />
+
+        <div className="absolute top-0 left-0 right-0">
+          <Topbar
+            slides={slides}
+            progress={progress}
+            showing={showing}
+            item={item}
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
+          />
+        </div>
+
+        <BottomBar
+          item={item}
+          setItems={setItems}
+          showing={showing}
+          slides={slides}
+          likeStory={likeStory}
+          commentStory={commentStory}
+        />
+      </div>
+    </div>
+  );
+}
+
+export function StoriesBar({ items = [], setStory, storyRingSize = 30 }: any) {
+  /**
+   * Features:
+   * - Lists horizontally the users' stories.
+   * - Sorts by unseen first.
+   * - Sets story icon width and height.
+   * - Opens user selected to see its stories.
+   *
+   * Usage example:
+   *  <StoriesBar items={items} storyRingSize={58} setStory={setStory} />
+   *
+   */
+
+  return (
+    <div className="flex flex-row sm:flex-col items-center gap-3 overflow-x-auto py-2 px-4">
+      {items
+        .sort((a: any, b: any) => a.hasSeenAll - b.hasSeenAll)
+        .map((it: any) => {
+          return (
+            <button
+              key={it.id}
+              onClick={() => {
+                setStory({ show: true, data: it });
+              }}
+              className={`flex items-center justify-center cursor-pointer rounded-full
+                drop-shadow-md
+                hover:brightness-90
+                p-[3px]
+                ${!it.hasSeenAll ? "border-pink-500/70" : "border-[#DBDBDB]"}
+            `}
+              style={{
+                borderWidth: 2.5,
+              }}
+              aria-label={`Open ${it.user}'s story`}
+            >
+              <img
+                src={it.avatarUrl}
+                alt={it.user}
+                className={`rounded-full object-cover`}
+                style={{
+                  width: storyRingSize,
+                  height: storyRingSize,
+                }}
+              />
+            </button>
+          );
+        })}
+    </div>
+  );
+}
+
+export default function Page() {
+  const [story, setStory]: any = React.useState({ show: false, data: {} });
+
+  const [items, setItems] = React.useState([
+    {
+      id: "u1",
+      user: "Sarah",
+      avatarUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBQPMuNoK5SK9biSwayCuhWNufIjLF88ovmg&s",
+      hasSeenAll: true,
+      slides: [
+        {
+          type: "image",
+          src: "/stories/s1-1.jpg",
+          durationMs: 5000,
+          caption: "Morning ☀️",
+          postingTime: "15h",
+          liked: false,
+        },
+        {
+          type: "image",
+          src: "/stories/s1-1.jpg",
+          durationMs: 5000,
+          caption: "Morning ☀️",
+          postingTime: "15h",
+          liked: false,
+        },
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },
+    {
+      id: "u2",
+      user: "Michael",
+      avatarUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIrcayxm7EZrNIkPciDCwVan0AnBMiWtxVwQ&s",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "image",
+          src: "https://www.jessleephotos.com/images/xl/teton-overlook-autumn.jpg",
+          durationMs: 5000,
+          caption: "Morning ☀️",
+          postingTime: "15h",
+          liked: true,
+        },
+        {
+          type: "image",
+          src: "https://i.redd.it/qvkg5jyfvywb1.jpg",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },
+    {
+      id: "u3",
+      user: "Ingrid",
+      avatarUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqMOmqF3CHR7lPy8KqD9cjzZsm6Ell1hOOCQ&s",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "image",
+          src: "/stories/s1-1.jpg",
+          durationMs: 5000,
+          caption: "Morning ☀️",
+          postingTime: "15h",
+          liked: false,
+        },
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },
+  ]);
+
+  useEffect(() => {
+    if (!story.show || !story.data?.id) return;
+    const live = items.find((i) => i.id === (story.data as any).id);
+    if (live && live.hasSeenAll !== (story.data as any).hasSeenAll) {
+      setStory((s: any) => ({
+        ...s,
+        data: { ...(s.data as any), hasSeenAll: live.hasSeenAll },
+      }));
+    }
+  }, [items, story.show, story.data]);
+
+  const likeStory = async (userId: any, storyId: any) => {
+    let req;
+    try {
+      req = await fetch("/api/like", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          userId: userId,
+          storyId: storyId,
+        }),
+      }).then(async (res) => {
+        return await res.json();
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const commentStory = async (comment: string, userId: any, storyId: any) => {
+    let req;
+    try {
+      req = await fetch("/api/comment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          comment: comment,
+          userId: userId,
+          storyId: storyId,
+        }),
+      }).then(async (res) => {
+        return await res.json();
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return (
+    <>
+      <StoriesBar items={items} storyRingSize={58} setStory={setStory} />
+
+      {story.show && (
+        <Stories
+          data={story.data}
+          setItems={setItems}
+          items={items}
+          onClose={() => {
+            setStory({ show: false, data: {} });
+          }}
+          commentStory={commentStory}
+          likeStory={likeStory}
+        />
+      )}
+    </>
+  );
 }
