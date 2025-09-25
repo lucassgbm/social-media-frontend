@@ -127,7 +127,7 @@ export default function Home() {
   async function getEvent() {
 
     try {
-      const response = await get("/social-media/community-event/1");
+      const response = await get("/social-media/community-event/2");
       setEvent(response.data);
     } catch (error: any) {
 
@@ -149,7 +149,7 @@ export default function Home() {
                   <>
                     <RingImage>
 
-                      <img
+                      <Image
                         src={`${process.env.NEXT_PUBLIC_STORAGE_API?.replace(/\/$/, '')}/${myInfo.photo?.replace(/^\//, '')}`}
                         alt="Foto de perfil"
                         className="rounded-full w-[50px]"
@@ -279,7 +279,7 @@ export default function Home() {
               </Container>
 
               <Container className="mb-4">
-                <label className="text-sm font-semibold">Sugestões de Events</label>
+                <label className="text-sm font-semibold">Sugestões de Eventos</label>
                 <div className="flex flex-col justify-center mt-4">
                   <div className="flex flex-row items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm p-2 gap-2">
                     <Image

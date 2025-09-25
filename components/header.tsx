@@ -63,7 +63,7 @@ export default function Header() {
                                 <li className="cursor-pointer" onClick={() => setOpen(!open)}>
 
                                     <RingImage>
-                                        <img
+                                        <Image
                                             src={imageUser}
                                             alt="Foto de perfil"
                                             className="rounded-full w-[45px]"

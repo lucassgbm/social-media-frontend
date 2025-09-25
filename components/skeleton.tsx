@@ -2,7 +2,7 @@ type SkeletonProps = {
   width?: string;
   height?: string;
   className?: string;
-  rounded?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
+  rounded?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "full";
 };
 
 export default function Skeleton({
@@ -22,6 +22,8 @@ export default function Skeleton({
       ? "rounded-xl" 
       : rounded === "2xl"
       ? "rounded-2xl"
+      : rounded === "3xl"
+      ? "rounded-3xl"
       : "rounded-full";
 
   return (

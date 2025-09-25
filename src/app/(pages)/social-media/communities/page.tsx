@@ -9,26 +9,48 @@ import PlusIcon from "../../../../../components/icons/plus";
 import ListCommunities from "../../../../../components/communities/list-communities";
 import Card from "../../../../../components/card";
 import FilterIcon from "../../../../../components/icons/filter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../../../../../components/modal";
 import FormButtom from "../../../../../components/form-buttom";
 import LoadingSpinner from "../../../../../components/loading-spinner";
 import ArrowLeftIcon from "../../../../../components/icons/arrow-left";
 import ArrowRightIcon from "../../../../../components/icons/arrow-right";
 import ButtonNew from "../../../../../components/button-new";
+import Toaster from "../../../../../components/toaster";
+import { get } from "@/api/services/request";
+import Skeleton from "../../../../../components/skeleton";
 
 export default function Home(){
-    
+    useEffect(() => {
+        getCommunities();
+    }, []);
     const [modalNewCommunity, setModalNewCommunity] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [communities, setCommunities] = useState<any[]>([]);
+    const [toaster, setToaster] = useState({
+    show: false,
+    message: "",
+    });
+
+    async function getCommunities(){
+        setLoading(true);
+        try {
+            const response = await get("/social-media/community");
+            setCommunities(response.data);
+        } catch (error: any) {
+    
+            setToaster({ show: true, message: "Erro ao carregar comunidades" });
+        }
+        setLoading(false);
+    }
     return(
         <>
         
             <div className="w-full sm:w-5/6 flex flex-col">
-                <Container className="h-full ">
+                <Container className="h-full " padding="p-0">
 
                     <div className="flex flex-col gap-4 mb-4 flex-wrap">
-                        <div className="flex flex-col gap-2 border-b border-neutral-800 p-4">
+                        <div className="flex flex-col gap-2 border-b border-neutral-200 dark:border-neutral-800 p-4">
                             <div>
 
                                 <h1 className="text-2xl font-semibold mb-4">Comunidades</h1>
@@ -70,14 +92,21 @@ export default function Home(){
                             </div>
                         </div>
 
+                        {loading && (
+                            <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-4 p-4">
+
+                                <Skeleton height={"h-[420px]"} width={"w-full"} rounded="3xl"/>
+                                <Skeleton height={"h-[420px]"} width={"w-full"} rounded="3xl"/>
+                                <Skeleton height={"h-[420px]"} width={"w-full"} rounded="3xl"/>
+
+                            </div>
+                        )}
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4">
 
-                            <ListCommunities /> 
-                            <ListCommunities /> 
-                            <ListCommunities /> 
-                            <ListCommunities />
-                            <ListCommunities />
-                            <ListCommunities /> 
+                            {communities && (
+
+                                <ListCommunities communities={communities}/>
+                            )}
                         </div>
                     </div>
                 </Container>
@@ -144,7 +173,12 @@ export default function Home(){
                 </div>
             </Modal>
             
-
+            {toaster.show && (
+            <Toaster
+                toaster={toaster}
+                setToaster={setToaster}
+            />
+            )}
         </>
     )
 }
