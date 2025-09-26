@@ -31,7 +31,8 @@ npm-build:
     entrypoint: [""]    
   script:
     - cp .env.default .env.local 
-    - sed -i "s|CHANGEURL|$API_URL|g" .env.local    
+    - sed -i "s|CHANGEURL|$API_URL|g" .env.local   
+    - echo $API_URL
     - npm ci
     - npm run build
 
@@ -62,4 +63,5 @@ deploy:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker pull $IMAGE   
     - docker-compose up -d
+    - docker logs -f react-app
     
