@@ -5,9 +5,9 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --only=production
 
-RUN npm run build
-
 COPY . .
+
+RUN npm run build
 
 EXPOSE 3000
 
