@@ -4,7 +4,7 @@ docker run --rm -it \
   -v "$PWD":/app \
   -w /app \
   node:18-alpine \
-  sh -c "npm install --save"
+  sh -c "npm run build"
 
   https://codesandbox.io/p/sandbox/storiesfeedapp-5bmwep?file=%2Fsrc%2Fcomponents%2FHome.js%3A32%2C5-50%2C11
 

@@ -10,5 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-# Apenas mantém o container em execução para acesso manual
-CMD ["sh", "-c", "sleep infinity"]
+CMD ["npm", "start"]
