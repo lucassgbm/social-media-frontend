@@ -19,7 +19,7 @@ stages:
 variables:
   IMAGE: registry.gitlab.com/mouragilvan/social-media-frontend/social-frontend:$CI_COMMIT_SHORT_SHA
   BASE_IMAGE: node:18-alpine
-  RUNNER_TAG: social-media-backend
+  RUNNER_TAG: social-media-frontend
   
 
 npm-build:   
