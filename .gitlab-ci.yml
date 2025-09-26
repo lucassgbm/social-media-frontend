@@ -32,7 +32,7 @@ npm-build:
   script:
     - cp .env.default .env.local 
     - sed -i "s|CHANGEURL|$API_URL|g" .env.local    
-    - npm run build
+    
 
 docker-build:
   stage: docker-build
