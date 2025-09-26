@@ -5,11 +5,11 @@ workflow:
     - if: $CI_COMMIT_BRANCH == "main"
       when: always
 
-# cache:
-#   key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
-#   paths:
-#     - node_modules/
-#     - .next/
+cache:
+  key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
+  paths:
+    - node_modules/
+    - .next/
     
 stages:
   - npm-build
@@ -17,22 +17,20 @@ stages:
   - deploy
 
 variables:
-  IMAGE: registry.gitlab.com/mouragilvan/social-media-frontend/social-frontend:$CI_COMMIT_SHORT_SHA
+  IMAGE: social-frontend:latest
   BASE_IMAGE: node:18-alpine
   RUNNER_TAG: social-media-frontend
+  APPNAME: social-frontend
   
-
-npm-build:   
+npm-build:
   stage: npm-build
+  environment: $CI_COMMIT_BRANCH
   tags:
-    - $RUNNER_TAG   
-  image: 
-    name: $BASE_IMAGE
-    entrypoint: [""]    
+    - $RUNNER_TAG
+  image: node:18-alpine
   script:
-    - cp .env.default .env.local 
-    - sed -i "s|CHANGEURL|$API_URL|g" .env.local    
-    
+    - npm ci 
+    - npm run build  
 
 docker-build:
   stage: docker-build
@@ -43,9 +41,10 @@ docker-build:
   services:
     - name: docker:dind
   script:
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - cp .env.default .env.local 
+    - sed -i "s|CHANGEURL|$API_URL|g" .env.local      
     - docker build . --build-arg BASE_IMAGE=$BASE_IMAGE -t $IMAGE
-    - docker push $IMAGE    
+    
 
 deploy:   
   stage: deploy
@@ -54,12 +53,9 @@ deploy:
     - $RUNNER_TAG  
   image: docker:stable
   cache: []
-  before_script:
-    - apk add --no-cache docker-compose   # instala no Alpine (imagem docker:stable é baseada em Alpine)
-  script:
-    - sed -i "s|CHANGEIMAGE|$IMAGE|g" docker-compose.yml
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
-    - docker pull $IMAGE   
-    - docker-compose up -d
+  # before_script:
+  #   - apk add --no-cache docker-compose   # instala no Alpine (imagem docker:stable é baseada em Alpine)
+  script:         
+    - docker run -d -p 80:80 --name $APPNAME $IMAGE
     
     
