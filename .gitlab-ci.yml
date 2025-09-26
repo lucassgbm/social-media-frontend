@@ -31,8 +31,7 @@ npm-build:
     entrypoint: [""]    
   script:
     - cp .env.default .env.local 
-    - sed -i "s|CHANGEURL|$API_URL|g" .env.local   
-    - echo $API_URL
+    - sed -i "s|CHANGEURL|$API_URL|g" .env.local       
     - npm ci
     - npm run build
 
