@@ -62,5 +62,5 @@ deploy:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker pull $IMAGE   
     - docker-compose up -d
-    - docker logs -f react-app
+    
     
