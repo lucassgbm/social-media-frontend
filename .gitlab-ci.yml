@@ -20,7 +20,7 @@ variables:
   IMAGE: registry.gitlab.com/mouragilvan/social-media-frontend/social-frontend:$CI_COMMIT_SHORT_SHA
   BASE_IMAGE: node:18-alpine
   RUNNER_TAG: social-media-backend
-
+  
 
 npm-build:   
   stage: npm-build
@@ -30,6 +30,8 @@ npm-build:
     name: $BASE_IMAGE
     entrypoint: [""]    
   script:
+    - cp .env.default .env.local 
+    - sed -i "s|CHANGEURL|$API_URL|g" .env.local    
     - npm ci
     - npm run build
 
@@ -41,9 +43,7 @@ docker-build:
   image: docker:stable  
   services:
     - name: docker:dind
-  script:        
-    - cp .env.example .env 
-    #- sed -i "s|\[REPLACE_WITH_DB_USERNAME\]|$DB_DATA_USERNAME|g" .env
+  script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker build . --build-arg BASE_IMAGE=$BASE_IMAGE -t $IMAGE
     - docker push $IMAGE    
