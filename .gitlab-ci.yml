@@ -5,11 +5,11 @@ workflow:
     - if: $CI_COMMIT_BRANCH == "main"
       when: always
 
-cache:
-  key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
-  paths:
-    - node_modules/
-    - .next/
+# cache:
+#   key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
+#   paths:
+#     - node_modules/
+#     - .next/
     
 stages:
   - npm-build
