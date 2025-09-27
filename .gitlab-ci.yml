@@ -55,9 +55,7 @@ deploy:
   cache: []
   # before_script:
   #   - apk add --no-cache docker-compose   # instala no Alpine (imagem docker:stable é baseada em Alpine)
-  script: 
-    - docker stop $APPNAME
-    - docker rm $APPNAME            
+  script:                
     - docker run -d -p 3000:3000 --name $APPNAME $IMAGE
     
     
