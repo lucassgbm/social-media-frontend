@@ -29,9 +29,7 @@ npm-build:
     - $RUNNER_TAG
   image: node:18-alpine
   script:
-    - cp .env.default .env.local 
-    - sed -i "s|CHANGEURL|$API_URL|g" .env.local  
-    - sed -i "s|CHANGEURL|$API_URL|g" next.config.ts  
+    - cp .env.default .env.local  
     - npm ci 
     - npm run build  
 
