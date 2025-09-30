@@ -19,7 +19,7 @@ stages:
 variables:
   IMAGE: social-frontend:latest
   BASE_IMAGE: node:18-alpine
-  RUNNER_TAG: social-media-frontend
+  RUNNER_TAG: social-media-backend
   APPNAME: social-frontend
   
 npm-build:
