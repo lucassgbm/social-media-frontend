@@ -7,22 +7,32 @@ const api = axios.create({
 
 // Interceptor para incluir token
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('auth_token');
+  if (!token) {
+    window.location.href = '/login'; // Redireciona para login se não houver token 
+  }
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
 
+api.interceptors.response.use((response) => {
+  if (response.status === 401) {
+    window.location.href = '/login'; // Redireciona para login se não autorizado
+  }
+  return response;
+});
+
 export const get = (url) => {
   return api.get(url)
-    .then((res) => 
+    .then((res) =>
       res.data
     )
-    .catch(error => 
+    .catch(error =>
 
-      console.log(error)
-    
+      console.log(error.status)
+
     );
 }
 export const postFormData = async (url, formData) => {
@@ -36,26 +46,26 @@ export const postFormData = async (url, formData) => {
 
   } catch (error) {
     if (error.response && error.response.status === 422) {
-      
+
       return { errors: error.response.data.errors };
     }
     console.error(error);
     throw error;
   }
-    
+
 }
 
 export const post = (url, data) => {
 
   return api.post(url, data)
-    .then((res) =>  
+    .then((res) =>
 
       res.data
     )
-    .catch(error => 
+    .catch(error =>
 
       console.log(error)
-    
+
     );
 }
 

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import HeaderLogin from "../../../../components/login/header-login";
 import { useState } from "react";
-//import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { auth } from "../../../api/services/auth";
 import Toaster from "../../../../components/toaster";
 import FormButtom from "../../../../components/form-buttom";
@@ -22,7 +22,7 @@ export default function Home() {
         message: "",
     });
 
-    //const router = useRouter();
+    const router = useRouter();
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
@@ -36,11 +36,12 @@ export default function Home() {
         try {
             const response = await auth(login.email, login.password);
 
+            localStorage.setItem('auth_token', response.token);
             setLoading(false);
             setToaster({ ...toaster, show: true, message: ' Login realizado com sucesso! Redirecionando...' });
 
-            window.location.href = '/social-media/';
-            // router.push('/social-media/');
+            router.push('/social-media/');
+
         } catch (err: any) {
 
             console.log(err);
