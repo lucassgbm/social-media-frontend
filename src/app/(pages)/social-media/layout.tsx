@@ -11,6 +11,7 @@ import Footer from "../../../../components/footer";
 type MyInfo = {
   name: string;
   photo: string;
+  autodescription: string;
 };
 
 type AppContextType = {

@@ -18,7 +18,8 @@ import ListStories from "../../../../components/list-stories";
 import Skeleton from "../../../../components/skeleton";
 import { AppContext } from "./layout";
 import RingImage from "../../../../components/ring-image";
-import ButtonNew from "../../../../components/button-new";
+import ColorBottom from "../../../../components/color-button";
+import Card from "../../../../components/card";
 
 interface NewPost {
   description: string;
@@ -37,11 +38,23 @@ interface EventCommunity {
   link?: string;
 }
 
+interface Communities {
+  Community: [];
+}
+
+interface Community {
+  id: number;
+  name: string;
+  description: string;
+  photo?: string | null;
+}
+
 export default function Home() {
 
   useEffect(() => {
     getFeed();
     getEvent();
+    getCommunities();
   }, []);
 
   const [modalNewPost, setModalNewPost] = useState(false);
@@ -56,6 +69,7 @@ export default function Home() {
     photo_path: "",
   });
   const [feed, setFeed] = useState([]);
+  const [communities, setCommunities] = useState<Communities | null>(null);
   const [event, setEvent] = useState<EventCommunity | null>(null);
   const context = useContext(AppContext);
   const { myInfo } = context;
@@ -132,6 +146,17 @@ export default function Home() {
     } catch (error: any) {
 
       setToaster({ show: true, message: "Erro ao carregar Evento" });
+    }
+  }
+
+  async function getCommunities() {
+
+    try {
+      const response = await get("/social-media/community?page=1");
+      setCommunities(response.data.data);
+    } catch (error: any) {
+
+      setToaster({ show: true, message: "Erro ao carregar Comunidades" });
     }
   }
 
@@ -226,7 +251,7 @@ export default function Home() {
                         />
                         <h2 className="text-md font-semibold">{event?.title}</h2>
                       </div>
-                      <div className="text-left bg-neutral-100 dark:bg-neutral-800 rounded-2xl p-2">
+                      <div className="text-left bg-neutral-100 dark:bg-neutral-700/50 border border-neutral-200 dark:border-neutral-700/80 rounded-2xl p-2">
                         <p className="text-sm font-semibold">{event?.local} </p>
                         <p className="text-xs">{`${event?.date_start}`} | {`${event.time_start} às ${event.time_end}`}</p>
                       </div>
@@ -279,147 +304,116 @@ export default function Home() {
               </Container>
 
               <Container className="mb-4">
-                <label className="text-sm font-semibold">Sugestões de Eventos</label>
-                <div className="flex flex-col justify-center mt-4">
-                  <div className="flex flex-row items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm p-2 gap-2">
+                <label className="text-sm font-semibold">Sugestão de Eventos</label>
+                <Card className="flex flex-col justify-center  mt-4 bg-neutral-100 dark:bg-neutral-800 rounded-xl cursor-pointer hover:shadow-md">
+                  <div className="flex flex-row items-center rounded-sm ">
                     <Image
-                      src="/imgs/bmw.jpg"
+                      src={"/imgs/placeholder.png"}
                       alt="Foto de perfil"
-                      className="rounded-md w-[45px] mr-2 hover:opacity-90"
-                      width={45}
-                      height={45}
+                      className="rounded-full w-[40px] aspect-[1/1] mr-2 hover:opacity-90 object-cover"
+                      width={110}
+                      height={110}
                       priority
                     />
-                    <h2 className="text-xs font-semibold">Drift Racing</h2>
-                    <Button>
-                      <EllipsisVerticalIcon
-                        className={"size-4"}
-                      />
-                    </Button>
+                    <div className="flex flex-col text-left">
+                      <label className="text-xs font-semibold">Nome evento</label>
+                      <p className="text-xs font-normal w-full" 
 
+                      >
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      </p>
+                      
+                    </div>
                   </div>
-                </div>
-                <div className="flex flex-col justify-center mt-4">
-                  <div className="flex flex-row items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm p-2 gap-2">
-                    <Image
-                      src="/imgs/bmw.jpg"
-                      alt="Foto de perfil"
-                      className="rounded-md w-[45px] mr-2 hover:opacity-90"
-                      width={45}
-                      height={45}
-                      priority
-                    />
-                    <h2 className="text-xs font-semibold">Drift Racing</h2>
-
-                    <Button>
-                      <EllipsisVerticalIcon
-                        className={"size-4"}
-                      />
-                    </Button>
-
+                  <div className="flex flex-col w-full bg-neutral-100 dark:bg-neutral-700/50 rounded-2xl py-1 text-xs border border-neutral-200 dark:border-neutral-700/80 mt-2 p-2">
+                    <span className="font-semibold">Pátio Brasil - Brasília</span>
+                    <span>16/10/2025 às 20:00</span>
                   </div>
-                </div>
-                <div className="flex flex-col justify-center mt-4">
-                  <div className="flex flex-row items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm p-2 gap-2">
-                    <Image
-                      src="/imgs/bmw.jpg"
-                      alt="Foto de perfil"
-                      className="rounded-md w-[45px] mr-2 hover:opacity-90"
-                      width={45}
-                      height={45}
-                      priority
-                    />
-                    <h2 className="text-xs font-semibold">Drift Racing</h2>
-
-                    <Button>
-                      <EllipsisVerticalIcon
-                        className={"size-4"}
-                      />
-                    </Button>
-
-                  </div>
-                </div>
+                
+                </Card>
+                <ColorBottom className="w-full mt-4 mb-2 rounded-md text-sm font-semibold">
+                    Ver mais 
+                  </ColorBottom>
               </Container>
-              <Container className="text-center mb-4">
+              <Container className="mb-4">
                 <label className="text-sm font-semibold">Comunidades</label>
+                  {!communities && (
+                    <>
+                      <Skeleton className="mt-4" width="w-full" rounded="xl" height="h-[94px]" />
+                      <Skeleton className="mt-4" width="w-full" rounded="xl" height="h-[94px]" />
+                      <Skeleton className="mt-4" width="w-full" rounded="xl" height="h-[94px]" />
+                      <Skeleton className="mt-4" width="w-full" rounded="xl" height="h-[94px]" />
+                    </>
+                  )}
 
-                <div className="flex flex-col justify-center  mt-4 bg-neutral-100 dark:bg-neutral-800 rounded-xl cursor-pointer hover:shadow-md">
-                  <div className="flex flex-row items-center rounded-sm p-2">
-                    <Image
-                      src="/imgs/bmw.jpg"
-                      alt="Foto de perfil"
-                      className="rounded-full w-[40px] mr-2 hover:opacity-90"
-                      width={40}
-                      height={40}
-                      priority
-                    />
-                    <div className="flex flex-col text-left">
-                      <label className="text-xs font-semibold">Drift Racing</label>
-                      <p className="text-xs font-normal">lorem ipsum dolor sit amet consectetur.</p>
-                    </div>
-                  </div>
-                  <div className="w-full flex flex-row items-center border-t-1 border-gray-200 dark:border-gray-800 p-1">
-                    <Image
-                      src="/imgs/bmw.jpg"
-                      alt="Foto de perfil"
-                      className="rounded-full w-[20px] mr-2 hover:opacity-90"
-                      width={20}
-                      height={20}
-                      priority
-                    />
-                    <Image
-                      src="/imgs/bmw.jpg"
-                      alt="Foto de perfil"
-                      className="rounded-full w-[20px] ml-[-16px] hover:opacity-90"
-                      width={20}
-                      height={20}
-                      priority
-                    />
-                    <label className="text-xs font-semibold ml-auto">243 join</label>
-                  </div>
-                </div>
+                  {communities && (
 
-                <div className="flex flex-col justify-center  mt-4 bg-neutral-100 dark:bg-neutral-800 rounded-xl cursor-pointer hover:shadow-md">
-                  <div className="flex flex-row items-center rounded-sm p-2">
-                    <Image
-                      src="/imgs/bmw.jpg"
-                      alt="Foto de perfil"
-                      className="rounded-full w-[40px] mr-2 hover:opacity-90"
-                      width={40}
-                      height={40}
-                      priority
-                    />
-                    <div className="flex flex-col text-left">
-                      <label className="text-xs font-semibold">Drift Racing</label>
-                      <p className="text-xs font-normal">lorem ipsum dolor sit amet consectetur.</p>
-                    </div>
-                  </div>
-                  <div className="w-full flex flex-row items-center border-t-1 border-gray-200 dark:border-gray-800 p-1">
-                    <Image
-                      src="/imgs/bmw.jpg"
-                      alt="Foto de perfil"
-                      className="rounded-full w-[20px] mr-2 hover:opacity-90"
-                      width={20}
-                      height={20}
-                      priority
-                    />
-                    <Image
-                      src="/imgs/bmw.jpg"
-                      alt="Foto de perfil"
-                      className="rounded-full w-[20px] ml-[-16px] hover:opacity-90"
-                      width={20}
-                      height={20}
-                      priority
-                    />
-                    <label className="text-xs font-semibold ml-auto">243 join</label>
-                  </div>
-                </div>
+                    communities.map((community: Community, index: number) => {
+                      const imageCommunity = community.photo
+                      ? `${process.env.NEXT_PUBLIC_STORAGE_API?.replace(/\/$/, '')}/${community.photo?.replace(/^\//, '')}`
+                      : null;
+
+                      return (
+                        
+                        <Card className="flex flex-col justify-center  mt-4 bg-neutral-100 dark:bg-neutral-800 rounded-xl cursor-pointer hover:shadow-md" key={index}>
+                          <div className="flex flex-row items-center rounded-sm ">
+                            <Image
+                              src={imageCommunity ?? "/imgs/placeholder.png"}
+                              alt="Foto de perfil"
+                              className="rounded-full w-[40px] aspect-[1/1] mr-2 hover:opacity-90 object-cover"
+                              width={110}
+                              height={110}
+                              priority
+                            />
+                            <div className="flex flex-col text-left">
+                              <label className="text-xs font-semibold">{community.name}</label>
+                              <p className="text-xs font-normal w-full" 
+
+                              >
+                                {community.description && community.description.length > 30
+                                ? community.description.slice(0, 30) + "..."
+                                : community.description}
+                                {/* {community.description} */}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="w-full flex flex-row items-center border-t-1 border-gray-200 dark:border-gray-800 p-1">
+                            <Image
+                              src="/imgs/bmw.jpg"
+                              alt="Foto de perfil"
+                              className="rounded-full w-[20px] mr-2 hover:opacity-90"
+                              width={20}
+                              height={20}
+                              priority
+                            />
+                            <Image
+                              src="/imgs/bmw.jpg"
+                              alt="Foto de perfil"
+                              className="rounded-full w-[20px] ml-[-16px] hover:opacity-90"
+                              width={20}
+                              height={20}
+                              priority
+                            />
+                            <label className="text-xs font-semibold ml-auto">243 join</label>
+                          </div>
+                        </Card>
+                      
+
+                      );
+
+                    } 
+                  ))}
+
+                  <ColorBottom className="w-full mt-4 mb-2 rounded-md text-sm font-semibold">
+                    Ver mais 
+                  </ColorBottom>
+ 
               </Container>
             </div>
           </div>
         </div>
 
-        <Container className="flex flex-row sm:flex-col w-full h-[auto] sm:h-auto gap-4 overflow-x-auto scrollbar-hide sm:w-1/6 sm:mb-0">
+        <Container className="flex flex-row sm:flex-col w-full h-[auto] sm:h-auto gap-4 overflow-x-auto scrollbar-hide sm:w-1/6 sm:mb-0" padding="p-2">
           <ListStories />
         </Container>
       </div>
@@ -434,7 +428,6 @@ export default function Home() {
       >
         {preview && (
           <div className="w-full flex flex-col p-2 items-center">
-            <p className="font-semibold mb-2">Preview:</p>
             <Image
               src={preview}
               className="w-full sm:w-[350px] h-[350px] object-cover"
@@ -443,6 +436,15 @@ export default function Home() {
               height={350}
             />
           </div>
+        )}
+        {!preview && (
+          <div className="w-full flex flex-col mb-4 items-center">
+
+            <div className="flex items-center justify-center gap-2 w-[60%] aspect-[1/1] rounded-full bg-neutral-100 dark:bg-neutral-800/60 p-2">
+              <p className="m-0 text-center text-lg">Nenhuma foto selecionada.</p>
+            </div>
+          </div>
+
         )}
         <div className="flex flex-row bg-neutral-100 dark:bg-neutral-800 dark:text-white w-full rounded-full p-4 gap-2">
           <input
@@ -454,6 +456,7 @@ export default function Home() {
               setToaster({ ...toaster, show: false });
             }}
           />
+
           <Button onClick={handleButtonClick}>
             <PhotoIcon className="size-6 dark:text-white text-neutral-800" />
           </Button>
@@ -464,9 +467,9 @@ export default function Home() {
             style={{ display: "none" }}
             onChange={handleFileChange}
           />
-          <ButtonNew onClick={(e) => handlePost(e)}>
+          <ColorBottom onClick={(e) => handlePost(e)}>
             <AirPlaneIcon className="size-6 dark:text-white text-neutral-800" />
-          </ButtonNew>
+          </ColorBottom>
         </div>
       </Modal>
       {toaster.show && (

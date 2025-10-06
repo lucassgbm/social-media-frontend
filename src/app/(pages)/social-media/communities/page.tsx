@@ -15,7 +15,7 @@ import FormButtom from "../../../../../components/form-buttom";
 import LoadingSpinner from "../../../../../components/loading-spinner";
 import ArrowLeftIcon from "../../../../../components/icons/arrow-left";
 import ArrowRightIcon from "../../../../../components/icons/arrow-right";
-import ButtonNew from "../../../../../components/button-new";
+import ColorButton from "../../../../../components/color-button";
 import Toaster from "../../../../../components/toaster";
 import { get } from "@/api/services/request";
 import Skeleton from "../../../../../components/skeleton";
@@ -36,7 +36,7 @@ export default function Home(){
         setLoading(true);
         try {
             const response = await get("/social-media/community");
-            setCommunities(response.data);
+            setCommunities(response.data.data);
         } catch (error: any) {
     
             setToaster({ show: true, message: "Erro ao carregar comunidades" });
@@ -59,11 +59,11 @@ export default function Home(){
 
                                 <div className="flex flex-row gap-2">
 
-                                    <ButtonNew
+                                    <ColorButton
                                         onClick={() => setModalNewCommunity(true)}
                                     >
                                         <PlusIcon />
-                                    </ButtonNew>
+                                    </ColorButton>
                                     <Button>
                                         <FilterIcon />
                                     </Button>
@@ -73,10 +73,6 @@ export default function Home(){
                                     <div className="flex flex-row items-center bg-neutral-800 hover:bg-neutral-900 text-xs font-semibold py-1 px-1 pl-2 pr-2 rounded-2xl cursor-pointer gap-2">
                                         Automobilismo
                                         <CloseIcon className="size-3" />
-                                    </div>
-                                    <div className="flex flex-row items-center bg-neutral-800 hover:bg-neutral-900 text-xs font-semibold py-1 px-1 pl-2 pr-2 rounded-2xl cursor-pointer gap-2">
-                                        <CloseIcon className="size-3" />
-                                        Automobilismo
                                     </div>
                                 </div>
                                 <div className="flex flex-row gap-2">

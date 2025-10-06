@@ -18,10 +18,14 @@ import Skeleton from "./skeleton";
 import { AppContext } from "@/app/(pages)/social-media/layout";
 import Card from "./card";
 import RingImage from "./ring-image";
+import PhotoIcon from "./icons/photo";
+import CameraIcon from "./icons/camera";
+import Modal from "./modal";
 
 
 export default function Sidebar() {
 
+    const [isOpen, setModalNewStory] = useState(false);
     const context = useContext(AppContext);
 
     const { myInfo } = context;
@@ -36,9 +40,9 @@ export default function Sidebar() {
                 <div className="flex justify-center mb-4">
                     {imageUser && (
                         
-                        <RingImage className="w-[45px] sm:w-[80%]" padding="p-[2px] sm:p-[4px]">
+                        <RingImage className="relative w-[45px] sm:w-[80%]" padding="p-[2px] sm:p-[4px] group">
                             <Image
-                                src={imageUser}
+                                src={imageUser ?? "/imgs/placeholder.png"}
                                 alt="Foto de perfil"
                                 className="rounded-full"
                                 width={250}
@@ -46,6 +50,11 @@ export default function Sidebar() {
                                 priority
                                 unoptimized
                             />
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition rounded-full cursor-pointer" onClick={() => setModalNewStory(true)}>
+                                <CameraIcon className="size-10 text-white dark:text-neutral-300 "/>
+
+                            </div>
+
                         </RingImage>
                        
                     )}
@@ -83,7 +92,7 @@ export default function Sidebar() {
 
                             </li>
                         </Link>
-                        <Link href="/social-media/profile">
+                        <Link href={`/social-media/profile/${myInfo?.name}`}>
                             <li className="flex w-full items-center gap-2 p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:text-green-400 cursor-pointer transition">
                                 
                                 <Button>
@@ -150,6 +159,21 @@ export default function Sidebar() {
 
                 </nav>
             </Container>
+            <Modal 
+                isOpen={isOpen} 
+                onClose={() => setModalNewStory(false)}
+                title="Novo story"
+            >
+                <div className="flex flex-col gap-4">
+                    <div className="flex justify-between items-center pb-2">
+                        <button onClick={() => setModalNewStory(false)} className="text-gray-500 hover:text-gray-700">
+                            <span className="sr-only">Close</span>
+                        </button>    
+                    </div>  
+                    
+                </div>
+            </Modal>
+            
         </>
     );
 }
