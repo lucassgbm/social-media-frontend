@@ -11,6 +11,7 @@ import Messages from "../../../../components/messages";
 type MyInfo = {
   name: string;
   photo: string;
+  autodescription: string;
 };
 
 type AppContextType = {
@@ -58,7 +59,7 @@ export default function RootLayout({
         {children}
         {openMessages && (
                 
-          <Messages />
+          <Messages openMessages={openMessages} setOpenMessages={setOpenMessages}/>
         )}
         <Footer/>
         <BottomMenu />

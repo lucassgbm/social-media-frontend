@@ -31,7 +31,7 @@ export default function ListCommunities({communities} : CommunitiesProps){
 
                         <div className="w-full flex flex-col gap-4">
 
-                            <Link href="/social-media/communities/1" className="w-full">
+                            <Link href={`/social-media/communities/${community.id}`} className="w-full">
                                 <Image
                                     src={imageCommunity || "/imgs/placeholder.png"}
                                     alt="Foto de perfil"

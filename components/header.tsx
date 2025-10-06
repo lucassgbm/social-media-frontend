@@ -64,7 +64,7 @@ export default function Header() {
 
                                     <RingImage>
                                         <Image
-                                            src={imageUser}
+                                            src={imageUser || "/imgs/placeholder.png"}
                                             alt="Foto de perfil"
                                             className="rounded-full w-[45px]"
                                             width={50}

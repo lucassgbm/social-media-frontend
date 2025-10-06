@@ -482,11 +482,11 @@ export function StoriesBar({ items = [], setStory, storyRingSize = 30 }: any) {
               onClick={() => {
                 setStory({ show: true, data: it });
               }}
-              className={`flex items-center justify-center cursor-pointer rounded-full
+              className={`w-full min-w-[50px] aspect-[1/1] flex items-center justify-center cursor-pointer rounded-full
                 drop-shadow-md
                 hover:brightness-90
                 p-[3px]
-                ${!it.hasSeenAll ? "border-pink-500/70" : "border-[#DBDBDB]"}
+                ${!it.hasSeenAll ? "border-green-500/90" : "border-[#DBDBDB]"}
             `}
               style={{
                 borderWidth: 2.5,
@@ -496,10 +496,12 @@ export function StoriesBar({ items = [], setStory, storyRingSize = 30 }: any) {
               <img
                 src={it.avatarUrl}
                 alt={it.user}
-                className={`rounded-full object-cover`}
+                className={`w-full aspect-[1/1] rounded-full object-cover`}
                 style={{
-                  width: storyRingSize,
-                  height: storyRingSize,
+                  // width: storyRingSize,
+                  // height: storyRingSize,
+                  width: `full`,
+                  height: `full`,
                 }}
               />
             </button>
@@ -573,6 +575,31 @@ export default function Page() {
     },
     {
       id: "u3",
+      user: "Ingrid",
+      avatarUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqMOmqF3CHR7lPy8KqD9cjzZsm6Ell1hOOCQ&s",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "image",
+          src: "/stories/s1-1.jpg",
+          durationMs: 5000,
+          caption: "Morning ☀️",
+          postingTime: "15h",
+          liked: false,
+        },
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },
+    {
+      id: "u4",
       user: "Ingrid",
       avatarUrl:
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqMOmqF3CHR7lPy8KqD9cjzZsm6Ell1hOOCQ&s",
