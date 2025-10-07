@@ -15,7 +15,7 @@ import FormButtom from "../../../../../../components/form-buttom";
 import LoadingSpinner from "../../../../../../components/loading-spinner";
 import ArrowLeftIcon from "../../../../../../components/icons/arrow-left";
 import ArrowRightIcon from "../../../../../../components/icons/arrow-right";
-import ButtonNew from "../../../../../../components/button-new";
+import ColorButton from "../../../../../../components/color-button";
 
 export default function Home(){
     
