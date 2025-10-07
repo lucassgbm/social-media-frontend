@@ -6,7 +6,7 @@ import Header from "../../../../components/header";
 import Sidebar from "../../../../components/sidebar";
 import BottomMenu from "../../../../components/bottom-menu";
 import Footer from "../../../../components/footer";
-import Messages from "../../../../components/messages";
+//import Messages from "../../../../components/messages";
 
 type MyInfo = {
   name: string;
@@ -31,19 +31,19 @@ export default function RootLayout({
 
   useEffect(() => {
     getMyInfo();
-  },[]);
+  }, []);
 
   const [myInfo, setMyInfo] = useState<MyInfo | null>(null);
 
-  const [openMessages, setOpenMessages] = useState(false);
+  //const [openMessages, setOpenMessages] = useState(false);
 
   async function getMyInfo() {
-  
+
     try {
       const response = await get("/social-media/user");
       setMyInfo(response);
     } catch (error: any) {
-  
+
       console.log(error);
       // setToaster({ show: true, message: "Erro ao carregar informações" });
     }
@@ -51,17 +51,17 @@ export default function RootLayout({
   }
 
   return (
-
-    <AppContext.Provider value={{myInfo, setMyInfo, openMessages, setOpenMessages}}>
+    /*openMessages, setOpenMessages*/
+    <AppContext.Provider value={{ myInfo, setMyInfo }}>
       <Header />
       <div className="flex flex-col sm:flex-row dark:bg-neutral-950 bg-neutral-100 min-h-screen p-6 gap-6 text-gray-600">
         <Sidebar />
         {children}
-        {openMessages && (
+        {/* {openMessages && (
                 
-          <Messages openMessages={openMessages} setOpenMessages={setOpenMessages}/>
-        )}
-        <Footer/>
+          <Messages />
+        )} */}
+        <Footer />
         <BottomMenu />
       </div>
     </AppContext.Provider>

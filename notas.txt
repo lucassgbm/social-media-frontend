@@ -4,8 +4,32 @@ docker run --rm -it \
   -v "$PWD":/app \
   -w /app \
   node:18-alpine \
-  sh -c "npm install --save"
+  sh -c "npm run build"
 
-  https://codesandbox.io/p/sandbox/storiesfeedapp-5bmwep?file=%2Fsrc%2Fcomponents%2FHome.js%3A32%2C5-50%2C11
 
-  https://github.com/mohitk05/react-insta-stories#react-insta-stories
+Scripts para criar o runner do node no Play Docker
+
+docker volume create gitlab-runner-config
+
+docker run --detach \
+--name gitlab-runner-job \
+--restart always \
+--memory-reservation 32m \
+--memory 64m \
+--memory-swap 128m \
+--cpus .1 \
+--volume /var/run/docker.sock:/var/run/docker.sock \
+--volume gitlab-runner-config:/etc/gitlab-runner \
+--volume /etc/timezone:/etc/timezone:ro \
+--volume /usr/share/zoneinfo:/usr/share/zoneinfo:ro \
+gitlab/gitlab-runner:alpine-v17.6.1
+
+docker exec --interactive --privileged --tty gitlab-runner-job bash
+
+gitlab-runner register \
+--url https://gitlab.com \
+--token glrt-Bvquoeu572q-ZGL26lMEgG86MQpwOjE4aXZoOAp0OjMKdToyanY5cBg.01.1j0t8qs9m \
+--executor docker \
+--docker-image docker:dind \
+--docker-volumes /var/run/docker.sock:/var/run/docker.sock \
+--docker-privileged
