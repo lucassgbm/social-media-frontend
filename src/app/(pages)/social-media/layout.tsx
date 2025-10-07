@@ -52,7 +52,7 @@ export default function RootLayout({
 
   return (
     /*openMessages, setOpenMessages*/
-    <AppContext.Provider value={{ myInfo, setMyInfo }}>
+    <AppContext.Provider value={{ myInfo, setMyInfo, openMessages, setOpenMessages }}>
       <Header />
       <div className="flex flex-col sm:flex-row dark:bg-neutral-950 bg-neutral-100 min-h-screen p-6 gap-6 text-gray-600">
         <Sidebar />
