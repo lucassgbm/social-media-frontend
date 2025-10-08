@@ -496,7 +496,7 @@ export function StoriesBar({ items = [], setStory, storyRingSize = 30 }: any) {
               <img
                 src={it.avatarUrl}
                 alt={it.user}
-                className={`w-full aspect-[1/1] rounded-full object-cover`}
+                className={`w-full aspect-[1/1] rounded-full object-cover transition-transform duration-300 hover:scale-110`}
                 style={{
                   // width: storyRingSize,
                   // height: storyRingSize,

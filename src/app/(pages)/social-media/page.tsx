@@ -472,7 +472,7 @@ export default function Home() {
           </ColorBottom>
         </div>
       </Modal>
-      {toaster.show && (
+      {true && (
         <Toaster
           toaster={toaster}
           setToaster={setToaster}
