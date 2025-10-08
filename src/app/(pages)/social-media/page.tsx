@@ -61,6 +61,8 @@ export default function Home() {
   const [toaster, setToaster] = useState({
     show: false,
     message: "",
+    title: "",
+    status: '',
   });
   const [loadingFeed, setLoadingFeed] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
@@ -101,7 +103,7 @@ export default function Home() {
     e.preventDefault();
 
     if (newPost.description === "") {
-      setToaster({ show: true, message: "Preencha a descrição." });
+      setToaster({ show: true, message: "Preencha a descrição", status: "error", title: "Criar Post" });
       return;
     }
 
@@ -112,7 +114,7 @@ export default function Home() {
     try {
 
       const response = await postFormData("/social-media/post", formData);
-      setToaster({ show: true, message: "Post criado com sucesso!" });
+      setToaster({ show: true, message: "Post criado com sucesso!", status: "success", title: "Criar Post" });
       setNewPost({ description: "", photo_path: "" });
       setModalNewPost(false);
       setPreview(null);
@@ -120,7 +122,7 @@ export default function Home() {
 
     } catch (error: any) {
 
-      setToaster({ show: true, message: "Erro ao criar post: " + error.response.data.message });
+      setToaster({...toaster, show: true, message: "Erro ao criar post: " + error.response.data.message, status: 'error', title: "Criar Post"});
 
     }
   }
@@ -133,7 +135,7 @@ export default function Home() {
       setFeed(response.data);
     } catch (error: any) {
 
-      setToaster({ show: true, message: "Erro ao carregar feed" });
+      setToaster({...toaster, show: true, message: "Erro ao carregar feed", status: 'error', title: "Feed"});
     }
     setLoadingFeed(false);
   }
@@ -145,7 +147,7 @@ export default function Home() {
       setEvent(response.data);
     } catch (error: any) {
 
-      setToaster({ show: true, message: "Erro ao carregar Evento" });
+      setToaster({...toaster, show: true, message: "Erro ao carregar Evento", status: 'error', title: "Evento"});
     }
   }
 
@@ -156,7 +158,7 @@ export default function Home() {
       setCommunities(response.data.data);
     } catch (error: any) {
 
-      setToaster({ show: true, message: "Erro ao carregar Comunidades" });
+      setToaster({...toaster, show: true, message: "Erro ao carregar Comunidades", status: 'error', title: "Comunidades"});
     }
   }
 
@@ -472,7 +474,7 @@ export default function Home() {
           </ColorBottom>
         </div>
       </Modal>
-      {true && (
+      {toaster.show && (
         <Toaster
           toaster={toaster}
           setToaster={setToaster}

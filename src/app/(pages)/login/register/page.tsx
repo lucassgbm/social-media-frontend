@@ -6,9 +6,12 @@ import Modal from "../../../../../components/modal";
 import { postFormData } from "@/api/services/request";
 import Toaster from "../../../../../components/toaster";
 import { useRouter } from "next/navigation";
+import FormButtom from "../../../../../components/form-buttom";
+import LoadingSpinner from "../../../../../components/loading-spinner";
 
 export default function Home(){
 
+    const [loading, setLoading] = useState(false);
     const [imageSrc, setImageSrc] = useState<string | null>(null);
     const [crop, setCrop] = useState({ x: 0, y: 0 });
     const [zoom, setZoom] = useState(1);
@@ -18,6 +21,8 @@ export default function Home(){
     const [toaster, setToaster] = useState({
       show: false,
       message: "",
+      title: "Cadastro",
+      status: ""
     });
     const [data, setData] = useState({
         email: '',
@@ -97,11 +102,11 @@ export default function Home(){
     e.preventDefault();
 
     if (!croppedImage){
-        setToaster({ show: true, message: "Selecione uma imagem." });
+        setToaster({ ...toaster, show: true, message: "Selecione uma imagem.", status: 'error'});
         return;
     }
         
-    
+    setLoading(true);
     const blob = await (await fetch(croppedImage)).blob();
     
     const formData = new FormData();
@@ -117,14 +122,16 @@ export default function Home(){
     
     if (response?.errors) {
         
-        setToaster({ show: true, message: "Erro ao fazer cadastro: " +JSON.stringify(response.errors) });
+        setToaster({ ...toaster, show: true, message: "Erro ao fazer cadastro: " +JSON.stringify(response.errors), status: 'error' });
     } else {
-        setToaster({ show: true, message: "Cadastrado com sucesso!" });
+        setToaster({ ...toaster, show: true, message: "Cadastrado com sucesso!", status: 'success' });
         setTimeout(() => {
             router.push('/login');
         }, 2000);
 
     }
+
+    setLoading(false);
 
   };
 
@@ -237,12 +244,15 @@ export default function Home(){
                             <p className="font-normal text-sm ml-2">Aceito os <span className="text-blue-500"><a href="#">Termos e condições</a></span></p>
 
                         </div>
-                        <div className="flex flex-row mb-4 mt-6 justify-center">
+                        <div className="flex flex-row mb-4 mt-6 justify-center items-center gap-2">
 
-                            <button 
-                                className="w-[auto] bg-blue-500 hover:bg-blue-700 font-semibold py-2 px-2 pl-6 pr-6 rounded-sm cursor-pointer"
-                                onClick={(e) => handleSubmit(e)}
-                            >Enviar</button>
+                            <FormButtom label="Registrar" onClick={(e: React.FormEvent) => handleSubmit(e)} type="submit" />
+                            
+                            {loading && (
+
+                                <LoadingSpinner />
+
+                            )}
                         </div>
                     </div>
                     {/* Editor de corte */}

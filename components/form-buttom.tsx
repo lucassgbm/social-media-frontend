@@ -1,6 +1,6 @@
 interface ButtonProps{
     label: string
-    onClick?: () => void
+    onClick?: (e: React.FormEvent) => void
     className?: string
     type: "submit" | "button"
 }
