@@ -37,7 +37,7 @@ export default function Header() {
 
     return (
         <header className="flex w-full bg-white dark:bg-neutral-900 ">
-            <nav className="w-full shadow-md px-4 py-2 flex items-center justify-between">
+            <nav className="w-full shadow-md px-6 py-2 flex items-center justify-between">
 
                 <div className="w-1/4 text-xl font-bold dark:text-white text-neutral-800">Logo</div>
 

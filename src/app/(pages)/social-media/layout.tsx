@@ -7,6 +7,7 @@ import Sidebar from "../../../../components/sidebar";
 import BottomMenu from "../../../../components/bottom-menu";
 import Footer from "../../../../components/footer";
 import Messages from "../../../../components/messages";
+import { usePathname } from "next/navigation";
 
 type MyInfo = {
   name: string;
@@ -37,6 +38,8 @@ export default function RootLayout({
 
   const [openMessages, setOpenMessages] = useState(false);
 
+  const pathname = usePathname();
+
   async function getMyInfo() {
 
     try {
@@ -50,12 +53,20 @@ export default function RootLayout({
 
   }
 
+  const noSidebarRoutes = [
+    "/social-media/profile",
+    "/social-media/profile/edit",
+  ];
+
+  const hideSidebar = noSidebarRoutes.some((route) => pathname.startsWith(route));
+
   return (
     /*openMessages, setOpenMessages*/
     <AppContext.Provider value={{ myInfo, setMyInfo, openMessages, setOpenMessages }}>
       <Header />
-      <div className="flex flex-col sm:flex-row dark:bg-neutral-950 bg-neutral-100 min-h-screen p-6 gap-6 text-gray-600">
-        <Sidebar />
+      <div className="flex flex-col sm:flex-row dark:bg-neutral-950 bg-neutral-100 min-h-screen p-6 gap-6 text-gray-600 justify-center" suppressHydrationWarning={true}>
+        {/* Renderiza a sidebar somente se não estiver na página de perfil */}
+        {!hideSidebar && <Sidebar />}
         {children}
         {openMessages && (
                 

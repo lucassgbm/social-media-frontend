@@ -89,15 +89,20 @@ export default function Home(){
                         </div>
 
                         {loading && (
-                            <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-4 p-4">
+                            <div className="w-full grid grid-cols-1 sm:grid-cols-4 gap-4 p-4">
 
+                                <Skeleton height={"h-[420px]"} width={"w-full"} rounded="3xl"/>
+                                <Skeleton height={"h-[420px]"} width={"w-full"} rounded="3xl"/>
+                                <Skeleton height={"h-[420px]"} width={"w-full"} rounded="3xl"/>
+                                <Skeleton height={"h-[420px]"} width={"w-full"} rounded="3xl"/>
+                                <Skeleton height={"h-[420px]"} width={"w-full"} rounded="3xl"/>
                                 <Skeleton height={"h-[420px]"} width={"w-full"} rounded="3xl"/>
                                 <Skeleton height={"h-[420px]"} width={"w-full"} rounded="3xl"/>
                                 <Skeleton height={"h-[420px]"} width={"w-full"} rounded="3xl"/>
 
                             </div>
                         )}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 p-4">
 
                             {communities && (
 

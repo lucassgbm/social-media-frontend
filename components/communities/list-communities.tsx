@@ -35,7 +35,7 @@ export default function ListCommunities({communities} : CommunitiesProps){
                                 <Image
                                     src={imageCommunity || "/imgs/placeholder.png"}
                                     alt="Foto de perfil"
-                                    className="rounded-2xl w-full hover:opacity-90 object-cover h-[220px]"
+                                    className="rounded-2xl w-full hover:opacity-90 object-cover h-[200px]"
                                     width={420}
                                     height={420}
                                     priority

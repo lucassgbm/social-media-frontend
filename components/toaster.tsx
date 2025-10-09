@@ -12,7 +12,7 @@ interface ToasterProps {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Toaster(props: { toaster: ToasterProps, setToaster: any }) {
     return (
-        <div className="flex flex-row fixed bottom-4 right-4 border-1 border-neutral-300/30 dark:border-neutral-800/30 bg-gradient-to-r from-white to-neutral-100 dark:bg-gradient-to-r dark:from-neutral-700 dark:via-neutral-800 dark:to-neutral-900 rounded-md dark:text-white w-[auto] min-w-[280px] h-[auto] text-sm p-2 shadow-2xl items-center z-50 gap-3">
+        <div className="flex flex-row fixed bottom-4 right-4 border-1 border-neutral-300/30 dark:border-neutral-700/50 bg-gradient-to-r from-white to-neutral-100 dark:bg-gradient-to-r dark:from-neutral-700 dark:via-neutral-800 dark:to-neutral-900 rounded-md dark:text-white w-[auto] min-w-[280px] h-[auto] text-sm p-2 shadow-2xl items-center z-50 gap-3">
 
           {props.toaster.status !== "" && (
 
