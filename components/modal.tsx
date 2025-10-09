@@ -23,7 +23,7 @@ export default function Modal({ isOpen, onClose, title, children, width }: Modal
       ></div>
 
       {/* Conteúdo do modal */}
-      <div className={`w-full h-full sm:h-auto bg-white dark:bg-neutral-900 rounded-2xl shadow-md p-6 text-white dark:text-neutral-600 z-10 ${width ?? 'sm:w-[600px]'}`}>
+      <div className={`w-full h-full flex flex-col justify-between sm:h-auto bg-white dark:bg-neutral-900 rounded-2xl shadow-md p-6 text-white dark:text-neutral-600 z-10 ${width ?? 'sm:w-[600px]'}`}>
         {/* Cabeçalho */}
         <div className="flex justify-between items-center mb-4">
           <h2 className="dark:text-white text-neutral-800 text-lg font-semibold">{title}</h2>
@@ -34,7 +34,7 @@ export default function Modal({ isOpen, onClose, title, children, width }: Modal
         </div>
 
         {/* Conteúdo */}
-        <div>{children}</div>
+          {children}
       </div>
     </div>
   );

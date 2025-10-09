@@ -20,6 +20,7 @@ import { AppContext } from "./layout";
 import RingImage from "../../../../components/ring-image";
 import ColorBottom from "../../../../components/color-button";
 import Card from "../../../../components/card";
+import LoadingSpinner from "../../../../components/loading-spinner";
 
 interface NewPost {
   description: string;
@@ -65,6 +66,7 @@ export default function Home() {
     status: '',
   });
   const [loadingFeed, setLoadingFeed] = useState(false);
+  const [loadingSendPost, setLoadingSendPost] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
   const [newPost, setNewPost] = useState<NewPost>({
     description: "",
@@ -107,6 +109,7 @@ export default function Home() {
       return;
     }
 
+    setLoadingSendPost(true);
     const formData = new FormData();
     formData.append("photo_path", newPost.photo_path);
     formData.append("description", newPost.description);
@@ -125,6 +128,8 @@ export default function Home() {
       setToaster({...toaster, show: true, message: "Erro ao criar post: " + error.response.data.message, status: 'error', title: "Criar Post"});
 
     }
+
+    setLoadingSendPost(false);
   }
 
   async function getFeed() {
@@ -440,13 +445,18 @@ export default function Home() {
           </div>
         )}
         {!preview && (
-          <div className="w-full flex flex-col mb-4 items-center">
+          <div className="w-full sm:hidden flex flex-col mb-4 items-center">
 
             <div className="flex items-center justify-center gap-2 w-[60%] aspect-[1/1] rounded-full bg-neutral-100 dark:bg-neutral-800/60 p-2">
-              <p className="m-0 text-center text-lg">Nenhuma foto selecionada.</p>
+              <p className="m-0 text-center text-lg text-neutral-600 dark:text-white">Nenhuma foto selecionada</p>
             </div>
           </div>
 
+        )}
+        {loadingSendPost && (
+          <div className="w-full flex flex-rom p-2 justify-center">
+            <LoadingSpinner />
+          </div>
         )}
         <div className="flex flex-row bg-neutral-100 dark:bg-neutral-800 dark:text-white w-full rounded-full p-4 gap-2">
           <input
