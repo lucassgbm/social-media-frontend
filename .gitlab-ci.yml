@@ -17,7 +17,7 @@ stages:
   - deploy
 
 variables:
-  IMAGE: social-frontend:latest
+  IMAGE: registry.gitlab.com/equipe-de-projetos/social-media-frontend:$CI_COMMIT_SHORT_SHA
   BASE_IMAGE: node:18-alpine
   RUNNER_TAG: social-media-frontend
   APPNAME: social-frontend
@@ -42,19 +42,21 @@ docker-build:
   services:
     - name: docker:dind
   script:  
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker build . --build-arg BASE_IMAGE=$BASE_IMAGE -t $IMAGE
+    - docker push $IMAGE
     
 
-deploy:   
-  stage: deploy
-  environment: $CI_COMMIT_BRANCH  
-  tags:
-    - $RUNNER_TAG  
-  image: docker:stable
-  cache: []
-  # before_script:
-  #   - apk add --no-cache docker-compose   # instala no Alpine (imagem docker:stable é baseada em Alpine)
-  script:                
-    - docker run -d -p 3000:3000 --name $APPNAME $IMAGE
+# deploy:   
+#   stage: deploy
+#   environment: $CI_COMMIT_BRANCH  
+#   tags:
+#     - $RUNNER_TAG  
+#   image: docker:stable
+#   cache: []
+#   before_script:
+#    # - apk add --no-cache docker-compose   # instala no Alpine (imagem docker:stable é baseada em Alpine)
+#   script:                
+#     # - docker run -d -p 3000:3000 --name $APPNAME $IMAGE
     
     
