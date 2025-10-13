@@ -6,7 +6,7 @@ import Header from "../../../../components/header";
 import Sidebar from "../../../../components/sidebar";
 import BottomMenu from "../../../../components/bottom-menu";
 import Footer from "../../../../components/footer";
-//import Messages from "../../../../components/messages";
+import Messages from "../../../../components/messages";
 
 type MyInfo = {
   name: string;
@@ -35,7 +35,7 @@ export default function RootLayout({
 
   const [myInfo, setMyInfo] = useState<MyInfo | null>(null);
 
-  //const [openMessages, setOpenMessages] = useState(false);
+  const [openMessages, setOpenMessages] = useState(false);
 
   async function getMyInfo() {
 
@@ -52,15 +52,15 @@ export default function RootLayout({
 
   return (
     /*openMessages, setOpenMessages*/
-    <AppContext.Provider value={{ myInfo, setMyInfo }}>
+    <AppContext.Provider value={{ myInfo, setMyInfo, openMessages, setOpenMessages }}>
       <Header />
       <div className="flex flex-col sm:flex-row dark:bg-neutral-950 bg-neutral-100 min-h-screen p-6 gap-6 text-gray-600">
         <Sidebar />
         {children}
-        {/* {openMessages && (
-                
-          <Messages />
-        )} */}
+        {openMessages && (
+
+          <Messages openMessages={openMessages} setOpenMessages={setOpenMessages} />
+        )}
         <Footer />
         <BottomMenu />
       </div>

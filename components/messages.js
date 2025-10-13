@@ -120,7 +120,7 @@ export default function Messages(props) {
                         height={50}
                         className="w-[30px] rounded-full aspect-[1/1] object-cover"
                       />
-                      <div className={`absolute inset-0 after:content-[''] after:absolute after:w-4 after:h-4 after:bg-green-500" after:rounded-full after:border-2 after:border-white after:bottom-0 after:right-0`}></div>
+                      <div className={`absolute inset-0 after:content-[''] after:absolute after:w-4 after:h-4 after:bg-green-500 after:rounded-full after:border-2 after:border-white after:bottom-0 after:right-0`}></div>
                     </div>
                     <h1 className="font-bold text-lg mt-2">Nome fulano</h1>
                   </div>
