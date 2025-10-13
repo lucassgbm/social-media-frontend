@@ -20,6 +20,8 @@ export default function Home() {
     const [toaster, setToaster] = useState({
         show: false,
         message: "",
+        status: "",
+        title: "Login"
     });
 
     const router = useRouter();
@@ -30,7 +32,7 @@ export default function Home() {
         setLoading(true);
         if (login.email === '' || login.password === '') {
             setLoading(false);
-            setToaster({ ...toaster, show: true, message: 'Preencha todos os campos' });
+            setToaster({ ...toaster, show: true, message: 'Preencha todos os campos', status: 'error' });
             return;
         }
         try {
@@ -38,15 +40,16 @@ export default function Home() {
 
             localStorage.setItem('auth_token', response.token);
             setLoading(false);
-            setToaster({ ...toaster, show: true, message: ' Login realizado com sucesso! Redirecionando...' });
+            setToaster({ ...toaster, show: true, message: ' Login realizado com sucesso! Redirecionando...', status: 'success' });
 
             router.push('/social-media/');
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (err: any) {
 
             console.log(err);
             setLoading(false);
-            setToaster({ ...toaster, show: true, message: err.response.data.message });
+            setToaster({ ...toaster, show: true, message: err.response.data.message, status: 'error' });
         }
     }
     return (
@@ -98,10 +101,10 @@ export default function Home() {
                             )}
                         </div>
                         <span className="text-xs mb-2 mt-2">Ainda não tem uma conta?
-                            <a href="request-register" className="text-xs text-blue-500"> Cadastrar</a>
+                            <a href="login/request-register" className="text-xs text-blue-500"> Cadastrar</a>
                         </span>
                     </form>
-                    <a href="forgot-password" className="text-xs text-blue-500">Esqueceu sua senha?</a>
+                    <a href="login/forgot-password" className="text-xs text-blue-500">Esqueceu sua senha?</a>
                 </div>
             </div>
             <div className="sm:w-2/3 hidden sm:block flex w-full bg-neutral-50 h-screen items-center justify-center">

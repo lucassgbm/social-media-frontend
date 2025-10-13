@@ -17,6 +17,7 @@ import { useContext, useState } from "react";
 import { AppContext } from "../../layout";
 import RingImage from "../../../../../../components/ring-image";
 import MessageIcon from "../../../../../../components/icons/message";
+import PencilSquareIcon from "../../../../../../components/icons/pencil-square";
 
 export default function Home(){
     const context = useContext(AppContext);
@@ -69,8 +70,22 @@ export default function Home(){
                                         </div>
                                     </ColorButton>
                                     <ColorButton className="rounded-md text-sm font-semibold">
-                                        <MessageIcon/>
+                                        <div className="flex flex-row gap-2 items-center">
+                                            <MessageIcon className="size-4"/>
+                                            Mensagens
+
+                                        </div>
                                     </ColorButton>
+
+                                    <Link href="/social-media/profile/edit">
+                                        <ColorButton className="rounded-md text-sm font-semibold" bgColor="bg-blue-500">
+                                            <div className="flex flex-row gap-2 items-center">
+                                                <PencilSquareIcon className="size-4"/>
+                                                Editar
+
+                                            </div>
+                                        </ColorButton>
+                                    </Link>
                                 </div>
                                 <div className="w-[40%] flex flex-row gap-2">
                                     <Card className="w-full rounded-2xl">

@@ -20,12 +20,12 @@ import Card from "./card";
 import RingImage from "./ring-image";
 import PhotoIcon from "./icons/photo";
 import CameraIcon from "./icons/camera";
-import Modal from "./modal";
+
 
 
 export default function Sidebar() {
 
-    const [isOpen, setModalNewStory] = useState(false);
+    
     const context = useContext(AppContext);
 
     const { myInfo } = context;
@@ -40,7 +40,7 @@ export default function Sidebar() {
                 <div className="flex justify-center mb-4">
                     {imageUser && (
                         
-                        <RingImage className="relative w-[45px] sm:w-[80%]" padding="p-[2px] sm:p-[4px] group">
+                        <RingImage className="relative w-[45px] sm:w-[80%]" padding="p-[2px] sm:p-[4px]">
                             <Image
                                 src={imageUser ?? "/imgs/placeholder.png"}
                                 alt="Foto de perfil"
@@ -50,10 +50,6 @@ export default function Sidebar() {
                                 priority
                                 unoptimized
                             />
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition rounded-full cursor-pointer" onClick={() => setModalNewStory(true)}>
-                                <CameraIcon className="size-10 text-white dark:text-neutral-300 "/>
-
-                            </div>
 
                         </RingImage>
                        
@@ -61,10 +57,8 @@ export default function Sidebar() {
 
                     {!imageUser && (
                         <div className="w-full flex flex-col items-center">
-
                             <Skeleton height={"h-full"} width={"w-[80%]"}  rounded="full" className="aspect-[1/1] mb-4" />
                         </div>
-                        
                     )}
                 </div>
                 <Card className="flex flex-col md:flex-row rounded-lg gap-2 mb-4">
@@ -151,29 +145,11 @@ export default function Sidebar() {
                                 </Button>
                                 
                                 <label className="hidden md:flex text-sm font-semibold">Preferências</label>
-                                
                             </li>
-                        </Link>
-                        
+                        </Link>  
                     </ul>
-
                 </nav>
             </Container>
-            <Modal 
-                isOpen={isOpen} 
-                onClose={() => setModalNewStory(false)}
-                title="Novo story"
-            >
-                <div className="flex flex-col gap-4">
-                    <div className="flex justify-between items-center pb-2">
-                        <button onClick={() => setModalNewStory(false)} className="text-gray-500 hover:text-gray-700">
-                            <span className="sr-only">Close</span>
-                        </button>    
-                    </div>  
-                    
-                </div>
-            </Modal>
-            
         </>
     );
 }
