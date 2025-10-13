@@ -23,9 +23,8 @@ export default function BottomMenu(){
             <nav className="w-full">
                     
                     <ul className="flex flex-row list-none justify-center">
-                        <Link href="/social-media">
+                        <Link href={`/social-media/profile/${myInfo?.name}`}>
                             <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
-                                
                                
                                 <Image
                                     src={imageUser || "/imgs/placeholder.png"}

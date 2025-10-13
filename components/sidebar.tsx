@@ -57,10 +57,8 @@ export default function Sidebar() {
 
                     {!imageUser && (
                         <div className="w-full flex flex-col items-center">
-
                             <Skeleton height={"h-full"} width={"w-[80%]"}  rounded="full" className="aspect-[1/1] mb-4" />
                         </div>
-                        
                     )}
                 </div>
                 <Card className="flex flex-col md:flex-row rounded-lg gap-2 mb-4">
@@ -147,16 +145,11 @@ export default function Sidebar() {
                                 </Button>
                                 
                                 <label className="hidden md:flex text-sm font-semibold">Preferências</label>
-                                
                             </li>
-                        </Link>
-                        
+                        </Link>  
                     </ul>
-
                 </nav>
             </Container>
-            
-            
         </>
     );
 }
