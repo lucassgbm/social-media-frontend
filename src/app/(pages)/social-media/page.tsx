@@ -89,7 +89,6 @@ export default function Home() {
     if (file) {
       setNewPost({ ...newPost, photo_path: file });
 
-      // libera a URL anterior da memória
       if (preview) {
         URL.revokeObjectURL(preview);
       }
