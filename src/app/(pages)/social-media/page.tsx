@@ -176,15 +176,15 @@ export default function Home() {
           <div className="flex flex-row gap-6">
             <div className="w-full sm:w-3/4 h-full rounded-2xl mb-4">
               <Container className="flex flex-row gap-2 mb-4 items-center">
-                {myInfo?.photo && (
+                {myInfo && (
 
                   <>
                     <RingImage>
 
                       <Image
-                        src={`${process.env.NEXT_PUBLIC_STORAGE_API?.replace(/\/$/, '')}/${myInfo.photo?.replace(/^\//, '')}`}
+                        src={myInfo.photo ?? '/imgs/placeholder.png'}
                         alt="Foto de perfil"
-                        className="rounded-full w-[50px]"
+                        className="rounded-full w-[50px] aspect-[1/1]"
                         width={50}
                         height={50}
                       />
@@ -194,12 +194,12 @@ export default function Home() {
                       <div
                         className="w-full hover:text-border-0 ml-2 focus:outline-none p-4 rounded-full bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-400 cursor-pointer"
                         onClick={() => setModalNewPost(true)}
-                      >Diga algo para a galera...
+                      >Como você está se sentindo hoje?
                       </div>
                     </div>
                   </>
                 )}
-                {!myInfo?.photo && (
+                {!myInfo && (
                   <div className="w-full flex flex-row ">
 
                     <div className="w-full flex flex-row gap-2 items-center">
@@ -247,14 +247,12 @@ export default function Home() {
                     <div className="flex flex-col h-full mt-2">
                       <div className="flex flex-col sm:flex-row items-center mb-4">
                         <Image
-                          src={event?.photo
-                            ? `${process.env.NEXT_PUBLIC_STORAGE_API?.replace(/\/$/, '')}/${event.photo?.replace(/^\//, '')}`
-                            : ''}
+                          src={event?.photo ?? '/imgs/placeholder.png'}
                           alt="Foto de perfil"
                           className="rounded-md w-[70px] mr-4 hover:opacity-90"
                           width={70}
                           height={70}
-                          priority
+                          loading="lazy"
                         />
                         <h2 className="text-md font-semibold">{event?.title}</h2>
                       </div>

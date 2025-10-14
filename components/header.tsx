@@ -66,7 +66,7 @@ export default function Header() {
                                         <Image
                                             src={imageUser || "/imgs/placeholder.png"}
                                             alt="Foto de perfil"
-                                            className="rounded-full w-[45px]"
+                                            className="rounded-full w-[45px] aspect-[1/1]"
                                             width={50}
                                             height={50}
                                         />

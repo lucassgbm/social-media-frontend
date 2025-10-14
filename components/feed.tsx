@@ -38,13 +38,9 @@ export default function Feed({ feed }: FeedProps) {
     <>
       {feed.map((post) => {
 
-        const imageUser = post.user.photo
-          ? `${process.env.NEXT_PUBLIC_STORAGE_API?.replace(/\/$/, '')}/${post.user.photo?.replace(/^\//, '')}`
-          : null;
+        const imageUser = post.user.photo ?? '/imgs/placeholder.png';
 
-        const imagePost = post.photo_path
-          ? `${process.env.NEXT_PUBLIC_STORAGE_API?.replace(/\/$/, '')}/${post.photo_path.replace(/^\//, '')}`
-          : null;
+        const imagePost = post.photo_path ?? null;
 
         return (
           <div key={post.id}>
@@ -54,7 +50,7 @@ export default function Feed({ feed }: FeedProps) {
                   <Image
                     src={imageUser}
                     alt="Foto de perfil"
-                    className="rounded-full"
+                    className="rounded-full aspect-[1/1]"
                     width={50}
                     height={50}
                     unoptimized

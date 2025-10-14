@@ -30,21 +30,19 @@ export default function Sidebar() {
 
     const { myInfo } = context;
 
-    const imageUser = myInfo?.photo
-    ? `${process.env.NEXT_PUBLIC_STORAGE_API?.replace(/\/$/, '')}/${myInfo.photo?.replace(/^\//, '')}`
-    : null;
+    const imageUser = myInfo?.photo ?? '/imgs/placeholder.png';
     return (
         <>
             
             <Container className="sticky top-0 h-screen hidden sm:flex flex-col sm:w-1/6">
                 <div className="flex justify-center mb-4">
-                    {imageUser && (
+                    {myInfo && (
                         
                         <RingImage className="relative w-[45px] sm:w-[80%]" padding="p-[2px] sm:p-[4px]">
                             <Image
                                 src={imageUser ?? "/imgs/placeholder.png"}
                                 alt="Foto de perfil"
-                                className="rounded-full"
+                                className="rounded-full aspect-[1/1]"
                                 width={250}
                                 height={250}
                                 priority
@@ -55,7 +53,7 @@ export default function Sidebar() {
                        
                     )}
 
-                    {!imageUser && (
+                    {!myInfo && (
                         <div className="w-full flex flex-col items-center">
                             <Skeleton height={"h-full"} width={"w-[80%]"}  rounded="full" className="aspect-[1/1] mb-4" />
                         </div>
