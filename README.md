@@ -1,3 +1,7 @@
+## Pré requisitos
+- node ^20.0
+- npm
+
 ## Instação 
 - npm i
 
