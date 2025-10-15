@@ -16,6 +16,7 @@ import React, {
   useState,
 } from "react";
 import CameraIcon from "./icons/camera";
+import Container from "./container";
 
 const PlayIcon = ({ className }: any) => {
   return (
@@ -485,10 +486,10 @@ export function StoriesBar({ items = [], setStory, storyRingSize = 30 }: any) {
 
   return (
     <>
-      <div className="flex flex-row sm:flex-col items-center gap-3 overflow-x-auto py-2 px-4">
+      <Container className="flex flex-row w-full overflow-x-auto gap-2" padding="p-2" transparent>
         
         <button
-          className={`w-full min-w-[50px] aspect-[1/1] flex items-center justify-center cursor-pointer rounded-full
+          className={`w-[80px] min-w-[50px] aspect-[1/1] flex items-center justify-center cursor-pointer rounded-full
             drop-shadow-md
             hover:brightness-90
             p-[3px]
@@ -525,7 +526,7 @@ export function StoriesBar({ items = [], setStory, storyRingSize = 30 }: any) {
                 onClick={() => {
                   setStory({ show: true, data: it });
                 }}
-                className={`w-full min-w-[50px] aspect-[1/1] flex items-center justify-center cursor-pointer rounded-full
+                className={`w-[80px] min-w-[50px] aspect-[1/1] flex items-center justify-center cursor-pointer rounded-full
                   drop-shadow-md
                   hover:brightness-90
                   p-[3px]
@@ -550,7 +551,7 @@ export function StoriesBar({ items = [], setStory, storyRingSize = 30 }: any) {
               </button>
             );
           })}
-      </div>
+      </Container>
       <Modal 
           isOpen={isOpen} 
           onClose={() => setModalNewStory(false)}
@@ -696,6 +697,224 @@ export default function Page() {
           postingTime: "15h",
           liked: false,
         },
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },
+    {
+      id: "u5",
+      user: "Pedro",
+      avatarUrl:
+        "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },
+    {
+      id: "u5",
+      user: "Pedro",
+      avatarUrl:
+        "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },
+    {
+      id: "u5",
+      user: "Pedro",
+      avatarUrl:
+        "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },
+    {
+      id: "u5",
+      user: "Pedro",
+      avatarUrl:
+        "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },
+    {
+      id: "u5",
+      user: "Pedro",
+      avatarUrl:
+        "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },
+    {
+      id: "u5",
+      user: "Pedro",
+      avatarUrl:
+        "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },
+    {
+      id: "u5",
+      user: "Pedro",
+      avatarUrl:
+        "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },
+    {
+      id: "u5",
+      user: "Pedro",
+      avatarUrl:
+        "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },
+    {
+      id: "u5",
+      user: "Pedro",
+      avatarUrl:
+        "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },
+    {
+      id: "u5",
+      user: "Pedro",
+      avatarUrl:
+        "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },{
+      id: "u5",
+      user: "Pedro",
+      avatarUrl:
+        "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },{
+      id: "u5",
+      user: "Pedro",
+      avatarUrl:
+        "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
+      hasSeenAll: false,
+      slides: [
+        {
+          type: "video",
+          src: "/stories/s1-2.mp4",
+          durationMs: 8000,
+          caption: "Coffee time",
+          postingTime: "20h",
+          liked: false,
+        },
+      ],
+    },{
+      id: "u5",
+      user: "Pedro",
+      avatarUrl:
+        "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
+      hasSeenAll: false,
+      slides: [
         {
           type: "video",
           src: "/stories/s1-2.mp4",

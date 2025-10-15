@@ -54,15 +54,18 @@ export default function RootLayout({
     /*openMessages, setOpenMessages*/
     <AppContext.Provider value={{ myInfo, setMyInfo, openMessages, setOpenMessages }}>
       <Header />
-      <div className="flex flex-col sm:flex-row dark:bg-neutral-950 bg-neutral-100 min-h-screen p-6 gap-6 text-gray-600">
-        <Sidebar />
-        {children}
-        {openMessages && (
+      <div className="flex dark:bg-neutral-950 bg-neutral-100 min-h-screen justify-center p-6">
+        <div className="flex flex-col max-w-7xl sm:flex-row  gap-6 text-gray-600">
 
-          <Messages openMessages={openMessages} setOpenMessages={setOpenMessages} />
-        )}
-        <Footer />
-        <BottomMenu />
+          <Sidebar />
+          {children}
+          {openMessages && (
+
+            <Messages openMessages={openMessages} setOpenMessages={setOpenMessages} />
+          )}
+          <Footer />
+          <BottomMenu />
+        </div>
       </div>
     </AppContext.Provider>
 
