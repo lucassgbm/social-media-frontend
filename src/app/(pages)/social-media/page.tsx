@@ -170,11 +170,12 @@ export default function Home() {
   return (
     <>
 
-      <div className="w-full sm:w-5/6 flex flex-col-reverse sm:flex-row gap-6">
+      <div className="w-full sm:w-5/6 flex flex-col gap-6">
 
-        <div className="w-full sm:w-5/6">
+        <ListStories />
+        <div className="w-full">
           <div className="flex flex-row gap-6">
-            <div className="w-full sm:w-3/4 h-full rounded-2xl mb-4">
+            <div className="w-full sm:w-[3/5] h-full rounded-2xl mb-4">
               <Container className="flex flex-row gap-2 mb-4 items-center">
                 {myInfo && (
 
@@ -238,7 +239,7 @@ export default function Home() {
               <Feed feed={feed} />
 
             </div>
-            <div className="hidden sm:block w-1/4">
+            <div className="hidden sm:block w-[2/5]">
               <Container className="mb-4 text-center">
                 {event && (
                   <>
@@ -418,9 +419,6 @@ export default function Home() {
           </div>
         </div>
 
-        <Container className="flex flex-row sm:flex-col w-full h-[auto] sm:h-auto gap-4 overflow-x-auto scrollbar-hide sm:w-1/6 sm:mb-0" padding="p-2">
-          <ListStories />
-        </Container>
       </div>
 
       <Modal
