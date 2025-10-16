@@ -40,7 +40,7 @@ export default function Sidebar() {
                         
                         <RingImage className="relative w-[45px] sm:w-[80%]" padding="p-[2px] sm:p-[4px]">
                             <Image
-                                src={imageUser ?? "/imgs/placeholder.png"}
+                                src={"/imgs/placeholder.png"}
                                 alt="Foto de perfil"
                                 className="rounded-full aspect-[1/1]"
                                 width={250}

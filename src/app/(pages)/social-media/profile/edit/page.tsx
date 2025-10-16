@@ -75,7 +75,7 @@ export default function Home(){
                                         <RingImage>
 
                                             <Image
-                                                src={myInfo?.photo ? imageUser : "/imgs/placeholder.png"}
+                                                src={"/imgs/placeholder.png"}
                                                 alt="Capa do perfil"
                                                 width={500}
                                                 height={500}

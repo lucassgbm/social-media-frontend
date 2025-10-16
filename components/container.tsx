@@ -11,7 +11,7 @@ export default function Container({ className, children, padding, transparent }:
     return (
         <div 
             className={`
-            ${transparent ? 'bg-transparent' : 'dark:bg-neutral-900 dark:shadow-neutral-md bg-white shadow-md'}
+            ${transparent ? 'bg-transparent' : 'dark:bg-neutral-900 dark:shadow-neutral-md bg-white shadow-md rounded-md border-1 border-neutral-300/30 dark:border-neutral-700/30'}
             dark:text-white
             text-gray 
             ${padding ?? 'p-4'}

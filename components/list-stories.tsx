@@ -17,6 +17,10 @@ import React, {
 } from "react";
 import CameraIcon from "./icons/camera";
 import Container from "./container";
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
+
+
 
 const PlayIcon = ({ className }: any) => {
   return (
@@ -487,9 +491,28 @@ export function StoriesBar({ items = [], setStory, storyRingSize = 30 }: any) {
   return (
     <>
       <Container className="flex flex-row w-full overflow-x-auto gap-2" padding="p-2" transparent>
-        
+        <Splide
+      options={{
+        type: 'loop',
+        perPage: 10,
+        perMove: 1,
+        gap: '0.2rem',
+        autoplay: false,
+        pauseOnHover: true,
+        pagination: false,
+        arrows: false,
+        dots: false,
+        breakpoints: {
+          1024: { perPage: 8 },
+          640: { perPage: 6 },  
+        },
+      }}
+      aria-label="Stories"
+      className="w-full"
+    >
+      <SplideSlide>
         <button
-          className={`w-[80px] min-w-[50px] aspect-[1/1] flex items-center justify-center cursor-pointer rounded-full
+          className={`w-[80px] min-w-[60px] aspect-[1/1] flex items-center justify-center cursor-pointer rounded-full
             drop-shadow-md
             hover:brightness-90
             p-[3px]
@@ -501,7 +524,7 @@ export function StoriesBar({ items = [], setStory, storyRingSize = 30 }: any) {
           aria-label={`New ${myInfo?.name}'s story`}
         >
           <img
-            src={myInfo?.photo ? imageUser : "/imgs/placeholder.png"}
+            src={"/imgs/placeholder.png"}
             alt={`Add new ${myInfo?.name}'s story`}
             className={`w-full aspect-[1/1] rounded-full object-cover`}
             style={{
@@ -516,41 +539,47 @@ export function StoriesBar({ items = [], setStory, storyRingSize = 30 }: any) {
 
           </div>
         </button>
-
+          </SplideSlide>
         {items
           .sort((a: any, b: any) => a.hasSeenAll - b.hasSeenAll)
           .map((it: any) => {
             return (
-              <button
-                key={it.id}
-                onClick={() => {
-                  setStory({ show: true, data: it });
-                }}
-                className={`w-[80px] min-w-[50px] aspect-[1/1] flex items-center justify-center cursor-pointer rounded-full
-                  drop-shadow-md
-                  hover:brightness-90
-                  p-[3px]
-                  ${!it.hasSeenAll ? "border-green-500/90" : "border-[#DBDBDB]"}
-              `}
-                style={{
-                  borderWidth: 2.5,
-                }}
-                aria-label={`Open ${it.user}'s story`}
-              >
-                <img
-                  src={it.avatarUrl}
-                  alt={it.user}
-                  className={`w-full aspect-[1/1] rounded-full object-cover transition-transform duration-300 hover:scale-110`}
-                  style={{
-                    // width: storyRingSize,
-                    // height: storyRingSize,
-                    width: `full`,
-                    height: `full`,
+              <SplideSlide key={it.id}>
+                <button
+                  key={it.id}
+                  onClick={() => {
+                    setStory({ show: true, data: it });
                   }}
-                />
-              </button>
+                  className={`w-[80px] min-w-[60px] aspect-[1/1] flex items-center justify-center cursor-pointer rounded-full
+                    drop-shadow-md
+                    hover:brightness-90
+                    p-[3px]
+                    ${!it.hasSeenAll ? "border-green-500/90" : "border-[#DBDBDB]"}
+                `}
+                  style={{
+                    borderWidth: 2.5,
+                  }}
+                  aria-label={`Open ${it.user}'s story`}
+                >
+                  <img
+                    src={it.avatarUrl}
+                    alt={it.user}
+                    className={`w-full aspect-[1/1] rounded-full object-cover transition-transform duration-300 hover:scale-110`}
+                    style={{
+                      // width: storyRingSize,
+                      // height: storyRingSize,
+                      width: `full`,
+                      height: `full`,
+                    }}
+                  />
+                </button>
+              </SplideSlide>
             );
           })}
+      
+
+    </Splide>
+        
       </Container>
       <Modal 
           isOpen={isOpen} 
@@ -708,7 +737,7 @@ export default function Page() {
       ],
     },
     {
-      id: "u5",
+      id: "u6",
       user: "Pedro",
       avatarUrl:
         "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
@@ -725,7 +754,7 @@ export default function Page() {
       ],
     },
     {
-      id: "u5",
+      id: "u7",
       user: "Pedro",
       avatarUrl:
         "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
@@ -742,7 +771,7 @@ export default function Page() {
       ],
     },
     {
-      id: "u5",
+      id: "u8",
       user: "Pedro",
       avatarUrl:
         "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
@@ -759,7 +788,7 @@ export default function Page() {
       ],
     },
     {
-      id: "u5",
+      id: "u9",
       user: "Pedro",
       avatarUrl:
         "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
@@ -776,7 +805,7 @@ export default function Page() {
       ],
     },
     {
-      id: "u5",
+      id: "u10",
       user: "Pedro",
       avatarUrl:
         "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
@@ -793,7 +822,7 @@ export default function Page() {
       ],
     },
     {
-      id: "u5",
+      id: "u11",
       user: "Pedro",
       avatarUrl:
         "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
@@ -810,7 +839,7 @@ export default function Page() {
       ],
     },
     {
-      id: "u5",
+      id: "u12",
       user: "Pedro",
       avatarUrl:
         "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
@@ -827,7 +856,7 @@ export default function Page() {
       ],
     },
     {
-      id: "u5",
+      id: "u13",
       user: "Pedro",
       avatarUrl:
         "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
@@ -844,7 +873,7 @@ export default function Page() {
       ],
     },
     {
-      id: "u5",
+      id: "u14",
       user: "Pedro",
       avatarUrl:
         "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
@@ -861,7 +890,7 @@ export default function Page() {
       ],
     },
     {
-      id: "u5",
+      id: "u15",
       user: "Pedro",
       avatarUrl:
         "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
@@ -877,7 +906,7 @@ export default function Page() {
         },
       ],
     },{
-      id: "u5",
+      id: "u16",
       user: "Pedro",
       avatarUrl:
         "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
@@ -893,7 +922,7 @@ export default function Page() {
         },
       ],
     },{
-      id: "u5",
+      id: "u17",
       user: "Pedro",
       avatarUrl:
         "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",
@@ -909,7 +938,7 @@ export default function Page() {
         },
       ],
     },{
-      id: "u5",
+      id: "u18",
       user: "Pedro",
       avatarUrl:
         "https://img.freepik.com/fotos-premium/perfil-de-cabeca-de-dispersao-de-inteligencia-artificial-de-um-robo-cromado-fundo-lilas-escuro-maquete-de-banner-de-cabecalho-com-espaco-de-copia-gerado-por-ia_868611-1548.jpg",

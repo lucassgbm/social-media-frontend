@@ -173,7 +173,6 @@ export default function Home() {
       <div className="w-full sm:w-5/6 flex flex-col gap-6">
 
         <ListStories />
-        <div className="w-full">
           <div className="flex flex-row gap-6">
             <div className="w-full sm:w-[3/5] h-full rounded-2xl mb-4">
               <Container className="flex flex-row gap-2 mb-4 items-center">
@@ -183,7 +182,7 @@ export default function Home() {
                     <RingImage>
 
                       <Image
-                        src={myInfo.photo ?? '/imgs/placeholder.png'}
+                        src={'/imgs/placeholder.png'}
                         alt="Foto de perfil"
                         className="rounded-full w-[50px] aspect-[1/1]"
                         width={50}
@@ -248,7 +247,7 @@ export default function Home() {
                     <div className="flex flex-col h-full mt-2">
                       <div className="flex flex-col sm:flex-row items-center mb-4">
                         <Image
-                          src={event?.photo ?? '/imgs/placeholder.png'}
+                          src={'/imgs/placeholder.png'}
                           alt="Foto de perfil"
                           className="rounded-md w-[70px] mr-4 hover:opacity-90"
                           width={70}
@@ -364,7 +363,7 @@ export default function Home() {
                         <Card className="flex flex-col justify-center  mt-4 bg-neutral-100 dark:bg-neutral-800 rounded-xl cursor-pointer hover:shadow-md" key={index}>
                           <div className="flex flex-row items-center rounded-sm ">
                             <Image
-                              src={imageCommunity ?? "/imgs/placeholder.png"}
+                              src={"/imgs/placeholder.png"}
                               alt="Foto de perfil"
                               className="rounded-full w-[40px] aspect-[1/1] mr-2 hover:opacity-90 object-cover"
                               width={110}
@@ -417,7 +416,6 @@ export default function Home() {
               </Container>
             </div>
           </div>
-        </div>
 
       </div>
 
@@ -450,7 +448,7 @@ export default function Home() {
 
         )}
         {loadingSendPost && (
-          <div className="w-full flex flex-rom p-2 justify-center">
+          <div className="w-full flex flex-row p-2 justify-center">
             <LoadingSpinner />
           </div>
         )}

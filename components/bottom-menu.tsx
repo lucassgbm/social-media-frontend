@@ -27,9 +27,9 @@ export default function BottomMenu(){
                             <li className="flex w-full items-center gap-2 p-2 rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-950 cursor-pointer">
                                
                                 <Image
-                                    src={imageUser || "/imgs/placeholder.png"}
+                                    src={"/imgs/placeholder.png"}
                                     alt="Foto de perfil"
-                                    className="w-[45px] rounded-full"
+                                    className="w-[45px] rounded-full aspect-[1/1]"
                                     width={250}
                                     height={250}
                                     priority
